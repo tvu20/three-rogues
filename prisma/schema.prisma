@@ -20,6 +20,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  characters    Character[]
 }
 
 model Account {
@@ -58,4 +59,29 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// character
+
+model Character {
+  id              String     @default(uuid()) @id
+  createdAt       DateTime @default(now())
+  name            String   
+  author          User?@relation(fields:[authorId], references:[id])
+  authorId        String? 
+  race            String
+  level           Int
+  pronouns        String?
+  background      String
+  alignment       String
+  age             String
+  class           Json
+  abilityScores   Json?
+  maxHP           Int?
+  proficiencyBonus  Int? 
+  initiative      Int?
+  ac              Json? 
+  speed           Json?
+  inspiration     Boolean? 
+  darkvision      Int?
 }

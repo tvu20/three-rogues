@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "update:prisma": "npx prisma db push && npx prisma generate"
   },
   "keywords": [],
   "author": "",
