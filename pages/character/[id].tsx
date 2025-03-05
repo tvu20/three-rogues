@@ -7,7 +7,7 @@ export const getServerSideProps = async ({ params, req, res }) => {
   const session = await getSession({ req });
   if (!session) {
     res.statusCode = 403;
-    return { props: { drafts: [] } };
+    return { props: { character: {} } };
   }
 
   const character = await prisma.character.findUnique({

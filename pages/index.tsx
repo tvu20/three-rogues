@@ -1,45 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GetStaticProps } from "next";
 import Layout from "../components/Layout";
 import Post, { PostProps } from "../components/Post";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const feed = [
-    {
-      id: "1",
-      title: "Prisma is the perfect ORM for Next.js",
-      content:
-        "[Prisma](https://github.com/prisma/prisma) and Next.js go _great_ together!",
-      published: false,
-      author: {
-        name: "Nikolas Burk",
-        email: "burk@prisma.io",
-      },
-    },
-  ];
-  return {
-    props: { feed },
-    revalidate: 10,
-  };
-};
+const Home: React.FC = () => {
+  const { data: session, status } = useSession();
 
-type Props = {
-  feed: PostProps[];
-};
+  // useEffect(() => {
+  //   if (status === "loading") return;
+  //   // const userHasValidSession = Boolean(session);
+  //   console.log("SESSION", session);
 
-const Blog: React.FC<Props> = (props) => {
+  //   fetch(`/api/characters`, {
+  //     method: "GET",
+  //     mode: "cors",
+  //     headers: {
+  //       "access-control-allow-origin": "*",
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       // setRecipes(data);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, [session]);
+
   return (
     <Layout>
       <div className="page">
         <h1>Public Feed</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
         <Link href="/character/9486cbae-0544-41d0-a941-84a6b2d09cd1">
           Character 1
         </Link>
@@ -48,4 +41,4 @@ const Blog: React.FC<Props> = (props) => {
   );
 };
 
-export default Blog;
+export default Home;
