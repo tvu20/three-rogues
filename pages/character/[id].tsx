@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import prisma from "../../lib/prisma";
 import { getSession } from "next-auth/react";
 import Layout from "../../components/Layout";
+import CharacterHeader from "../../components/character/CharacterHeader";
 
 export const getServerSideProps = async ({ params, req, res }) => {
   const session = await getSession({ req });
@@ -48,6 +49,7 @@ export default function Character({ character }) {
 
   return (
     <Layout>
+      <CharacterHeader />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">Character Details</h1>
         <pre className="bg-gray-100 p-4 rounded">
