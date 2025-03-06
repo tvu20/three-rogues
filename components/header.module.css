@@ -1,0 +1,37 @@
+.navbar {
+  display: flex;
+  padding: 20px 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  width: auto;
+}
+
+.appName {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--primary-heading-color-dark);
+  font-size: var(--font-size-heading-small);
+}
+
+.right {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: var(--primary-heading-color-dark);
+}
+
+.verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+.verticalCenter p {
+  margin-right: 6px;
+  font-weight: 400;
+}

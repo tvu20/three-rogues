@@ -1,12 +1,24 @@
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
-};
+import Loader from "../components/Loader";
 
-export default App;
+import { usePageLoading } from "../utils/usePageLoading";
+
+import "../styles/global.css";
+import "../styles/variables.css";
+import "../styles/loader.css";
+export default function App({ Component, pageProps }: AppProps) {
+  const { isPageLoading } = usePageLoading();
+  return (
+    <>
+      {isPageLoading ? (
+        <Loader />
+      ) : (
+        <SessionProvider session={pageProps.session}>
+          <Component {...pageProps} />
+        </SessionProvider>
+      )}
+    </>
+  );
+}

@@ -3,203 +3,61 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 
+import { UserCirclePlus, SignOut, SignIn } from "@phosphor-icons/react";
+import useMediaQuery from "../utils/useMediaQuery";
+
+import styles from "./header.module.css";
+
 const Header: React.FC = () => {
   const router = useRouter();
+  const isBreakpoint = useMediaQuery(800);
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
-  const { data: session, status } = useSession();
-
-  let left = (
-    <div className="left">
-      <Link href="/">
-        <p className="bold" data-active={isActive("/")}>
-          Feed
-        </p>
-      </Link>
-      <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: var(--geist-foreground);
-          display: inline-block;
-        }
-
-        .left a[data-active="true"] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
-    </div>
-  );
+  const { data: session } = useSession();
 
   let right = null;
-
-  if (status === "loading") {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <p className="bold" data-active={isActive("/")}>
-            Feed
-          </p>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active="true"] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
-    right = (
-      <div className="right">
-        <p>Validating session ...</p>
-        <style jsx>{`
-          .right {
-            margin-left: auto;
-          }
-        `}</style>
-      </div>
-    );
-  }
 
   if (!session) {
     right = (
       <div className="right">
-        <Link href="/api/auth/signin">
-          <p data-active={isActive("/signup")}>Log in</p>
+        <Link href="/api/auth/signin" className={styles.verticalCenter}>
+          {!isBreakpoint && <p>Sign in</p>}
+          <SignIn className={styles.icon} size={28} />
         </Link>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-        `}</style>
       </div>
     );
   }
 
   if (session) {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <p className="bold" data-active={isActive("/")}>
-            Feed
-          </p>
-        </Link>
-        <Link href="/drafts">
-          <p data-active={isActive("/drafts")}>My drafts</p>
-        </Link>
-        <style jsx>{`
-          .bold {
-            font-weight: bold;
-          }
-
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          .left a[data-active="true"] {
-            color: gray;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-        `}</style>
-      </div>
-    );
     right = (
-      <div className="right">
-        <p>
-          {session.user.name} ({session.user.email})
-        </p>
-        <Link href="/create">
-          <button>New post</button>
+      <div className={styles.right}>
+        <Link
+          href="/create"
+          className={styles.verticalCenter}
+          style={{ marginRight: isBreakpoint ? "10px" : "30px" }}
+        >
+          {!isBreakpoint && <p>Create</p>}
+          <UserCirclePlus className={styles.icon} size={28} />
         </Link>
-        <button onClick={() => signOut()}>Log out</button>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: var(--geist-foreground);
-            display: inline-block;
-          }
-
-          p {
-            display: inline-block;
-            font-size: 13px;
-            padding-right: 1rem;
-          }
-
-          a + a {
-            margin-left: 1rem;
-          }
-
-          .right {
-            margin-left: auto;
-          }
-
-          .right a {
-            border: 1px solid var(--geist-foreground);
-            padding: 0.5rem 1rem;
-            border-radius: 3px;
-          }
-
-          button {
-            border: none;
-          }
-        `}</style>
+        <button className={styles.verticalCenter} onClick={() => signOut()}>
+          {!isBreakpoint && <p>Sign out</p>}
+          <SignOut className={styles.icon} size={28} />
+        </button>
       </div>
     );
   }
 
   return (
-    <nav>
-      {left}
+    <nav className={styles.navbar}>
+      <div className={styles.left}>
+        <Link href="/">
+          <h3 className={styles.appName} data-active={isActive("/")}>
+            Three Rogues
+          </h3>
+        </Link>
+      </div>
       {right}
-      <style jsx>{`
-        nav {
-          display: flex;
-          padding: 2rem;
-          align-items: center;
-        }
-      `}</style>
     </nav>
   );
 };
