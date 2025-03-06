@@ -1,51 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import prisma from "../../lib/prisma";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Layout from "../../components/Layout";
 import CharacterHeader from "../../components/character/CharacterHeader";
+import { useRouter, useParams } from "next/navigation";
 
-export const getServerSideProps = async ({ params, req, res }) => {
-  const session = await getSession({ req });
-  if (!session) {
-    res.statusCode = 403;
-    return { props: { character: {} } };
-  }
+export default function Character() {
+  const router = useRouter();
+  const params = useParams();
+  const id = params?.id;
 
-  const character = await prisma.character.findUnique({
-    where: {
-      id: params?.id,
-      author: { email: session.user.email },
-    },
-    include: {
-      //   ingredients: true,
-      //   tags: true,
-      author: {
-        select: { name: true, email: true },
+  const { data: session, status } = useSession();
+  const [character, setCharacter] = useState({});
+  useEffect(() => {
+    if (status === "loading") return;
+
+    const userHasValidSession = Boolean(session);
+
+    // // handle differently here
+    if (!userHasValidSession) {
+      router.push("/");
+    }
+
+    fetch(`/api/character/${id}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "access-control-allow-origin": "*",
+        "Content-Type": "application/json",
       },
-      //   comments: {
-      //     where: { author: { is: { email: email } } },
-      //     include: {
-      //       author: {
-      //         select: { email: true },
-      //       },
-      //     },
-      //   },
-    },
-  });
-
-  return {
-    props: {
-      character: JSON.parse(JSON.stringify(character)),
-    },
-  };
-};
-
-export default function Character({ character }) {
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCharacter(data);
+      })
+      .catch((error) => console.error(error));
+  }, [status, id]);
   console.log("Character data:", JSON.stringify(character, null, 2));
 
-  if (!character) {
-    return <div>Character not found</div>;
-  }
+  // if (!character) {
+  //   return <div>Character not found</div>;
+  // }
 
   return (
     <Layout>
