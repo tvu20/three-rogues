@@ -12,6 +12,7 @@ export default async function handle(req, res) {
   } else {
     const result = await prisma.character.findMany({
       where: {
+        // @ts-ignore
         author: { email: session?.user.email },
       },
       include: {

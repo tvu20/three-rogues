@@ -69,6 +69,7 @@ model Character {
   name            String   
   author          User?@relation(fields:[authorId], references:[id])
   authorId        String? 
+  avatar          String?
   race            String
   level           Int
   pronouns        String?
@@ -84,4 +85,6 @@ model Character {
   speed           Json?
   inspiration     Boolean? 
   darkvision      Int?
+
+  liveStats       Json?
 }

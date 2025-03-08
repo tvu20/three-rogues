@@ -1,61 +1,23 @@
-import React, { useState } from "react";
-import prisma from "../../lib/prisma";
-import { getSession } from "next-auth/react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
-import CharacterHeader from "../../components/character/CharacterHeader";
+import CharacterHeader from "../../components/character/header/CharacterHeader";
+import { useParams } from "next/navigation";
+import { useGetCharacterQuery } from "../../app/api/apiSlice";
+import { useAppDispatch } from "../../utils/redux";
+import { setLiveCharacter } from "../../app/character/characterSlice";
+import Loader from "../../components/Loader";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import CharacterPage from "../../components/character/CharacterPage";
 
-export const getServerSideProps = async ({ params, req, res }) => {
-  const session = await getSession({ req });
+export default function Character() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  if (status === "loading") return <Loader />;
+
   if (!session) {
-    res.statusCode = 403;
-    return { props: { character: {} } };
+    router.push("/");
   }
 
-  const character = await prisma.character.findUnique({
-    where: {
-      id: params?.id,
-      author: { email: session.user.email },
-    },
-    include: {
-      //   ingredients: true,
-      //   tags: true,
-      author: {
-        select: { name: true, email: true },
-      },
-      //   comments: {
-      //     where: { author: { is: { email: email } } },
-      //     include: {
-      //       author: {
-      //         select: { email: true },
-      //       },
-      //     },
-      //   },
-    },
-  });
-
-  return {
-    props: {
-      character: JSON.parse(JSON.stringify(character)),
-    },
-  };
-};
-
-export default function Character({ character }) {
-  console.log("Character data:", JSON.stringify(character, null, 2));
-
-  if (!character) {
-    return <div>Character not found</div>;
-  }
-
-  return (
-    <Layout>
-      <CharacterHeader />
-      <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Character Details</h1>
-        <pre className="bg-gray-100 p-4 rounded">
-          {JSON.stringify(character, null, 2)}
-        </pre>
-      </div>
-    </Layout>
-  );
+  return <CharacterPage />;
 }

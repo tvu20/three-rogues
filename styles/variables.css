@@ -2,11 +2,40 @@ body {
   --primary-heading-color-dark: #000000;
   --primary-background-color-light: #ffffff;
 
+  --primary-text-color-dark: #000000;
+  --primary-text-color-heading: #000000;
+
+  /* fonts  */
+  --font-belleza: "Belleza", sans-serif;
+  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+
   /* font sizes */
   /* --font-size-heading-large: 40px; */
-  /* --font-size-heading-medium: 32px; */
+  --font-size-heading-medium: 32px;
   --font-size-heading-small: 24px;
-  /* --font-size-body-large: 20px;
+  --font-size-heading-xsmall: 20px;
+  --font-size-body-large: 20px;
+  --font-size-body-medium: 16px;
+  --font-size-body-small: 14px;
+  --font-size-body-xsmall: 12px;
+  /* 
   --font-size-body-medium: 16px;
   --font-size-body-small: 14px; */
+
+  /* image sizes */
+  --avatar-size: 120px;
+
+  /* spacing */
+  --spacing-xxx-small: 2px;
+  --spacing-xx-small: 4px;
+  --spacing-xsmall: 6px;
+  --spacing-small: 10px;
+  --spacing-small-medium: 14px;
+  --spacing-medium: 20px;
+  --spacing-medium-large: 24px;
+  --spacing-large: 30px;
+  --spacing-xlarge: 40px;
+  --spacing-xx-large: 50px;
+  --spacing-xxx-large: 60px;
+  --spacing-xxxx-large: 70px;
 }

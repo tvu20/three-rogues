@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
   const { data: session } = useSession();
 
-  let right = null;
+  let right;
 
   if (!session) {
     right = (

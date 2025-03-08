@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { GetStaticProps } from "next";
 import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-
+import { useGetCharactersQuery } from "../app/api/apiSlice";
+import CharacterList from "../components/homepage/CharacterList";
+import Loader from "../components/Loader";
 const Home: React.FC = () => {
   const { data: session, status } = useSession();
+
+  if (status === "loading") return <Loader />;
 
   // useEffect(() => {
   //   if (status === "loading") return;
@@ -33,9 +35,8 @@ const Home: React.FC = () => {
     <Layout>
       <div className="page">
         <h1>Public Feed</h1>
-        <Link href="/character/9486cbae-0544-41d0-a941-84a6b2d09cd1">
-          Character 1
-        </Link>
+        {session && <CharacterList />}
+        {!session && <div>Unauthenticated!</div>}
       </div>
     </Layout>
   );
