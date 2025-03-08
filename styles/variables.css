@@ -9,16 +9,26 @@ body {
   --tab-color-text: rgba(0, 0, 0, 0.5);
   --tab-color-active: rgba(0, 0, 0, 1);
 
+  --content-box-background-color: #fff;
+  --content-box-border-color: #000000;
+
+  --action-button-border-color: #000000;
+  --highlight-background-color: #efefec;
+
+  --primary-gold-color: #d58c26;
+
   /* fonts  */
   --font-belleza: "Belleza", sans-serif;
-  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+  --font-be-vietnam: "Be Vietnam", sans-serif;
 
   /* font sizes */
-  /* --font-size-heading-large: 40px; */
+  --font-size-heading-large: 40px;
+  --font-size-heading-medium-large: 36px;
   --font-size-heading-medium: 32px;
   --font-size-heading-small: 24px;
   --font-size-heading-xsmall: 20px;
   --font-size-body-large: 20px;
+  --font-size-body-medium-large: 18px;
   --font-size-body-medium: 16px;
   --font-size-body-small: 14px;
   --font-size-body-xsmall: 12px;

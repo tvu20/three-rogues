@@ -49,6 +49,7 @@
   margin-top: var(--spacing-xx-small);
   color: var(--primary-text-color-dark);
   font-size: var(--font-size-body-small);
+  line-height: 1;
   font-weight: 300;
 }
 
@@ -87,16 +88,16 @@
 .infoBlockTitle {
   font-family: var(--font-belleza);
   color: var(--primary-text-color-dark);
-  font-size: var(--font-size-body-medium);
+  font-size: var(--font-size-body-small);
   text-transform: uppercase;
   font-weight: 300;
-  margin-bottom: var(--spacing-xsmall);
+  margin-bottom: var(--spacing-xxx-small);
   width: 100%;
 }
 
 .infoBlockValue {
   color: var(--primary-text-color-dark);
-  font-size: var(--font-size-body-large);
+  font-size: var(--font-size-body-medium-large);
   font-weight: 300;
   width: 100%;
 }

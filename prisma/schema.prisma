@@ -83,8 +83,8 @@ model Character {
   initiative      Int?
   ac              Json? 
   speed           Json?
-  inspiration     Boolean? 
   darkvision      Int?
+  savingThrows    Json?
 
   liveStats       Json?
 }

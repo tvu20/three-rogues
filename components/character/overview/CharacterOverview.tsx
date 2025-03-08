@@ -1,0 +1,24 @@
+import styles from "./CharacterOverview.module.css";
+import CharacterStats from "./stats/CharacterStats";
+const CharacterOverview = () => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.leftContainer}>
+        <CharacterStats />
+        <div className={styles.item2} style={{ height: "200px" }}>
+          item two
+        </div>
+      </div>
+      <div className={styles.rightContainer}>
+        <div className={styles.item} style={{ height: "300px" }}>
+          item three
+        </div>
+        <div className={styles.item2} style={{ height: "600px" }}>
+          item four
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CharacterOverview;

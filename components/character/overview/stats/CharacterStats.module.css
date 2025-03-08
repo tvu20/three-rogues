@@ -1,0 +1,87 @@
+.container {
+  height: 400px;
+}
+
+.topRow {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.topRow div {
+  /* border: 1px solid blue; */
+}
+
+.proficiency {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  background-color: var(--highlight-background-color);
+  padding: var(--spacing-small-medium) var(--spacing-medium-large);
+  text-align: center;
+}
+
+.proficiency h5 {
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+}
+
+.proficiency p {
+  font-size: var(--font-size-body-small);
+  font-weight: 300;
+}
+
+.proficiency h3 {
+  font-weight: 300;
+  font-size: var(--font-size-heading-medium-large);
+  font-family: var(--font-be-vietnam);
+  line-height: 0.9;
+  margin-bottom: var(--spacing-small);
+}
+
+.darkvision,
+.inspiration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.darkvision h5,
+.inspiration h5 {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  margin-bottom: var(--spacing-small);
+}
+
+.darkvision h3 {
+  font-weight: 300;
+  font-size: var(--font-size-heading-medium);
+  font-family: var(--font-be-vietnam);
+  line-height: 0.9;
+  margin-bottom: var(--spacing-small);
+}
+
+.darkvision h3 span {
+  font-size: var(--font-size-body-xsmall);
+}
+
+.darkvision p {
+  font-size: var(--font-size-body-small);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.inspiration h5 {
+  margin-bottom: 4px;
+}
+
+.inspirationIcon {
+  color: var(--primary-gold-color);
+}
+
+.inspirationIconDim {
+  color: var(--tab-color);
+}

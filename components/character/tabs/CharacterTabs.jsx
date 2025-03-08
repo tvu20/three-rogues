@@ -9,13 +9,13 @@ import {
 import { useState } from "react";
 import useMediaQuery from "../../../utils/useMediaQuery";
 
+import CharacterOverview from "../overview/CharacterOverview";
 import styles from "./CharacterTabs.module.css";
-
 const TABS = [
   {
     id: "overview",
     label: "Overview",
-    component: <div>Overview</div>,
+    component: <CharacterOverview />,
     icon: Person,
   },
   {
