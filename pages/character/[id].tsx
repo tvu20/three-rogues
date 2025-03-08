@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import prisma from "../../lib/prisma";
-import { getSession, useSession } from "next-auth/react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import CharacterHeader from "../../components/character/CharacterHeader";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
 import { useAppDispatch } from "../../utils/redux";
 import { setLiveCharacter } from "../../app/character/characterSlice";
