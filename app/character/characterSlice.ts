@@ -1,18 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
 // livestats for the character payload
 export type LiveCharacter = {
   id: number;
   name: string;
-  liveStats: any;
+  liveStats: any; // eslint-disable-line
 };
 
 // character reducer state
 export type CharacterState = {
   liveId?: number;
   liveName?: string;
-  liveStats?: any; // this will be fixed later
+  liveStats?: any; // eslint-disable-line
 };
 
 // Define the initial state using that type

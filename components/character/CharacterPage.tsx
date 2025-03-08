@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
-import Layout from "../../components/Layout";
-import CharacterHeader from "./header/CharacterHeader";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
-import { useAppDispatch } from "../../utils/redux";
 import { setLiveCharacter } from "../../app/character/characterSlice";
+import Layout from "../../components/Layout";
+import { useAppDispatch } from "../../utils/redux";
 import Loader from "../Loader";
+import CharacterHeader from "./header/CharacterHeader";
 
 export default function CharacterPage() {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ export default function CharacterPage() {
         })
       );
     }
-  }, [character]);
+  }, [character, dispatch]);
 
   if (isLoading) return <Loader />;
 

@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
-import Layout from "../components/Layout";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useGetCharactersQuery } from "../app/api/apiSlice";
+import React from "react";
 import CharacterList from "../components/homepage/CharacterList";
+import Layout from "../components/Layout";
 import Loader from "../components/Loader";
 const Home: React.FC = () => {
   const { data: session, status } = useSession();

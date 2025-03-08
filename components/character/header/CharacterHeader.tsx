@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 
 import styles from "./CharacterHeader.module.css";
@@ -34,6 +34,7 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
         className={styles.avatar}
         src={character?.avatar}
         alt={character?.name}
+        loading="lazy"
       />
       <div className={styles.nameContainer}>
         <div>
