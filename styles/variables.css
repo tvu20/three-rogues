@@ -5,6 +5,10 @@ body {
   --primary-text-color-dark: #000000;
   --primary-text-color-heading: #000000;
 
+  --tab-color: rgba(0, 0, 0, 0.25);
+  --tab-color-text: rgba(0, 0, 0, 0.5);
+  --tab-color-active: rgba(0, 0, 0, 1);
+
   /* fonts  */
   --font-belleza: "Belleza", sans-serif;
   --font-be-vietnam: "Be Vietnam Pro", sans-serif;
@@ -26,6 +30,7 @@ body {
   --avatar-size: 120px;
 
   /* spacing */
+  --spacing-page-border: 36px;
   --spacing-xxx-small: 2px;
   --spacing-xx-small: 4px;
   --spacing-xsmall: 6px;

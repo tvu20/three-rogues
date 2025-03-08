@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: var(--spacing-xlarge) var(--spacing-large);
+  margin: var(--spacing-xlarge) var(--spacing-page-border)
+    var(--spacing-medium-large);
 }
 
 .avatar {
@@ -132,9 +133,12 @@
     font-size: var(--font-size-body-medium);
   }
 
+  .name,
+  .pronouns,
   .class,
   .subclass {
     text-align: center;
+    width: 100%;
   }
 }
 

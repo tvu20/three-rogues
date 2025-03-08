@@ -17,6 +17,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
+  cursor: pointer;
 }
 
 h1,
