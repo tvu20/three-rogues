@@ -5,7 +5,6 @@ import prisma from "../../../lib/prisma";
 // GET /api/character/[id]
 export default async function handle(req, res) {
   const id = req.query.id;
-  console.log("id", id);
   const session = await getServerSession(req, res, authOptions);
   if (!session) {
     res.status(403);
@@ -13,6 +12,7 @@ export default async function handle(req, res) {
     const character = await prisma.character.findUnique({
       where: {
         id: id,
+        // @ts-ignore
         author: { email: session.user.email },
       },
       include: {

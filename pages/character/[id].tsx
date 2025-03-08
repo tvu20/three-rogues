@@ -4,43 +4,37 @@ import { getSession, useSession } from "next-auth/react";
 import Layout from "../../components/Layout";
 import CharacterHeader from "../../components/character/CharacterHeader";
 import { useRouter, useParams } from "next/navigation";
+import { useGetCharacterQuery } from "../../app/api/apiSlice";
+import { useAppDispatch } from "../../utils/redux";
+import { setLiveCharacter } from "../../app/character/characterSlice";
 
 export default function Character() {
-  const router = useRouter();
-  const params = useParams();
-  const id = params?.id;
+  const dispatch = useAppDispatch();
 
-  const { data: session, status } = useSession();
-  const [character, setCharacter] = useState({});
+  const params = useParams<{ id: string }>();
+  const id = params?.id || "";
+
+  const { data: character, isLoading } = useGetCharacterQuery(id, {
+    skip: !id,
+  });
+
   useEffect(() => {
-    if (status === "loading") return;
-
-    const userHasValidSession = Boolean(session);
-
-    // // handle differently here
-    if (!userHasValidSession) {
-      router.push("/");
+    if (character) {
+      dispatch(
+        setLiveCharacter({
+          id: character.id,
+          liveStats: character.liveStats,
+          name: character.name,
+        })
+      );
     }
+  }, [character]);
 
-    fetch(`/api/character/${id}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "access-control-allow-origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCharacter(data);
-      })
-      .catch((error) => console.error(error));
-  }, [status, id]);
-  console.log("Character data:", JSON.stringify(character, null, 2));
+  if (isLoading) return <div>Loading...</div>;
 
-  // if (!character) {
-  //   return <div>Character not found</div>;
-  // }
+  if (!character) {
+    return <div>Character not found</div>;
+  }
 
   return (
     <Layout>

@@ -84,4 +84,6 @@ model Character {
   speed           Json?
   inspiration     Boolean? 
   darkvision      Int?
+
+  liveStats       Json?
 }
