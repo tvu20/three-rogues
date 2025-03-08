@@ -3,14 +3,12 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useGetCharactersQuery } from "../app/api/apiSlice";
-
+import CharacterList from "../components/homepage/CharacterList";
+import Loader from "../components/Loader";
 const Home: React.FC = () => {
   const { data: session, status } = useSession();
 
-  // will remove this later
-  const { data: characters, isLoading } = useGetCharactersQuery();
-
-  if (isLoading) return <div>Loading...</div>;
+  if (status === "loading") return <Loader />;
 
   // useEffect(() => {
   //   if (status === "loading") return;
@@ -33,19 +31,12 @@ const Home: React.FC = () => {
   //     .catch((error) => console.error(error));
   // }, [session]);
 
-  const renderCharacters = () => {
-    return characters?.map((character) => (
-      <Link key={character.id} href={`/character/${character.id}`}>
-        {character.name} <br />
-      </Link>
-    ));
-  };
-
   return (
     <Layout>
       <div className="page">
         <h1>Public Feed</h1>
-        {renderCharacters()}
+        {session && <CharacterList />}
+        {!session && <div>Unauthenticated!</div>}
       </div>
     </Layout>
   );
