@@ -1,5 +1,5 @@
 body {
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: var(--font-be-vietnam);
   font-weight: 100;
   font-style: normal;
   background-color: var(--primary-background-color-light);
@@ -19,6 +19,21 @@ button {
   font-weight: inherit;
 }
 
-h3 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
+}
+
+.action-button {
+  font-family: var(--font-belleza);
+  border: 1px solid black;
+  padding: var(--spacing-xsmall) var(--spacing-medium);
+  font-size: var(--font-size-body-medium);
+  text-transform: uppercase;
+  font-weight: 300;
 }

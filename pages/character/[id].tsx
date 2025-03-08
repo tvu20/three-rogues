@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
-import CharacterHeader from "../../components/character/CharacterHeader";
+import CharacterHeader from "../../components/character/header/CharacterHeader";
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
 import { useAppDispatch } from "../../utils/redux";

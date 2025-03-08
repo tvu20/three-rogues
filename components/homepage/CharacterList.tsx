@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useGetCharactersQuery } from "../../app/api/apiSlice";
+import Loader from "../Loader";
 
 const CharacterList = () => {
-  console.log("character list");
   const { data: characters, isLoading } = useGetCharactersQuery();
   const renderCharacters = () => {
     return characters?.map((character) => (
@@ -12,7 +12,7 @@ const CharacterList = () => {
     ));
   };
 
-  if (isLoading) return <div>Loading characters...</div>;
+  if (isLoading) return <Loader />;
 
   return <div>{renderCharacters()}</div>;
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
-import CharacterHeader from "../../components/character/CharacterHeader";
+import CharacterHeader from "./header/CharacterHeader";
 import { useParams, useRouter } from "next/navigation";
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
 import { useAppDispatch } from "../../utils/redux";
@@ -38,7 +38,7 @@ export default function CharacterPage() {
 
   return (
     <Layout>
-      <CharacterHeader />
+      <CharacterHeader id={id} />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">Character Details</h1>
         <pre className="bg-gray-100 p-4 rounded">
