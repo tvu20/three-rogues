@@ -15,6 +15,7 @@ body {
   --action-button-border-color: #000000;
   --highlight-background-color: #efefec;
 
+  --primary-gray-color: rgba(0, 0, 0, 0.25);
   --primary-gold-color: #d58c26;
 
   /* fonts  */
@@ -38,6 +39,8 @@ body {
 
   /* image sizes */
   --avatar-size: 120px;
+
+  --prof-circle-size: 7px;
 
   /* spacing */
   --spacing-page-border: 36px;

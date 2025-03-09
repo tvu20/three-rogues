@@ -1,14 +1,11 @@
-.container {
+/* .container {
   height: 400px;
-}
+} */
 
 .topRow {
   display: flex;
   justify-content: space-around;
-}
-
-.topRow div {
-  /* border: 1px solid blue; */
+  gap: var(--spacing-medium-large);
 }
 
 .statsContainer {

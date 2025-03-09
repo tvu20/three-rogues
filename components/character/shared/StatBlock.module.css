@@ -1,0 +1,112 @@
+.statBlock {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-medium);
+  /* justify-content: center; */
+  justify-content: space-around;
+  /* border: 1px solid red; */
+
+  margin-top: var(--spacing-medium-large);
+}
+
+.statItem {
+  flex-grow: 1;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  max-width: 110px;
+}
+
+.statValue {
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+  background-color: var(--highlight-background-color);
+  padding: 4px 0 8px;
+}
+
+.statBonus {
+  margin-top: var(--spacing-xsmall);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--highlight-background-color);
+}
+
+.statBonus h2 {
+  margin: var(--spacing-xsmall) 0 var(--spacing-xsmall);
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-heading-medium-large);
+  font-weight: 300;
+}
+
+.statBonus p {
+  border-top: 1px solid var(--content-box-border-color);
+  padding: var(--spacing-xsmall) 0;
+  width: 80%;
+  text-align: center;
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-large);
+  font-weight: 300;
+}
+
+.saveStat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 var(--spacing-xsmall);
+}
+
+.saveProf,
+.saveStat h5 {
+  margin-top: var(--spacing-xsmall);
+}
+
+.saveProf {
+  width: var(--prof-circle-size);
+  height: var(--prof-circle-size);
+  border-radius: 50%;
+  border: 1px solid var(--primary-gray-color);
+  margin-right: var(--spacing-xsmall);
+  /* margin-left: var(--spacing-xsmall); */
+}
+
+.saveProf.active {
+  border-color: var(--primary-gold-color);
+  background-color: var(--primary-gold-color);
+}
+
+.saveStat h5 {
+  flex-grow: 1;
+  font-weight: 300;
+  font-size: var(--font-size-body-medium);
+  font-family: var(--font-belleza);
+}
+
+.saveStat p {
+  font-size: var(--font-size-body-small);
+  align-self: end;
+  font-weight: 400;
+  position: relative;
+  top: -1px;
+}
+
+@media (max-width: 700px) {
+  .statBlock {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .statItem {
+    width: 25%;
+  }
+}
+
+@media (max-width: 425px) {
+  .statItem {
+    width: 45%;
+  }
+}

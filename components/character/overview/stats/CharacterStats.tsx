@@ -4,8 +4,8 @@ import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
 import { setInspiration } from "../../../../app/character/characterSlice";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import Loader from "../../../Loader";
+import StatBlock from "../../shared/StatBlock";
 import styles from "./CharacterStats.module.css";
-
 const CharacterStats = () => {
   const dispatch = useAppDispatch();
   const params = useParams<{ id: string }>();
@@ -71,7 +71,11 @@ const CharacterStats = () => {
           </button>
         </div>
       </div>
-      <div className={styles.bottomRow}></div>
+      <StatBlock
+        abilityScores={character?.abilityScores}
+        savingThrows={character?.savingThrows}
+        proficiencyBonus={character?.proficiencyBonus}
+      />
     </div>
   );
 };
