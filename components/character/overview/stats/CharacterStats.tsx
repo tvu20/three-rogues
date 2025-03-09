@@ -26,18 +26,34 @@ const CharacterStats = () => {
   return (
     <div className={`content-box ${styles.container}`}>
       <div className={styles.topRow}>
-        <div className={styles.proficiency}>
-          <h5>Proficiency</h5>
-          <h3>+{character?.proficiencyBonus}</h3>
-          <p>Bonus</p>
+        <div className={styles.statsContainer}>
+          <div className={styles.proficiency}>
+            <h5>Proficiency</h5>
+            <h3>+{character?.proficiencyBonus}</h3>
+            <p>Bonus</p>
+          </div>
+          <div className={styles.passive}>
+            {/* TO FILL IN LATER */}
+            <div className={styles.passiveRow}>
+              <h5>Passive Perception</h5>
+              <p>11</p>
+            </div>
+            <div className={styles.passiveRow}>
+              <h5>Passive Investigation</h5>
+              <p>20</p>
+            </div>
+            <div className={styles.passiveRow}>
+              <h5>Passive Insight</h5>
+              <p>23</p>
+            </div>
+          </div>
         </div>
-        <div className={styles.passive}>passive</div>
         <div className={styles.darkvision}>
           <h5>Darkvision</h5>
           {character?.darkvision && (
             <h3>
               {character?.darkvision}
-              <span>ft</span>
+              <span> ft</span>
             </h3>
           )}
           {!character?.darkvision && <p>None</p>}

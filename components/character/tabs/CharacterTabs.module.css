@@ -7,7 +7,7 @@
 }
 
 .tabContent {
-  margin: var(--spacing-medium-large) var(--spacing-page-border);
+  margin: var(--spacing-large) var(--spacing-page-border);
 }
 
 .tab {

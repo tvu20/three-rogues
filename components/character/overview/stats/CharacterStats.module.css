@@ -3,13 +3,18 @@
 }
 
 .topRow {
-  /* border: 1px solid red; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .topRow div {
   /* border: 1px solid blue; */
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-medium);
 }
 
 .proficiency {
@@ -84,4 +89,61 @@
 
 .inspirationIconDim {
   color: var(--tab-color);
+}
+
+.passive {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: var(--spacing-medium);
+}
+
+.passiveRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.passiveRow h5,
+.passiveRow p {
+  display: inline-block;
+}
+
+.passiveRow h5 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.passiveRow p {
+  width: auto;
+  background-color: var(--highlight-background-color);
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+  line-height: 0.9;
+  padding: var(--spacing-xsmall);
+  width: 24px;
+  text-align: center;
+}
+
+@media (max-width: 750px) {
+  .topRow {
+    flex-wrap: wrap;
+    gap: var(--spacing-medium-large);
+  }
+}
+
+@media (max-width: 600px) {
+  .statsContainer {
+    flex-direction: column;
+    gap: var(--spacing-medium-large);
+  }
+
+  .passive {
+    margin-right: 0;
+  }
 }

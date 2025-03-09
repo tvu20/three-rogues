@@ -35,8 +35,8 @@ p {
 .content-box {
   background-color: var(--content-box-background-color);
   border: 1px solid var(--content-box-border-color);
-  padding: var(--spacing-medium-large);
-  margin-bottom: var(--spacing-medium);
+  padding: var(--spacing-large) var(--spacing-xlarge);
+  margin-bottom: var(--spacing-large);
 }
 
 .action-button {
@@ -46,4 +46,10 @@ p {
   font-size: var(--font-size-body-medium);
   text-transform: uppercase;
   font-weight: 300;
+}
+
+@media (max-width: 1200px) {
+  .content-box {
+    padding: var(--spacing-medium-large);
+  }
 }
