@@ -1,17 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { LiveStats } from "./characterDefs";
 
 // livestats for the character payload
 export type LiveCharacter = {
-  id: number;
+  id: string;
   name: string;
-  liveStats: any; // eslint-disable-line
+  liveStats: LiveStats;
 };
 
 // character reducer state
 export type CharacterState = {
-  liveId?: number;
+  liveId?: string;
   liveName?: string;
-  liveStats?: any; // eslint-disable-line
+  liveStats?: LiveStats;
 };
 
 // Define the initial state using that type
@@ -41,7 +42,9 @@ export const characterSlice = createSlice({
       state.liveStats = action.payload.liveStats;
     },
     setInspiration: (state, action: PayloadAction<boolean>) => {
-      state.liveStats.inspiration = action.payload;
+      if (state.liveStats) {
+        state.liveStats.inspiration = action.payload;
+      }
     },
   },
 });

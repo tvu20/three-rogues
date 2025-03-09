@@ -10,8 +10,6 @@ type Props = {
 const CharacterHeader: React.FC<Props> = ({ id }) => {
   const { data: character } = useGetCharacterQuery(id);
 
-  console.log(character);
-
   const showClasses = () => {
     return character?.class?.map((c) => `${c.name} ${c.level}`).join(" / ");
   };
@@ -50,10 +48,10 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
           <button className="action-button">edit</button>
         </div>
         <div className={styles.infoContainer}>
-          {infoBlock("Race", character?.race)}
-          {infoBlock("Background", character?.background)}
-          {infoBlock("Alignment", character?.alignment)}
-          {infoBlock("Age", character?.age)}
+          {infoBlock("Race", character?.race || "")}
+          {infoBlock("Background", character?.background || "")}
+          {infoBlock("Alignment", character?.alignment || "")}
+          {infoBlock("Age", character?.age || "")}
         </div>
       </div>
     </div>

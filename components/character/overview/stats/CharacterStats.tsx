@@ -70,9 +70,9 @@ const CharacterStats = () => {
         </div>
       </div>
       <StatBlock
-        abilityScores={character?.abilityScores}
-        savingThrows={character?.savingThrows}
-        proficiencyBonus={character?.proficiencyBonus}
+        abilityScores={character?.abilityScores || null}
+        savingThrows={character?.savingThrows || null}
+        proficiencyBonus={character?.proficiencyBonus ?? 0}
       />
     </div>
   );

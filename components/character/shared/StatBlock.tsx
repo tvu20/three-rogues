@@ -1,11 +1,9 @@
+import {
+  AbilityScores,
+  SavingThrows,
+  STATS,
+} from "../../../app/character/characterDefs";
 import styles from "./StatBlock.module.css";
-
-const STATS = ["str", "dex", "con", "int", "wis", "cha"];
-
-type SavingThrow = {
-  bonus: number;
-  proficiency: boolean;
-};
 
 type StatProps = {
   name: string;
@@ -16,8 +14,8 @@ type StatProps = {
 };
 
 type StatBlockProps = {
-  abilityScores: Record<string, number>;
-  savingThrows: Record<string, SavingThrow>;
+  abilityScores: AbilityScores | null;
+  savingThrows: SavingThrows | null;
   proficiencyBonus: number;
 };
 
@@ -60,6 +58,10 @@ const StatBlock = ({
   savingThrows,
   proficiencyBonus,
 }: StatBlockProps) => {
+  if (!abilityScores || !savingThrows) {
+    return null;
+  }
+
   const createStats = () => {
     return STATS.map((stat) => {
       const score = abilityScores[stat];

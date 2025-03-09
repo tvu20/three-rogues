@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Use the `Post` type we've already defined in `postsSlice`,
 // and then re-export it for ease of use
-import type { Character } from "../character/characterDefs";
+import type { Character, LiveStats } from "../character/characterDefs";
 import { setSnackbar } from "../snackbar/snackbarSlice";
 
 // Define our single API slice object
@@ -56,7 +56,7 @@ export const apiSlice = createApi({
     }),
     updateLiveStats: builder.mutation<
       Character,
-      { id: string; liveStats: any }
+      { id: string; liveStats: LiveStats }
     >({
       query: ({ id, liveStats }) => ({
         url: `/liveStats/${id}`,

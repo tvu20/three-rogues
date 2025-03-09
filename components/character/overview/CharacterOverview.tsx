@@ -1,7 +1,7 @@
 import CharacterActionButtons from "./CharacterActionButtons";
 import styles from "./CharacterOverview.module.css";
+import CharacterCombat from "./combat/CharacterCombat";
 import CharacterStats from "./stats/CharacterStats";
-
 const CharacterOverview = () => {
   return (
     <div className={styles.container}>
@@ -13,9 +13,7 @@ const CharacterOverview = () => {
       </div>
       <div className={styles.rightContainer}>
         <CharacterActionButtons />
-        <div className={styles.item} style={{ height: "300px" }}>
-          item three
-        </div>
+        <CharacterCombat />
         <div className={styles.item2} style={{ height: "600px" }}>
           item four
         </div>

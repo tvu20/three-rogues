@@ -28,7 +28,7 @@ const CharacterActionButtons = () => {
           severity: "success",
         })
       );
-    } catch (err: any) {
+    } catch (err) {
       dispatch(
         setSnackbar({
           message:
