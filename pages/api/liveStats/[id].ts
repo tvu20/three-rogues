@@ -8,7 +8,10 @@ export default async function handle(req, res) {
   const session = await getServerSession(req, res, authOptions);
 
   if (!session) {
-    res.status(403);
+    return res.status(403).json({
+      error: "Not authorized",
+      message: "You must be signed in to view this content",
+    });
   }
 
   const character = await prisma.character.update({

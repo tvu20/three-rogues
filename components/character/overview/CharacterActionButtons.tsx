@@ -1,10 +1,12 @@
 import { useParams } from "next/navigation";
 import { useUpdateLiveStatsMutation } from "../../../app/api/apiSlice";
-import { useAppSelector } from "../../../utils/redux";
+import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
+import { useAppDispatch, useAppSelector } from "../../../utils/redux";
 import Loader from "../../Loader";
 import styles from "./CharacterActionButtons.module.css";
 
 const CharacterActionButtons = () => {
+  const dispatch = useAppDispatch();
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
@@ -20,9 +22,20 @@ const CharacterActionButtons = () => {
     try {
       await updateLiveStats({ id, liveStats }).unwrap();
 
-      console.log("live stats updated");
-    } catch (err) {
-      console.log("error occurred: ", err);
+      dispatch(
+        setSnackbar({
+          message: "Live stats successfully updated!",
+          severity: "success",
+        })
+      );
+    } catch (err: any) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
     }
   };
 

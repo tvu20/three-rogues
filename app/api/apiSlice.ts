@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Use the `Post` type we've already defined in `postsSlice`,
 // and then re-export it for ease of use
 import type { Character } from "../character/characterDefs";
+import { setSnackbar } from "../snackbar/snackbarSlice";
 
 // Define our single API slice object
 export const apiSlice = createApi({
@@ -20,10 +21,38 @@ export const apiSlice = createApi({
       // The URL for the request is '/characters'
       query: () => "/characters",
       providesTags: ["Character"],
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        queryFulfilled.catch((err: any) => {
+          dispatch(
+            setSnackbar({
+              message:
+                "Error fetching characters: " +
+                (err.error.data?.message ||
+                  err.error.message ||
+                  "Unknown error"),
+              severity: "error",
+            })
+          );
+        });
+      },
     }),
     getCharacter: builder.query<Character, string>({
       query: (id) => `/character/${id}`,
       providesTags: (result, error, id) => [{ type: "Character", id }],
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        queryFulfilled.catch((err: any) => {
+          dispatch(
+            setSnackbar({
+              message:
+                "Error fetching character: " +
+                (err.error.data?.message ||
+                  err.error.message ||
+                  "Unknown error"),
+              severity: "error",
+            })
+          );
+        });
+      },
     }),
     updateLiveStats: builder.mutation<
       Character,

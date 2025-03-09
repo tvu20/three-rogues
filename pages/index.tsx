@@ -3,6 +3,7 @@ import React from "react";
 import CharacterList from "../components/homepage/CharacterList";
 import Layout from "../components/Layout";
 import Loader from "../components/Loader";
+
 const Home: React.FC = () => {
   const { data: session, status } = useSession();
 

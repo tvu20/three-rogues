@@ -1,13 +1,16 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]";
 import prisma from "../../../lib/prisma";
+import { authOptions } from "../auth/[...nextauth]";
 
 // GET /api/character/[id]
 export default async function handle(req, res) {
   const id = req.query.id;
   const session = await getServerSession(req, res, authOptions);
   if (!session) {
-    res.status(403);
+    return res.status(403).json({
+      error: "Not authorized",
+      message: "You must be signed in to view this content",
+    });
   } else {
     const character = await prisma.character.findUnique({
       where: {

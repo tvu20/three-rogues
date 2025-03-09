@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 
-import characterReducer from "./character/characterSlice";
 import { apiSlice } from "./api/apiSlice";
+import characterReducer from "./character/characterSlice";
+import snackbarReducer from "./snackbar/snackbarSlice";
 
 const isLocal = process.env.NODE_ENV === "development";
 
@@ -16,6 +17,7 @@ export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     character: characterReducer,
+    snackbar: snackbarReducer,
   },
   middleware: (getDefaultMiddleware) => {
     const middleware = getDefaultMiddleware({
