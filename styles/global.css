@@ -32,6 +32,12 @@ p {
 
 /* global styles */
 
+.split-grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: var(--spacing-large);
+}
+
 .content-box {
   background-color: var(--content-box-background-color);
   border: 1px solid var(--content-box-border-color);
@@ -58,5 +64,17 @@ p {
 @media (max-width: 1200px) {
   .content-box {
     padding: var(--spacing-medium-large);
+  }
+}
+
+@media (max-width: 1150px) {
+  .split-grid-container {
+    grid-template-columns: 2fr 0.5fr;
+  }
+}
+
+@media (max-width: 1050px) {
+  .split-grid-container {
+    grid-template-columns: 1fr;
   }
 }

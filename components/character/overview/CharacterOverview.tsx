@@ -4,7 +4,7 @@ import CharacterCombat from "./combat/CharacterCombat";
 import CharacterStats from "./stats/CharacterStats";
 const CharacterOverview = () => {
   return (
-    <div className={styles.container}>
+    <div className="split-grid-container">
       <div className={styles.leftContainer}>
         <CharacterStats />
         <div className={styles.item2} style={{ height: "200px" }}>
