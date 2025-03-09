@@ -4,7 +4,7 @@
 
 .topRow {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: var(--spacing-medium-large);
 }
 
@@ -46,6 +46,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.inspiration {
+  margin-right: var(--spacing-medium);
 }
 
 .darkvision h5,
@@ -127,6 +131,12 @@
   text-align: center;
 }
 
+@media (max-width: 1050px) {
+  .topRow {
+    justify-content: space-around;
+  }
+}
+
 @media (max-width: 750px) {
   .topRow {
     flex-wrap: wrap;
@@ -141,6 +151,14 @@
   }
 
   .passive {
+    margin-right: 0;
+  }
+
+  .passiveRow {
+    margin-bottom: var(--spacing-xsmall);
+  }
+
+  .inspiration {
     margin-right: 0;
   }
 }
