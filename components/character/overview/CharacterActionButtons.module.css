@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  margin-bottom: var(--spacing-large);
+}
+
+.container button {
+  flex-grow: 1;
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+@media (max-width: 1140px) {
+  .container {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 1050px) {
+  .container {
+    gap: var(--spacing-large);
+  }
+}
+
+@media (max-width: 625px) {
+  .container {
+    gap: var(--spacing-medium);
+    margin-bottom: var(--spacing-medium);
+  }
+}

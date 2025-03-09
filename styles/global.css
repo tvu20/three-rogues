@@ -46,6 +46,13 @@ p {
   font-size: var(--font-size-body-medium);
   text-transform: uppercase;
   font-weight: 300;
+  box-sizing: border-box;
+}
+
+.highlighted-action-button {
+  background-color: var(--action-button-highlighted-color);
+  border: none;
+  color: var(--action-button-highlighted-text-color);
 }
 
 @media (max-width: 1200px) {

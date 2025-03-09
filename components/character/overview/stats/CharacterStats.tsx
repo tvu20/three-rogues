@@ -17,8 +17,6 @@ const CharacterStats = () => {
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
 
-  console.log(liveStats);
-
   if (!liveStats) {
     return <Loader />;
   }
