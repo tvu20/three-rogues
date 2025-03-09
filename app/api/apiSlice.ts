@@ -23,17 +23,28 @@ export const apiSlice = createApi({
     }),
     getCharacter: builder.query<Character, string>({
       query: (id) => `/character/${id}`,
-      //   async onQueryStarted(modelId, { dispatch, queryFulfilled }) {
-      //     try {
-      //       const { data } = await queryFulfilled;
-      //       console.log("Character fetched", data);
-      //     } catch (err) {
-      //       console.log("Error fetching character", err);
-      //     }
-      //   },
+      providesTags: (result, error, id) => [{ type: "Character", id }],
+    }),
+    updateLiveStats: builder.mutation<
+      Character,
+      { id: string; liveStats: any }
+    >({
+      query: ({ id, liveStats }) => ({
+        url: `/liveStats/${id}`,
+        method: "POST",
+        body: { liveStats },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
     }),
   }),
 });
 
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetCharactersQuery, useGetCharacterQuery } = apiSlice;
+export const {
+  useGetCharactersQuery,
+  useGetCharacterQuery,
+  useUpdateLiveStatsMutation,
+} = apiSlice;
