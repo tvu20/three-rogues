@@ -18,7 +18,10 @@ body {
   --highlight-background-color: #efefec;
 
   --primary-gray-color: rgba(0, 0, 0, 0.25);
+  --secondary-gray-color: #d5d5d5;
   --primary-gold-color: #d58c26;
+  --primary-green-color: rgba(173, 193, 120, 0.5);
+  --primary-red-color: rgba(215, 102, 103, 0.5);
 
   --snackbar-success-color: #9dba50;
   --snackbar-error-color: #d76667;

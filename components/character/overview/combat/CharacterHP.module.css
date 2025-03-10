@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-large);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-medium);
+}
+
+.characterHP {
+  width: 100px;
+  flex-grow: 1;
+}
+
+.hpContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--highlight-background-color);
+}
+
+.hpContainer h2 {
+  margin: var(--spacing-xsmall) 0 var(--spacing-xsmall);
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-heading-medium-large);
+  font-weight: 300;
+}
+
+.hpContainer p {
+  border-top: 1px solid var(--content-box-border-color);
+  padding: var(--spacing-small) 0;
+  width: 80%;
+  text-align: center;
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+}
+
+.hpValue {
+  padding: var(--spacing-xx-small) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hpValue h6 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+}
+
+.hpValue p {
+  margin-top: -4px;
+}
+
+.hpTemp {
+  margin-top: var(--spacing-xxx-small);
+  border-bottom: 1px solid var(--secondary-gray-color);
+}
+
+.healDamageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  flex-grow: 1;
+}
+
+.hpButton {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  padding: var(--spacing-small);
+  font-weight: 300;
+}
+
+.hpButton.heal {
+  background-color: var(--primary-green-color);
+}
+
+.hpButton.damage {
+  background-color: var(--primary-red-color);
+}
+
+.hpInput {
+  text-align: center;
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-heading-medium);
+  padding: var(--spacing-xx-small) 0 var(--spacing-xx-small) 12px;
+  border: 1px solid var(--secondary-gray-color);
+  field-sizing: content;
+  font-weight: 200;
+}
