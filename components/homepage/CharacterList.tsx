@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useGetCharactersQuery } from "../../app/api/apiSlice";
-import Loader from "../Loader";
+import Loader from "../shared/Loader";
 
 const CharacterList = () => {
   const { data: characters, isLoading } = useGetCharactersQuery();

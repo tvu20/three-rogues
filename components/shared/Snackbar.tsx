@@ -1,7 +1,7 @@
 import { X } from "@phosphor-icons/react";
 import { useEffect } from "react";
-import { clearSnackbar } from "../app/snackbar/snackbarSlice";
-import { useAppDispatch, useAppSelector } from "../utils/redux";
+import { clearSnackbar } from "../../app/snackbar/snackbarSlice";
+import { useAppDispatch, useAppSelector } from "../../utils/redux";
 import styles from "./snackbar.module.css";
 
 const Snackbar = () => {

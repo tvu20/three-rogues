@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
-import Loader from "../../../Loader";
+import Loader from "../../../shared/Loader";
 import CharacterCombatStats from "./CharacterCombatStats";
 import CharacterHP from "./CharacterHP";
 

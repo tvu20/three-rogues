@@ -3,9 +3,9 @@ import { useEffect } from "react";
 
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
 import { setLiveCharacter } from "../../app/character/characterSlice";
-import Layout from "../../components/Layout";
 import { useAppDispatch } from "../../utils/redux";
-import Loader from "../Loader";
+import Layout from "../Layout";
+import Loader from "../shared/Loader";
 import CharacterHeader from "./header/CharacterHeader";
 import CharacterTabs from "./tabs/CharacterTabs";
 

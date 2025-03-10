@@ -2,7 +2,7 @@ import { useParams } from "next/navigation";
 import { useUpdateLiveStatsMutation } from "../../../app/api/apiSlice";
 import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/redux";
-import Loader from "../../Loader";
+import Loader from "../../shared/Loader";
 import styles from "./CharacterActionButtons.module.css";
 
 const CharacterActionButtons = () => {
