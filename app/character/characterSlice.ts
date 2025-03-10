@@ -46,10 +46,16 @@ export const characterSlice = createSlice({
         state.liveStats.inspiration = action.payload;
       }
     },
+    setCurrentHP: (state, action: PayloadAction<number>) => {
+      if (state.liveStats) {
+        state.liveStats.currentHP = action.payload;
+      }
+    },
   },
 });
 
-export const { setLiveCharacter, setInspiration } = characterSlice.actions;
+export const { setLiveCharacter, setInspiration, setCurrentHP } =
+  characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.character.value;

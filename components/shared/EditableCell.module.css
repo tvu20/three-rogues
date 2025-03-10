@@ -1,0 +1,14 @@
+.editableCell {
+  display: flex;
+  justify-content: center;
+}
+
+.editableCell input {
+  width: 50%;
+  font-weight: 200;
+  field-sizing: content;
+}
+
+.editableCell span {
+  display: block;
+}

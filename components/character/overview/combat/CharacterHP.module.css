@@ -18,12 +18,17 @@
   background-color: var(--highlight-background-color);
 }
 
-.hpContainer h2 {
+.hpContainer span,
+.hpContainer input {
   margin: var(--spacing-xsmall) 0 var(--spacing-xsmall);
   width: 100%;
   text-align: center;
   font-size: var(--font-size-heading-medium-large);
   font-weight: 300;
+}
+
+.hpContainer input {
+  margin: var(--spacing-small) 0 8px;
 }
 
 .hpContainer p {

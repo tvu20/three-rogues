@@ -1,4 +1,7 @@
 import { Character, LiveStats } from "../../../../app/character/characterDefs";
+import { setCurrentHP } from "../../../../app/character/characterSlice";
+import { useAppDispatch } from "../../../../utils/redux";
+import EditableCell from "../../../shared/EditableCell";
 import styles from "./CharacterHP.module.css";
 
 type CharacterHPProps = {
@@ -7,11 +10,17 @@ type CharacterHPProps = {
 };
 
 const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleHPChange = (value: number) => {
+    dispatch(setCurrentHP(value));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.characterHP}>
         <div className={styles.hpContainer}>
-          <h2>{liveStats.currentHP}</h2>
+          <EditableCell value={liveStats.currentHP} onBlur={handleHPChange} />
           <p>Hit Points</p>
         </div>
         <div className={`${styles.hpValue} ${styles.hpTemp}`}>
