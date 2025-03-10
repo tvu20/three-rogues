@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Character, LiveStats } from "../../../../app/character/characterDefs";
 import {
   setCurrentHP,
+  setHitDice,
   setTempHP,
 } from "../../../../app/character/characterSlice";
 import { useAppDispatch } from "../../../../utils/redux";
@@ -46,6 +47,25 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
     setAmount(0);
   };
 
+  const currentHitDice = liveStats.hitDice.reduce(
+    (acc, hitDice) => acc + hitDice.current,
+    0
+  );
+  const maxHitDice = liveStats.hitDice.reduce(
+    (acc, hitDice) => acc + hitDice.max,
+    0
+  );
+
+  const handleHitDiceChange = (value: number, type: string) => {
+    const newHitDice = liveStats.hitDice.map((hitDice) =>
+      hitDice.type === type
+        ? { ...hitDice, current: Math.max(hitDice.max - value, 0) }
+        : hitDice
+    );
+
+    dispatch(setHitDice(newHitDice));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.characterHP}>
@@ -81,6 +101,35 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
         >
           Damage
         </button>
+      </div>
+      <div className={styles.hitDiceContainer}>
+        <h3>Hit Dice</h3>
+        <h2>
+          {currentHitDice}/{maxHitDice}
+        </h2>
+        <p>available</p>
+        <div className={styles.hitDiceDetails}>
+          <div className={styles.leftContainer}>
+            <h5>MAX</h5>
+            {liveStats.hitDice.map((hitDice) => (
+              <h4 key={hitDice.type}>
+                {hitDice.max}
+                {hitDice.type}
+              </h4>
+            ))}
+          </div>
+          <div className={styles.rightContainer}>
+            <h5>USED</h5>
+            {liveStats.hitDice.map((hitDice) => (
+              // @ts-ignore
+              <EditableCell
+                key={hitDice.type}
+                value={hitDice.max - hitDice.current}
+                onBlur={(value) => handleHitDiceChange(value, hitDice.type)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

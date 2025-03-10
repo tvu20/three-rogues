@@ -42,12 +42,6 @@ export default function CharacterPage() {
     <Layout>
       <CharacterHeader id={id} />
       <CharacterTabs />
-      {/* <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Character Details</h1>
-        <pre className="bg-gray-100 p-4 rounded">
-          {JSON.stringify(character, null, 2)}
-        </pre>
-      </div> */}
     </Layout>
   );
 }

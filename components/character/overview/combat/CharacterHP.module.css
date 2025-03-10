@@ -75,6 +75,7 @@
   flex-direction: column;
   gap: var(--spacing-small);
   flex-grow: 1;
+  margin-bottom: 6px;
 }
 
 .hpButton {
@@ -100,4 +101,78 @@
   border: 1px solid var(--secondary-gray-color);
   field-sizing: content;
   font-weight: 200;
+  flex-grow: 1;
+}
+
+.hitDiceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* gap: var(--spacing-small); */
+  /* border: 1px solid blue; */
+}
+
+.hitDiceContainer h3 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-large);
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.hitDiceContainer h2 {
+  margin: -4px 0 0;
+  /* margin: var(--spacing-xsmall) 0 var(--spacing-xsmall); */
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-heading-medium-large);
+  font-weight: 200;
+}
+
+.hitDiceContainer p {
+  margin-top: -4px;
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+  text-align: center;
+}
+
+.hitDiceDetails {
+  margin-top: var(--spacing-small);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* gap: var(--spacing-small); */
+}
+
+.hitDiceDetails div {
+  padding: 0 var(--spacing-small);
+  text-align: center;
+}
+
+.hitDiceDetails div h5 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-xsmall);
+  font-weight: 200;
+  margin-bottom: var(--spacing-xxx-small);
+}
+
+.hitDiceDetails div span,
+.hitDiceDetails div h4 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+}
+
+.rightContainer div {
+  padding: 0;
+  margin: 0;
+}
+
+.rightContainer div input {
+  width: 20px;
+  text-align: center;
+  margin-top: -2px;
+}
+
+.leftContainer {
+  border-right: 1px solid var(--secondary-gray-color);
 }

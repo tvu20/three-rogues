@@ -10,7 +10,7 @@ const CharacterActionButtons = () => {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
-  const [updateLiveStats, { isLoading }] = useUpdateLiveStatsMutation();
+  const [updateLiveStats] = useUpdateLiveStatsMutation();
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
 
