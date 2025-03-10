@@ -3,8 +3,8 @@ import { useState } from "react";
 import styles from "./EditableCell.module.css";
 
 type EditableCellProps = {
-  value: string | number;
-  onBlur: (value: string | number) => void;
+  value: number;
+  onBlur: (value: number) => void;
 };
 
 // how this works: render child if not editing, otherwise render input field
@@ -16,15 +16,17 @@ const EditableCell = ({ value, onBlur }: EditableCellProps) => {
   // if span is clicked twice, set isEditing to true
   const handleClick = () => {
     setIsEditing(!isEditing);
+    setInputValue(value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setInputValue(Number(e.target.value) || 0);
   };
 
   const handleBlur = () => {
     setIsEditing(false);
     onBlur(inputValue);
+    setInputValue(value);
   };
 
   return (

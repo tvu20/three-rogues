@@ -20,7 +20,7 @@ const CharacterActionButtons = () => {
 
   const updateLiveStatsHandler = async () => {
     try {
-      //   await updateLiveStats({ id, liveStats }).unwrap();
+      await updateLiveStats({ id, liveStats }).unwrap();
 
       dispatch(
         setSnackbar({

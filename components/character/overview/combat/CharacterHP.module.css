@@ -64,6 +64,12 @@
   border-bottom: 1px solid var(--secondary-gray-color);
 }
 
+.hpTemp input {
+  margin-top: 2px;
+  font-weight: 200;
+  width: 20px;
+}
+
 .healDamageContainer {
   display: flex;
   flex-direction: column;

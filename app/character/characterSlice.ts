@@ -51,10 +51,15 @@ export const characterSlice = createSlice({
         state.liveStats.currentHP = action.payload;
       }
     },
+    setTempHP: (state, action: PayloadAction<number>) => {
+      if (state.liveStats) {
+        state.liveStats.tempHP = action.payload;
+      }
+    },
   },
 });
 
-export const { setLiveCharacter, setInspiration, setCurrentHP } =
+export const { setLiveCharacter, setInspiration, setCurrentHP, setTempHP } =
   characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type
