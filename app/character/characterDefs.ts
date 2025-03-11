@@ -43,6 +43,15 @@ export type LiveStats = {
   deathsaves: DeathSaves;
   conditions: string;
   inspiration: boolean;
+  concentration?: string;
+  spellSlots?: SpellSlots;
+};
+
+export type SpellSlots = {
+  [key: string]: {
+    current: number;
+    max: number;
+  };
 };
 
 // eslint-disable-next-line

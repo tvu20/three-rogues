@@ -1,0 +1,59 @@
+.spellSlotsTable {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  margin-bottom: var(--spacing-small);
+}
+
+.spellSlotsTable th {
+  border-bottom: 1px solid var(--content-box-border-color);
+  padding: var(--spacing-xsmall) var(--spacing-xx-small);
+  font-weight: 400;
+}
+
+.spellSlotsTable tr td {
+  padding: var(--spacing-xsmall) var(--spacing-xx-small);
+}
+
+.spellSlotCell span {
+  background-color: var(--highlight-background-color);
+  padding: var(--spacing-xx-small);
+  width: 100%;
+}
+
+.spellSlotCell input {
+  margin: 0;
+  text-align: center;
+}
+
+.usedRow td {
+  padding-bottom: 0px !important;
+}
+
+.totalRow td {
+  padding-top: 0;
+}
+
+.tableLabel {
+  padding-top: 8px !important;
+  text-align: left;
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+.concentration {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.concentration div {
+  margin-left: var(--spacing-xsmall);
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+.concentration input {
+  field-sizing: content;
+  width: 100%;
+}
