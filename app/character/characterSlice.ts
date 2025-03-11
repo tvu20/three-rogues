@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HitDice, LiveStats } from "./characterDefs";
+import { DeathSaves, HitDice, LiveStats } from "./characterDefs";
 
 // livestats for the character payload
 export type LiveCharacter = {
@@ -61,6 +61,11 @@ export const characterSlice = createSlice({
         state.liveStats.hitDice = action.payload;
       }
     },
+    setDeathSaves: (state, action: PayloadAction<DeathSaves>) => {
+      if (state.liveStats) {
+        state.liveStats.deathsaves = action.payload;
+      }
+    },
   },
 });
 
@@ -70,6 +75,7 @@ export const {
   setCurrentHP,
   setTempHP,
   setHitDice,
+  setDeathSaves,
 } = characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type

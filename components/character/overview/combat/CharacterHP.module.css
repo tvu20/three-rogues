@@ -109,6 +109,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
   /* gap: var(--spacing-small); */
   /* border: 1px solid blue; */
 }
@@ -175,4 +176,52 @@
 
 .leftContainer {
   border-right: 1px solid var(--secondary-gray-color);
+}
+
+.deathSavesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  /* border: 1px solid red; */
+}
+
+.deathSavesContainer h3 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium-large);
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: var(--spacing-xx-small);
+}
+
+.deathSavesRow {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-small);
+  margin-top: var(--spacing-small);
+}
+
+.saveButton {
+  width: var(--save-circle-size);
+  height: var(--save-circle-size);
+  border-radius: 50%;
+  border: 1px solid var(--secondary-gray-color);
+}
+
+.success.active {
+  background-color: var(--primary-green-color);
+  border-color: transparent;
+  /* border: 1px solid var(--primary-green-color); */
+}
+
+.failure.active {
+  background-color: var(--primary-red-color);
+  border-color: transparent;
+  /* border: 1px solid var(--primary-red-color); */
+}
+
+.resetButton {
+  margin-top: var(--spacing-small-medium);
 }

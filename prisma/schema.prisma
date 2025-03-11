@@ -85,6 +85,7 @@ model Character {
   speed           Json?
   darkvision      Int?
   savingThrows    Json?
+  defenses        String?
 
   liveStats       Json?
 }

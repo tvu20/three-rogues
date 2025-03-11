@@ -7,6 +7,7 @@ import {
 } from "../../../../app/character/characterSlice";
 import { useAppDispatch } from "../../../../utils/redux";
 import EditableCell from "../../../shared/EditableCell";
+import CharacterDeathSaves from "./CharacterDeathSaves";
 import styles from "./CharacterHP.module.css";
 
 type CharacterHPProps = {
@@ -131,6 +132,7 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
           </div>
         </div>
       </div>
+      <CharacterDeathSaves saves={liveStats.deathsaves} />
     </div>
   );
 };
