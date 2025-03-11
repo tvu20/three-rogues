@@ -32,18 +32,20 @@ const CharacterCombatStats = ({ character }: CharacterCombatStatsProps) => {
         <div className={styles.otherSpeedsContainer}>
           <div>
             <h4>Fly</h4>
-            <p>{character?.speed.fly ? `${character?.speed.fly}ft` : "None"}</p>
+            <p>
+              {character?.speed.fly ? `${character?.speed.fly} ft` : "None"}
+            </p>
           </div>
           <div>
             <h4>Swim</h4>
             <p>
-              {character?.speed.swim ? `${character?.speed.swim}ft` : "None"}
+              {character?.speed.swim ? `${character?.speed.swim} ft` : "None"}
             </p>
           </div>
           <div>
             <h4>Climb</h4>
             <p>
-              {character?.speed.climb ? `${character?.speed.climb}ft` : "None"}
+              {character?.speed.climb ? `${character?.speed.climb} ft` : "None"}
             </p>
           </div>
         </div>

@@ -4,7 +4,6 @@ import { useAppSelector } from "../../../../utils/redux";
 import Loader from "../../../shared/Loader";
 import CharacterCombatStats from "./CharacterCombatStats";
 import CharacterHP from "./CharacterHP";
-import CharacterLifeStats from "./CharacterLifeStats";
 
 const CharacterCombat = () => {
   const params = useParams<{ id: string }>();
@@ -24,7 +23,6 @@ const CharacterCombat = () => {
     <div className={`content-box`}>
       <CharacterCombatStats character={character} />
       <CharacterHP character={character} liveStats={liveStats} />
-      <CharacterLifeStats liveStats={liveStats} />
     </div>
   );
 };

@@ -66,6 +66,11 @@ export const characterSlice = createSlice({
         state.liveStats.deathsaves = action.payload;
       }
     },
+    setConditions: (state, action: PayloadAction<string>) => {
+      if (state.liveStats) {
+        state.liveStats.conditions = action.payload;
+      }
+    },
   },
 });
 
@@ -76,6 +81,7 @@ export const {
   setTempHP,
   setHitDice,
   setDeathSaves,
+  setConditions,
 } = characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type

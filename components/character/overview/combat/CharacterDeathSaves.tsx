@@ -23,6 +23,7 @@ const CharacterDeathSaves = ({ saves }: CharacterDeathSavesProps) => {
   const createSuccesses = () => {
     return Array.from({ length: 3 }, (_, index) => (
       <button
+        key={index}
         className={`${styles.saveButton} ${styles.success} ${
           saves.successes >= index + 1 ? styles.active : ""
         }`}
@@ -34,6 +35,7 @@ const CharacterDeathSaves = ({ saves }: CharacterDeathSavesProps) => {
   const createFailures = () => {
     return Array.from({ length: 3 }, (_, index) => (
       <button
+        key={index}
         className={`${styles.saveButton} ${styles.failure} ${
           saves.failures >= index + 1 ? styles.active : ""
         }`}

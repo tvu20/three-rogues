@@ -225,3 +225,62 @@
 .resetButton {
   margin-top: var(--spacing-small-medium);
 }
+
+.conditionsContainer {
+  flex-grow: 1;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.conditionsRow {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.conditions {
+  border-bottom: 1px solid var(--content-box-border-color);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding-bottom: var(--spacing-small);
+}
+
+.defenses {
+  padding-top: var(--spacing-small-medium);
+}
+
+.conditionsRow h3 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-large);
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xx-small);
+}
+
+.conditionsRow p,
+.conditionsRow span {
+  width: 100%;
+  font-size: var(--font-size-body-small);
+  font-weight: 300;
+}
+
+.conditionsRow input {
+  width: 100%;
+  field-sizing: content;
+  margin-bottom: 9px;
+}
+
+.conditions span {
+  margin-bottom: var(--spacing-small);
+}
+
+@media (max-width: 1050px) {
+  .conditionsRow {
+    text-align: end;
+  }
+}

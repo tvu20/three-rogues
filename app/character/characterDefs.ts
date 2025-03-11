@@ -41,7 +41,7 @@ export type LiveStats = {
   tempHP: number;
   hitDice: HitDice[];
   deathsaves: DeathSaves;
-  conditions: String;
+  conditions: string;
   inspiration: boolean;
 };
 
@@ -73,6 +73,6 @@ export type Character = {
   };
   darkvision: number;
   savingThrows: SavingThrows;
-  defenses: String;
+  defenses: string;
   liveStats: LiveStats;
 };
