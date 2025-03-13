@@ -19,6 +19,10 @@ export default async function handle(req, res) {
         author: { email: session.user.email },
       },
       include: {
+        features: true,
+        weapons: true,
+        spells: true,
+
         //   ingredients: true,
         //   tags: true,
         author: {
@@ -34,6 +38,20 @@ export default async function handle(req, res) {
         //   },
       },
     });
-    res.status(200).json(character);
+
+    const trackedFeatures = character?.features?.filter(
+      (feature) => feature.tracked
+    );
+
+    const combinedCharacter = {
+      ...character,
+      liveStats: {
+        // @ts-ignore
+        ...(character?.liveStats || {}),
+        trackedFeatures,
+      },
+    };
+
+    res.status(200).json(combinedCharacter);
   }
 }

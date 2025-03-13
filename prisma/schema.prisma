@@ -86,6 +86,79 @@ model Character {
   darkvision      Int?
   savingThrows    Json?
   defenses        String?
+  attacksPerAction    Int?
+  spellcaster     Boolean?
+  castingAbility    String?
+  spellsKnown     Int?
+  cantripsKnown   Int?
+  maxPrepared     Int?
+  spellcastingFocus      String?
+  armorProficiencies       String?
+  weaponProficiencies      String?
+  toolProficiencies       String?
+  languagesKnown        String?
 
   liveStats       Json?
+  features        Feature[]
+  weapons         Weapon[]
+  spells          Spell[]
+}
+
+model Feature {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name      String
+  level     Int?
+  linkedAbility    String?
+  description       String
+  source      String
+  class       String?
+  options     Json?
+  tracked     Boolean
+  max         Int?
+  used        Int?
+  resetsOn    String?
+}
+
+model Weapon {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name          String
+  description   String?
+  linkedAbility     String?
+  range         String?
+  ability       String?
+  proficient    Boolean?
+  damage        String
+  damageType    String?
+  hitBonus      Int?
+  properties    String?
+  equipped      Boolean?
+  inInventory   Boolean?           
+}
+
+model Spell {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name      String
+  source    String 
+  type      String
+  level     String
+  school    String
+  components      String
+  castingTime     String
+  range     String
+  duration    String
+  ritual      Boolean?
+  concentration     Boolean
+  prepared      Boolean?
+  description     String
+  damage      String?
+  save        String?
 }
