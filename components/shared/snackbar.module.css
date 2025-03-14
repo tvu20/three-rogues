@@ -39,3 +39,17 @@
   text-align: left;
   margin-right: var(--spacing-medium);
 }
+
+@media (max-width: 1050px) {
+  .snackbar {
+    bottom: 90px;
+  }
+}
+
+@media (max-width: 500px) {
+  .snackbar {
+    bottom: 120px;
+    z-index: 1000;
+    max-width: 100%;
+  }
+}

@@ -50,6 +50,7 @@ p {
   border: 1px solid var(--action-button-border-color);
   padding: var(--spacing-xsmall) var(--spacing-medium);
   font-size: var(--font-size-body-medium);
+  background-color: var(--content-box-background-color);
   text-transform: uppercase;
   font-weight: 300;
   box-sizing: border-box;
