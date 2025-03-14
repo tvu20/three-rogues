@@ -1,0 +1,59 @@
+.container {
+  margin-bottom: var(--spacing-large);
+}
+
+.container h4 {
+  font-size: var(--font-size-body-medium-large);
+  font-weight: 400;
+}
+
+.container h6 {
+  font-size: var(--font-size-body-xsmall);
+  font-weight: 200;
+  margin-bottom: var(--spacing-small);
+}
+
+.container p {
+  font-size: var(--font-size-body-medium);
+  margin: var(--spacing-xsmall) 0;
+  font-weight: 300;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.level {
+  margin-top: var(--spacing-xx-small);
+  padding: var(--spacing-xxx-small) var(--spacing-small) var(--spacing-xsmall);
+  background-color: var(--highlight-background-color);
+  font-size: var(--font-size-body-small-medium);
+  font-weight: 200;
+}
+
+.marginUp {
+  margin-top: -4px;
+}
+
+.options {
+  margin-top: var(--spacing-small-medium);
+  border-left: 2px solid var(--primary-text-color-section);
+  margin-left: var(--spacing-xsmall);
+  padding-left: var(--spacing-small-medium);
+}
+
+.options p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-small);
+  font-size: var(--font-size-body-small);
+}
+
+.options p:last-child {
+  padding-bottom: var(--spacing-xx-small);
+}
+
+.options i {
+  font-weight: 500;
+}

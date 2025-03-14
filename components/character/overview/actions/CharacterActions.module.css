@@ -8,6 +8,10 @@
   font-weight: 300;
 }
 
+.otherSection {
+  margin-bottom: 0;
+}
+
 .title {
   color: var(--primary-text-color-section);
   font-family: var(--font-belleza);
@@ -23,4 +27,9 @@
   font-size: var(--font-size-body-small);
   text-transform: none;
   color: var(--primary-text-color-dark);
+}
+
+p.subtitle,
+.otherSection h2 {
+  margin-bottom: var(--spacing-medium);
 }
