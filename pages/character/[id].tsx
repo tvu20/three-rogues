@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import CharacterPage from "../../components/character/CharacterPage";
-import Loader from "../../components/shared/Loader";
+import Loader from "../../components/shared/layout/Loader";
 
 export default function Character() {
   const { data: session, status } = useSession();

@@ -3,12 +3,12 @@ import {
   setSpellSlots,
 } from "../../../../app/character/characterSlice";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
-import EditableTextCell from "../../../shared/EditableTextCell";
+import EditableTextCell from "../../../shared/inputs/EditableTextCell";
 
 import styles from "./CharacterSpellSlots.module.css";
 
-import EditableCell from "../../../shared/EditableCell";
-import Loader from "../../../shared/Loader";
+import EditableCell from "../../../shared/inputs/EditableCell";
+import Loader from "../../../shared/layout/Loader";
 
 const CharacterSpellSlots = () => {
   const liveStats = useAppSelector((state) => state.character.liveStats);

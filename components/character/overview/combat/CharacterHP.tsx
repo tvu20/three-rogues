@@ -6,7 +6,7 @@ import {
   setTempHP,
 } from "../../../../app/character/characterSlice";
 import { useAppDispatch } from "../../../../utils/redux";
-import EditableCell from "../../../shared/EditableCell";
+import EditableCell from "../../../shared/inputs/EditableCell";
 import CharacterConditions from "./CharacterConditions";
 import CharacterDeathSaves from "./CharacterDeathSaves";
 import styles from "./CharacterHP.module.css";

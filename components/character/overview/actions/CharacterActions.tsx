@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
 import { LINKED_ABILITY } from "../../../../app/character/characterDefs";
-import Loader from "../../../shared/Loader";
+import Loader from "../../../shared/layout/Loader";
 import FeatureBlock from "../../shared/FeatureBlock";
 import styles from "./CharacterActions.module.css";
 

@@ -4,7 +4,7 @@ import { useUpdateLiveStatsMutation } from "../../../app/api/apiSlice";
 import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/redux";
 import useMediaQuery from "../../../utils/useMediaQuery";
-import Loader from "../../shared/Loader";
+import Loader from "../../shared/layout/Loader";
 import styles from "./CharacterActionButtons.module.css";
 const CharacterActionButtons = () => {
   const isMobile = useMediaQuery(500);

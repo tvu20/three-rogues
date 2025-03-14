@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../utils/redux";
-import Loader from "../../shared/Loader";
+import Loader from "../../shared/layout/Loader";
 import CharacterActions from "./actions/CharacterActions";
 import CharacterActionButtons from "./CharacterActionButtons";
 import styles from "./CharacterOverview.module.css";

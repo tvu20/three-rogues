@@ -45,9 +45,9 @@
 }
 
 .options p {
-  margin-top: 0;
-  margin-bottom: var(--spacing-small);
-  font-size: var(--font-size-body-small);
+  margin-top: 0 !important;
+  margin-bottom: var(--spacing-small) !important;
+  font-size: var(--font-size-body-small) !important;
 }
 
 .options p:last-child {

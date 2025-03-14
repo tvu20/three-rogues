@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
 import { setInspiration } from "../../../../app/character/characterSlice";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
-import Loader from "../../../shared/Loader";
+import Loader from "../../../shared/layout/Loader";
 import StatBlock from "../../shared/StatBlock";
 import styles from "./CharacterStats.module.css";
 const CharacterStats = () => {

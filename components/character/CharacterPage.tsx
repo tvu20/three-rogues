@@ -5,7 +5,7 @@ import { useGetCharacterQuery } from "../../app/api/apiSlice";
 import { setLiveCharacter } from "../../app/character/characterSlice";
 import { useAppDispatch } from "../../utils/redux";
 import Layout from "../Layout";
-import Loader from "../shared/Loader";
+import Loader from "../shared/layout/Loader";
 import CharacterHeader from "./header/CharacterHeader";
 import CharacterTabs from "./tabs/CharacterTabs";
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import { SignIn, SignOut, UserCirclePlus } from "@phosphor-icons/react";
-import useMediaQuery from "../../utils/useMediaQuery";
+import useMediaQuery from "../../../utils/useMediaQuery";
 
 import styles from "./header.module.css";
 

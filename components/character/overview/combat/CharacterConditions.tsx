@@ -1,6 +1,6 @@
 import { setConditions } from "../../../../app/character/characterSlice";
 import { useAppDispatch } from "../../../../utils/redux";
-import EditableTextCell from "../../../shared/EditableTextCell";
+import EditableTextCell from "../../../shared/inputs/EditableTextCell";
 
 import styles from "./CharacterHP.module.css";
 type CharacterConditionsProps = {
