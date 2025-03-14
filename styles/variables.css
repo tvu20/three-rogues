@@ -4,6 +4,7 @@ body {
 
   --primary-text-color-dark: #000000;
   --primary-text-color-heading: #000000;
+  --primary-text-color-section: #a12c2c;
 
   --tab-color: rgba(0, 0, 0, 0.25);
   --tab-color-text: rgba(0, 0, 0, 0.5);

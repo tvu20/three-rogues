@@ -1,0 +1,26 @@
+.section {
+  margin-bottom: var(--spacing-xxx-large);
+}
+
+.section p {
+  font-size: var(--font-size-body-medium);
+  margin: var(--spacing-xsmall) 0;
+  font-weight: 300;
+}
+
+.title {
+  color: var(--primary-text-color-section);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-heading-small);
+}
+
+.actionTitle span {
+  margin-left: var(--spacing-small-medium);
+  font-family: var(--font-be-vietnam);
+  font-weight: 600;
+  font-size: var(--font-size-body-small);
+  text-transform: none;
+  color: var(--primary-text-color-dark);
+}
