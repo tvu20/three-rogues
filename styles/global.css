@@ -61,6 +61,27 @@ p {
   color: var(--action-button-highlighted-text-color);
 }
 
+details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+details summary::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url("../assets/caret-left.png") no-repeat;
+  background-size: cover;
+  margin-left: 0.75em;
+  transition: 0.2s;
+}
+
+details[open] > summary::after {
+  transform: rotate(-90deg);
+}
+
 @media (max-width: 1200px) {
   .content-box {
     padding: var(--spacing-medium-large);

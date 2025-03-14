@@ -120,6 +120,7 @@ model Feature {
   max         Int?
   used        Int?
   resetsOn    String?
+  shortDescription      String?
 }
 
 model Weapon {

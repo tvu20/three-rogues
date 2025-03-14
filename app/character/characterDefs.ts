@@ -100,6 +100,7 @@ export type Feature = {
   max?: number;
   used?: number;
   resetsOn?: RESETS_ON;
+  shortDescription?: string;
 };
 
 export type Weapon = {

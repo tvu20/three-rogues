@@ -61,7 +61,13 @@ export const apiSlice = createApi({
       query: ({ id, liveStats }) => ({
         url: `/liveStats/${id}`,
         method: "POST",
-        body: { liveStats },
+        body: {
+          trackedFeatures: liveStats.trackedFeatures,
+          liveStats: {
+            ...liveStats,
+            trackedFeatures: undefined,
+          },
+        },
       }),
       invalidatesTags: (result, error, arg) => [
         "Character",

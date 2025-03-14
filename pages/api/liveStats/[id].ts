@@ -4,13 +4,27 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handle(req, res) {
   const { id } = req.query;
-  const { liveStats } = req.body;
+  const { trackedFeatures, liveStats } = req.body;
   const session = await getServerSession(req, res, authOptions);
 
   if (!session) {
     return res.status(403).json({
       error: "Not authorized",
       message: "You must be signed in to view this content",
+    });
+  }
+
+  if (trackedFeatures) {
+    trackedFeatures.map(async (feature) => {
+      await prisma.feature.update({
+        where: {
+          id: feature.id,
+          characterId: id,
+        },
+        data: {
+          used: feature.used,
+        },
+      });
     });
   }
 

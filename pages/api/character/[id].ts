@@ -39,9 +39,9 @@ export default async function handle(req, res) {
       },
     });
 
-    const trackedFeatures = character?.features?.filter(
-      (feature) => feature.tracked
-    );
+    const trackedFeatures = character?.features
+      ?.filter((feature) => feature.tracked)
+      .sort((a, b) => a.name.localeCompare(b.name));
 
     const combinedCharacter = {
       ...character,

@@ -1,0 +1,69 @@
+.trackedItem:not(:first-child) {
+  padding-top: var(--spacing-medium);
+}
+
+.trackedItem:not(:last-child) {
+  border-bottom: 1px solid var(--content-box-separator-color);
+  padding-bottom: var(--spacing-medium);
+}
+
+.trackedItem summary {
+  padding: 0;
+  align-items: flex-start;
+}
+
+.summaryDisplay h5 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-body-large);
+  margin-bottom: var(--spacing-small);
+}
+
+.summaryTracker {
+  font-size: var(--font-size-body-medium);
+  font-weight: 200;
+}
+
+.trackedItem p {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+  margin: var(--spacing-small) 0 var(--spacing-xsmall) 0;
+}
+
+.summaryTracker {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+
+  color: var(--content-box-border-color);
+  border: 1px solid var(--content-box-border-color);
+  height: var(--tracked-item-size);
+  width: var(--tracked-item-size);
+  margin-right: var(--spacing-xsmall);
+  display: grid;
+  place-content: center;
+}
+
+.checkbox::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  transform: scale(0);
+  /* transition: 120ms transform ease-in-out; */
+  box-shadow: inset 1em 1em var(--form-control-color);
+  background-color: var(--primary-red-color);
+}
+
+.checkbox:checked::before {
+  transform: scale(1);
+}

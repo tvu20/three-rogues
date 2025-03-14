@@ -81,6 +81,20 @@ export const characterSlice = createSlice({
         state.liveStats.concentration = action.payload;
       }
     },
+    setTrackedFeatures: (
+      state,
+      action: PayloadAction<{ id: string; used: number }>
+    ) => {
+      if (state.liveStats) {
+        const { id, used } = action.payload;
+        const feature = state.liveStats.trackedFeatures?.find(
+          (feature) => feature.id === id
+        );
+        if (feature) {
+          feature.used = used;
+        }
+      }
+    },
   },
 });
 
@@ -94,6 +108,7 @@ export const {
   setConditions,
   setSpellSlots,
   setConcentration,
+  setTrackedFeatures,
 } = characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type

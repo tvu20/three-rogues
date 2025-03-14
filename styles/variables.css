@@ -11,6 +11,7 @@ body {
 
   --content-box-background-color: #fff;
   --content-box-border-color: #000000;
+  --content-box-separator-color: #bfbfbf;
 
   --action-button-border-color: #000000;
   --action-button-highlighted-color: #d58c26;
@@ -51,6 +52,7 @@ body {
 
   --prof-circle-size: 7px;
   --save-circle-size: 30px;
+  --tracked-item-size: 24px;
 
   /* spacing */
   --spacing-page-border: 36px;
