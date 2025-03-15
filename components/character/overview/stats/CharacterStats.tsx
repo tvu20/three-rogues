@@ -5,6 +5,7 @@ import { setInspiration } from "../../../../app/character/characterSlice";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import Loader from "../../../shared/layout/Loader";
 import StatBlock from "../../shared/StatBlock";
+import { SKILL_MAPPING } from "../../skills/proficiencies/CharacterSkillProfsDefs";
 import styles from "./CharacterStats.module.css";
 const CharacterStats = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,25 @@ const CharacterStats = () => {
     return <Loader />;
   }
 
+  const calculatePassive = (skillName: string) => {
+    if (!character) {
+      return "";
+    }
+    const passive = character.skills.find((skill) => skill.name === skillName);
+
+    let bonus = Math.floor(
+      (character?.abilityScores[SKILL_MAPPING[skillName]] - 10) / 2
+    );
+    if (passive?.proficient) {
+      bonus += character.proficiencyBonus;
+    }
+    if (passive?.expertise) {
+      bonus += character.proficiencyBonus;
+    }
+
+    return 10 + bonus;
+  };
+
   return (
     <div className={`content-box ${styles.container}`}>
       <div className={styles.topRow}>
@@ -31,18 +51,17 @@ const CharacterStats = () => {
             <p>Bonus</p>
           </div>
           <div className={styles.passive}>
-            {/* TO FILL IN LATER */}
             <div className={styles.passiveRow}>
               <h5>Passive Perception</h5>
-              <p>11</p>
+              <p>{calculatePassive("Perception")}</p>
             </div>
             <div className={styles.passiveRow}>
               <h5>Passive Investigation</h5>
-              <p>20</p>
+              <p>{calculatePassive("Investigation")}</p>
             </div>
             <div className={styles.passiveRow}>
               <h5>Passive Insight</h5>
-              <p>23</p>
+              <p>{calculatePassive("Insight")}</p>
             </div>
           </div>
         </div>

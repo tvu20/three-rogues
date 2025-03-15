@@ -41,7 +41,8 @@ p {
 .content-box {
   background-color: var(--content-box-background-color);
   border: 1px solid var(--content-box-border-color);
-  padding: var(--spacing-large) var(--spacing-xlarge);
+  padding: var(--spacing-large);
+  /* padding: var(--spacing-large) var(--spacing-xlarge); */
   margin-bottom: var(--spacing-large);
 }
 
