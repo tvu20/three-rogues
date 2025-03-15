@@ -4,8 +4,9 @@ import useMediaQuery from "../../../utils/useMediaQuery";
 import Loader from "../../shared/layout/Loader";
 import styles from "./CharacterSkills.module.css";
 import CharacterClassFeatures from "./class/CharacterClassFeatures";
+import CharacterFeats from "./feats/CharacterFeats";
 import CharacterRaceFeatures from "./race/CharacterRaceFeatures";
-
+import CharacterTrainingProfs from "./training/CharacterTrainingProfs";
 const CharacterSkills = () => {
   const bottomPadding = useMediaQuery(1050);
 
@@ -31,6 +32,10 @@ const CharacterSkills = () => {
     (feature) => feature.source === "background"
   );
 
+  const feats = character.features.filter(
+    (feature) => feature.source === "feat"
+  );
+
   return (
     <div className="split-grid-container">
       <div className={styles.leftContainer}>
@@ -46,7 +51,13 @@ const CharacterSkills = () => {
         />
       </div>
       <div className={styles.rightContainer}>
-        <div className={styles.item}></div>
+        <CharacterTrainingProfs
+          armor={character.armorProficiencies || ""}
+          weapons={character.weaponProficiencies || ""}
+          tools={character.toolProficiencies || ""}
+          languages={character.languagesKnown || ""}
+        />
+        <CharacterFeats feats={feats} />
         {bottomPadding && <div className={styles.bottomPadding}></div>}
       </div>
     </div>

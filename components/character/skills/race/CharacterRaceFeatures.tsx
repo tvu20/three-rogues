@@ -28,7 +28,11 @@ const CharacterRaceFeatures = ({
     ));
   };
   return (
-    <div className={`content-box ${styles.container}`}>
+    <div
+      className={`content-box ${styles.container} ${
+        type === "Background" ? styles.background : ""
+      }`}
+    >
       <h6>{type}</h6>
       <h2 className="section-header">{title}</h2>
       {createFeaturesBlock()}

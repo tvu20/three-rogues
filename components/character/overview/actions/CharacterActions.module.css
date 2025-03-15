@@ -29,3 +29,9 @@ p.subtitle,
 .actionTable {
   margin-bottom: var(--spacing-large);
 }
+
+@media (max-width: 1050px) {
+  .container {
+    margin-bottom: 0;
+  }
+}
