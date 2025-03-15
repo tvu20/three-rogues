@@ -10,7 +10,9 @@ import { useState } from "react";
 import useMediaQuery from "../../../utils/useMediaQuery";
 
 import CharacterOverview from "../overview/CharacterOverview";
+import CharacterSkills from "../skills/CharacterSkills";
 import styles from "./CharacterTabs.module.css";
+
 const TABS = [
   {
     id: "overview",
@@ -21,7 +23,7 @@ const TABS = [
   {
     id: "skills",
     label: "Skills",
-    component: <div>Skills</div>,
+    component: <CharacterSkills />,
     icon: Gear,
   },
   {

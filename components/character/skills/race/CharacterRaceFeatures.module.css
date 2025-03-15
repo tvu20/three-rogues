@@ -1,0 +1,19 @@
+.container h6 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+}
+
+.container h2 {
+  color: var(--primary-text-color-section);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-heading-small);
+  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
+  margin-bottom: var(--spacing-small-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.container p {
+  font-weight: 300;
+}

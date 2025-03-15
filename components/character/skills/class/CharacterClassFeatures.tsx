@@ -1,0 +1,60 @@
+import { Class, Feature } from "../../../../app/character/characterDefs";
+import FeatureBlock from "../../shared/FeatureBlock";
+import styles from "./CharacterClassFeatures.module.css";
+
+type CharacterClassFeaturesProps = {
+  features: Feature[];
+  classList: Class[];
+};
+
+const CharacterClassFeatures = ({
+  features,
+  classList,
+}: CharacterClassFeaturesProps) => {
+  const sortedClassList = [...classList].sort((a, b) =>
+    a.isStartingClass ? -1 : 1
+  );
+  const sortedFeatures = [...features].sort((a, b) => {
+    if (a.level === undefined) return 1;
+    if (b.level === undefined) return -1;
+    return a.level - b.level;
+  });
+
+  const createFeatureBlock = (className: string) => {
+    const features = sortedFeatures.filter(
+      (feature) => feature.class === className
+    );
+    return features.map((feature) => (
+      <FeatureBlock
+        key={feature.id}
+        title={feature.name}
+        description={feature.description}
+        level={feature.level}
+        linkedAbility={feature.linkedAbility}
+        options={feature.options}
+      />
+    ));
+  };
+
+  const createFeatureBlocks = () => {
+    return sortedClassList.map((item) => {
+      return (
+        <div key={item.name} className={styles.classContainer}>
+          <h2 className={styles.classHeading}>
+            {item.name}
+            <span>{item.subclass}</span>
+          </h2>
+          {createFeatureBlock(item.name)}
+        </div>
+      );
+    });
+  };
+
+  return (
+    <div className={`content-box ${styles.container}`}>
+      {createFeatureBlocks()}
+    </div>
+  );
+};
+
+export default CharacterClassFeatures;
