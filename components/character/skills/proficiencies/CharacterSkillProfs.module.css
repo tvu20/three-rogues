@@ -4,19 +4,23 @@
   font-size: var(--font-size-heading-xsmall);
   font-weight: 200;
   padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
-  margin-bottom: var(--spacing-medium);
   border-bottom: 1px solid var(--content-box-separator-color);
 }
 
 .skillRow {
   display: grid;
-  grid-template-columns: 28px 45px 60px 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1fr;
   margin: 8px 0;
-
-  /* border: 1px solid red; */
 }
 
-.skillRow > div {
+.firstColumn,
+.secondColumn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.skillRow > div > div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +38,10 @@
   text-align: left;
 }
 
+.skillBonus {
+  margin-right: var(--spacing-small-medium);
+}
+
 .skillBonus p {
   width: 35px;
   text-align: center;
@@ -43,6 +51,7 @@
 
 .proficiencyIcons {
   justify-content: flex-start !important;
+  margin-right: var(--spacing-small);
 }
 
 .prof {
@@ -51,8 +60,6 @@
   border-radius: 50%;
   border: 1px solid var(--primary-gray-color);
   margin-right: 1px;
-  /* margin-right: var(--spacing-xsmall); */
-  /* margin-left: var(--spacing-xsmall); */
 }
 
 .prof.active {
@@ -73,4 +80,13 @@
   font-weight: 200;
   margin-top: -3px;
   text-align: right;
+}
+
+@media (max-width: 500px) {
+  .skillRow {
+    grid-template-columns: 0.5fr 1fr;
+  }
+  .source {
+    display: none;
+  }
 }

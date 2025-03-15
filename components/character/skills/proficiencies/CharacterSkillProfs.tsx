@@ -29,24 +29,30 @@ const CharacterSkillProfs = ({
 
     return (
       <div className={styles.skillRow}>
-        <div className={styles.proficiencyIcons}>
-          <div
-            className={`${styles.prof} ${
-              skill.proficient ? styles.active : ""
-            }`}
-          />
-          <div
-            className={`${styles.prof} ${skill.expertise ? styles.active : ""}`}
-          />
+        <div className={styles.firstColumn}>
+          <div className={styles.proficiencyIcons}>
+            <div
+              className={`${styles.prof} ${
+                skill.proficient ? styles.active : ""
+              }`}
+            />
+            <div
+              className={`${styles.prof} ${
+                skill.expertise ? styles.active : ""
+              }`}
+            />
+          </div>
+          <div className={styles.skillName}>
+            <p>{SKILL_MAPPING[skill.name]}</p>
+          </div>
         </div>
-        <div className={styles.skillName}>
-          <p>{SKILL_MAPPING[skill.name]}</p>
-        </div>
-        <div className={styles.skillBonus}>
-          <p>{bonus >= 0 ? "+" + bonus : bonus}</p>
-        </div>
-        <div className={styles.name}>
-          <p>{skill.name}</p>
+        <div className={styles.secondColumn}>
+          <div className={styles.skillBonus}>
+            <p>{bonus >= 0 ? "+" + bonus : bonus}</p>
+          </div>
+          <div className={styles.name}>
+            <p>{skill.name}</p>
+          </div>
         </div>
         <div className={styles.source}>
           <p>{skill.source}</p>
