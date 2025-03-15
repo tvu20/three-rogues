@@ -40,7 +40,7 @@ const CharacterClassFeatures = ({
     return sortedClassList.map((item) => {
       return (
         <div key={item.name} className={styles.classContainer}>
-          <h2 className={styles.classHeading}>
+          <h2 className={`${styles.classHeading} section-header`}>
             {item.name}
             <span>{item.subclass}</span>
           </h2>

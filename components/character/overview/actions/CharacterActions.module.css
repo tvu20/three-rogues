@@ -12,14 +12,6 @@
   margin-bottom: 0;
 }
 
-.title {
-  color: var(--primary-text-color-section);
-  font-family: var(--font-belleza);
-  text-transform: uppercase;
-  font-weight: 200;
-  font-size: var(--font-size-heading-small);
-}
-
 .actionTitle span {
   margin-left: var(--spacing-small-medium);
   font-family: var(--font-be-vietnam);

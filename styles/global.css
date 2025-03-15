@@ -62,6 +62,14 @@ p {
   color: var(--action-button-highlighted-text-color);
 }
 
+.section-header {
+  color: var(--primary-text-color-section);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-heading-small);
+}
+
 details summary {
   display: flex;
   justify-content: space-between;

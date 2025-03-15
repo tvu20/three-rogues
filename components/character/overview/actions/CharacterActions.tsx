@@ -92,7 +92,7 @@ const CharacterActions = () => {
   return (
     <div className={`content-box ${styles.container}`}>
       <div className={styles.section}>
-        <h2 className={`${styles.title} ${styles.actionTitle}`}>
+        <h2 className={`section-header ${styles.actionTitle}`}>
           Actions
           <span>Attacks per action: {character?.attacksPerAction || "1"}</span>
         </h2>
@@ -104,19 +104,19 @@ const CharacterActions = () => {
         {createFeatureBlocks("action")}
       </div>
       <div className={styles.section}>
-        <h2 className={styles.title}>Bonus Actions</h2>
+        <h2 className="section-header">Bonus Actions</h2>
         <p className={styles.subtitle}>Two-Weapon Fighting</p>
         {createExpandableTable("bonusaction")}
         {createFeatureBlocks("bonusaction")}
       </div>
       <div className={styles.section}>
-        <h2 className={styles.title}>Reactions</h2>
+        <h2 className="section-header">Reactions</h2>
         <p className={styles.subtitle}>Opportunity Attack</p>
         {createExpandableTable("reaction")}
         {createFeatureBlocks("reaction")}
       </div>
       <div className={`${styles.section} ${styles.otherSection}`}>
-        <h2 className={styles.title}>Other</h2>
+        <h2 className="section-header">Other</h2>
         {createFeatureBlocks("other")}
       </div>
     </div>

@@ -30,7 +30,7 @@ const CharacterRaceFeatures = ({
   return (
     <div className={`content-box ${styles.container}`}>
       <h6>{type}</h6>
-      <h2>{title}</h2>
+      <h2 className="section-header">{title}</h2>
       {createFeaturesBlock()}
     </div>
   );
