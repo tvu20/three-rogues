@@ -23,7 +23,7 @@ export default function ExpandableTable({
   mobileColumnSpacing,
   className,
 }: ExpandableTableProps) {
-  const isMobile = useMediaQuery(700);
+  const isMobile = useMediaQuery(750);
 
   const tableColumns = isMobile ? mobileColumns : columns;
 
