@@ -1,0 +1,76 @@
+.container h2 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-heading-xsmall);
+  font-weight: 200;
+  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.skillRow {
+  display: grid;
+  grid-template-columns: 28px 45px 60px 1fr 1fr;
+  margin: 8px 0;
+
+  /* border: 1px solid red; */
+}
+
+.skillRow > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skillName {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  font-weight: 200;
+  text-transform: uppercase;
+}
+
+.skillName p {
+  width: 100%;
+  text-align: left;
+}
+
+.skillBonus p {
+  width: 35px;
+  text-align: center;
+  background-color: var(--highlight-background-color);
+  padding-bottom: 3px;
+}
+
+.proficiencyIcons {
+  justify-content: flex-start !important;
+}
+
+.prof {
+  width: var(--prof-circle-size);
+  height: var(--prof-circle-size);
+  border-radius: 50%;
+  border: 1px solid var(--primary-gray-color);
+  margin-right: 1px;
+  /* margin-right: var(--spacing-xsmall); */
+  /* margin-left: var(--spacing-xsmall); */
+}
+
+.prof.active {
+  border-color: var(--primary-gold-color);
+  background-color: var(--primary-gold-color);
+}
+
+.name p {
+  width: 100%;
+  text-align: left;
+  font-weight: 300;
+  margin-top: -3px;
+}
+
+.source p {
+  width: 100%;
+  opacity: 0.75;
+  font-weight: 200;
+  margin-top: -3px;
+  text-align: right;
+}

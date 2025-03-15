@@ -5,8 +5,10 @@ import Loader from "../../shared/layout/Loader";
 import styles from "./CharacterSkills.module.css";
 import CharacterClassFeatures from "./class/CharacterClassFeatures";
 import CharacterFeats from "./feats/CharacterFeats";
+import CharacterSkillProfs from "./proficiencies/CharacterSkillProfs";
 import CharacterRaceFeatures from "./race/CharacterRaceFeatures";
 import CharacterTrainingProfs from "./training/CharacterTrainingProfs";
+
 const CharacterSkills = () => {
   const bottomPadding = useMediaQuery(1050);
 
@@ -37,7 +39,7 @@ const CharacterSkills = () => {
   );
 
   return (
-    <div className="split-grid-container">
+    <div className={`split-grid-container ${styles.container}`}>
       <div className={styles.leftContainer}>
         <CharacterClassFeatures
           features={classFeatures}
@@ -51,6 +53,11 @@ const CharacterSkills = () => {
         />
       </div>
       <div className={styles.rightContainer}>
+        <CharacterSkillProfs
+          skills={character.skills}
+          abilityScores={character.abilityScores}
+          proficiencyBonus={character.proficiencyBonus}
+        />
         <CharacterTrainingProfs
           armor={character.armorProficiencies || ""}
           weapons={character.weaponProficiencies || ""}

@@ -76,6 +76,14 @@ export type LiveStats = {
   trackedFeatures?: Feature[];
 };
 
+export type Skill = {
+  name: string;
+  proficient: boolean;
+  expertise: boolean;
+  bonus: number;
+  source: string;
+};
+
 export type SpellSlots = {
   [key: string]: {
     current: number;
@@ -184,6 +192,7 @@ export type Character = {
   languagesKnown?: string;
 
   liveStats: LiveStats;
+  skills: Skill[];
   features: Feature[];
   weapons: Weapon[];
   spells: Spell[];

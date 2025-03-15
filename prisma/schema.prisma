@@ -99,6 +99,7 @@ model Character {
   languagesKnown        String?
 
   liveStats       Json?
+  skills          Json?
   features        Feature[]
   weapons         Weapon[]
   spells          Spell[]
