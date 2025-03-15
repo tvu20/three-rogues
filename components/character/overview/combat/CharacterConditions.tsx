@@ -18,7 +18,7 @@ const CharacterConditions = ({
     <div className={styles.conditionsContainer}>
       <div className={`${styles.conditionsRow} ${styles.conditions}`}>
         <EditableTextCell
-          value={conditions}
+          value={conditions || "None"}
           onBlur={(value) => dispatch(setConditions(value))}
           defaultValue="None"
         />
