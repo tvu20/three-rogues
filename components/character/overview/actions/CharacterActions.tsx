@@ -1,9 +1,26 @@
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
-import { LINKED_ABILITY } from "../../../../app/character/characterDefs";
+import {
+  LINKED_ABILITY,
+  Weapon,
+} from "../../../../app/character/characterDefs";
 import Loader from "../../../shared/layout/Loader";
+import ExpandableTable from "../../shared/ExpandableTable";
 import FeatureBlock from "../../shared/FeatureBlock";
 import styles from "./CharacterActions.module.css";
+
+const COLUMNS = ["name", "range", "hit", "damage", "damageType", "properties"];
+
+const MOBILE_COLUMNS = ["name", "hit", "damage"];
+
+const COLUMN_HEADERS = [
+  "Attack",
+  "Range",
+  "Hit",
+  "Damage",
+  "Type",
+  "Properties",
+];
 
 const CharacterActions = () => {
   const params = useParams<{ id: string }>();
@@ -13,7 +30,7 @@ const CharacterActions = () => {
     skip: !id,
   });
 
-  if (isLoading) {
+  if (isLoading || !character) {
     return <Loader />;
   }
 
@@ -33,6 +50,45 @@ const CharacterActions = () => {
     ));
   };
 
+  const createExpandableTable = (linkedAbility: LINKED_ABILITY) => {
+    let weapons: Weapon[] =
+      character?.weapons.filter(
+        (weapon) => weapon.linkedAbility === linkedAbility && weapon.equipped
+      ) || [];
+
+    const updatedWeapons = weapons?.map((weapon) => {
+      if (weapon.ability) {
+        const hit =
+          Math.floor(
+            (Number(character.abilityScores[weapon.ability]) - 10) / 2
+          ) +
+          (weapon.proficient ? Number(character.proficiencyBonus) : 0) +
+          (Number(weapon.hitBonus) || 0);
+
+        return {
+          ...weapon,
+          hit: `+${hit}`,
+        };
+      }
+      return weapon;
+    });
+
+    if (updatedWeapons.length) {
+      return (
+        <ExpandableTable
+          columns={COLUMNS}
+          columnHeaders={COLUMN_HEADERS}
+          columnSpacing={"2fr 1fr 0.5fr 1fr 1fr 2fr"}
+          mobileColumns={MOBILE_COLUMNS}
+          mobileColumnHeaders={MOBILE_COLUMNS}
+          mobileColumnSpacing={"1fr 0.5fr 1fr"}
+          data={updatedWeapons}
+          className={styles.actionTable}
+        />
+      );
+    }
+  };
+
   return (
     <div className={`content-box ${styles.container}`}>
       <div className={styles.section}>
@@ -44,16 +100,19 @@ const CharacterActions = () => {
           Attack, Dash, Disengage, Dodge, Grapple, Help, Hide, Improvise,
           Influence, Magic, Ready, Search, Shove, Study, Utilize
         </p>
+        {createExpandableTable("action")}
         {createFeatureBlocks("action")}
       </div>
       <div className={styles.section}>
         <h2 className={styles.title}>Bonus Actions</h2>
         <p className={styles.subtitle}>Two-Weapon Fighting</p>
+        {createExpandableTable("bonusaction")}
         {createFeatureBlocks("bonusaction")}
       </div>
       <div className={styles.section}>
         <h2 className={styles.title}>Reactions</h2>
         <p className={styles.subtitle}>Opportunity Attack</p>
+        {createExpandableTable("reaction")}
         {createFeatureBlocks("reaction")}
       </div>
       <div className={`${styles.section} ${styles.otherSection}`}>

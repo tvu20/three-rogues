@@ -33,3 +33,7 @@ p.subtitle,
 .otherSection h2 {
   margin-bottom: var(--spacing-medium);
 }
+
+.actionTable {
+  margin-bottom: var(--spacing-large);
+}
