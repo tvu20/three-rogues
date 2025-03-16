@@ -11,6 +11,7 @@ import useMediaQuery from "../../../utils/useMediaQuery";
 
 import CharacterOverview from "../overview/CharacterOverview";
 import CharacterSkills from "../skills/CharacterSkills";
+import CharacterSpellcasting from "../spellcasting/CharacterSpellcasting";
 import styles from "./CharacterTabs.module.css";
 
 const TABS = [
@@ -29,7 +30,7 @@ const TABS = [
   {
     id: "spellcasting",
     label: "Spellcasting",
-    component: <div>Spellcasting</div>,
+    component: <CharacterSpellcasting />,
     icon: MagicWand,
   },
   {

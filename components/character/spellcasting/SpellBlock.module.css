@@ -1,0 +1,104 @@
+.spellBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spellHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  border-bottom: 1px solid var(--content-box-separator-color);
+  padding-bottom: var(--spacing-xsmall);
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.spellHeaderText {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.spellHeaderText h2 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-heading-small);
+  margin-right: var(--spacing-small-medium);
+}
+
+.spellHeaderText h3 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+  text-transform: capitalize;
+  margin-top: 5px;
+}
+
+.spellHeader p {
+  font-weight: 300;
+  width: 60px;
+  text-align: right;
+  margin-top: 3px;
+}
+
+.spellData {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-small) var(--spacing-medium);
+}
+
+.spellDataRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spellDataRow h5,
+.spellDataRow p {
+  display: inline-block;
+}
+
+.spellDataRow h5 {
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-right: var(--spacing-xsmall);
+}
+
+.spellDataRow p {
+  width: auto;
+  background-color: var(--highlight-background-color);
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-body-medium);
+  font-weight: 200;
+  line-height: 0.9;
+  padding: var(--spacing-xsmall);
+  text-align: center;
+}
+
+.spellDataRow p.positive {
+  background-color: var(--primary-green-color);
+}
+
+.spellDataRow p.negative {
+  background-color: var(--primary-red-color);
+}
+
+.spellDescription {
+  margin-top: var(--spacing-medium);
+  font-weight: 300;
+}
+
+.spellDescription p:not(:last-child) {
+  margin-bottom: var(--spacing-small);
+}
+
+.spellFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-small-medium);
+}

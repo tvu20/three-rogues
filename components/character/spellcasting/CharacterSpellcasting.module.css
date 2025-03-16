@@ -1,0 +1,18 @@
+.spellsContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-large);
+}
+
+@media (max-width: 1150px) {
+  .spellsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .spellsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
