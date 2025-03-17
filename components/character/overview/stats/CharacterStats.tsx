@@ -2,11 +2,13 @@ import { Sun, SunDim } from "@phosphor-icons/react";
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
 import { setInspiration } from "../../../../app/character/characterSlice";
+import { getAbilityModifier } from "../../../../utils/characterUtils";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import Loader from "../../../shared/layout/Loader";
 import StatBlock from "../../shared/StatBlock";
 import { SKILL_MAPPING } from "../../skills/proficiencies/CharacterSkillProfsDefs";
 import styles from "./CharacterStats.module.css";
+
 const CharacterStats = () => {
   const dispatch = useAppDispatch();
   const params = useParams<{ id: string }>();
@@ -28,8 +30,8 @@ const CharacterStats = () => {
     }
     const passive = character.skills.find((skill) => skill.name === skillName);
 
-    let bonus = Math.floor(
-      (character?.abilityScores[SKILL_MAPPING[skillName]] - 10) / 2
+    let bonus = getAbilityModifier(
+      character?.abilityScores[SKILL_MAPPING[skillName]]
     );
     if (passive?.proficient) {
       bonus += character.proficiencyBonus;

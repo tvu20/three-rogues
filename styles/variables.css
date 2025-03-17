@@ -15,6 +15,7 @@ body {
   --content-box-separator-color: #bfbfbf;
 
   --action-button-border-color: #000000;
+  --action-button-hover-color: rgba(213, 140, 38, 0.5);
   --action-button-highlighted-color: #d58c26;
   --action-button-highlighted-text-color: #ffffff;
   --highlight-background-color: #efefec;

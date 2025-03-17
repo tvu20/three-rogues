@@ -3,6 +3,7 @@ import {
   SavingThrows,
   STATS,
 } from "../../../app/character/characterDefs";
+import { getAbilityModifier } from "../../../utils/characterUtils";
 import styles from "./StatBlock.module.css";
 
 type StatProps = {
@@ -65,7 +66,7 @@ const StatBlock = ({
   const createStats = () => {
     return STATS.map((stat) => {
       const score = abilityScores[stat];
-      const bonus = Math.floor((score - 10) / 2);
+      const bonus = getAbilityModifier(score);
 
       const savingThrow = savingThrows[stat];
       const savingThrowProficiency = savingThrow.proficiency;

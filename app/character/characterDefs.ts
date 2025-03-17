@@ -37,6 +37,7 @@ export type Class = {
   isStartingClass: boolean;
   level: number;
   subclass: string;
+  spellcasting: boolean;
 };
 
 export type AbilityScores = {
@@ -181,7 +182,6 @@ export type Character = {
   defenses: string;
   attacksPerAction?: number;
   spellcaster: boolean;
-  castingAbility?: ABILITY;
   spellsKnown?: number;
   cantripsKnown?: number;
   maxPrepared?: number;

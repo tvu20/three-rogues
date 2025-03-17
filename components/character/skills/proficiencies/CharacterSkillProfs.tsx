@@ -1,4 +1,5 @@
 import { AbilityScores, Skill } from "../../../../app/character/characterDefs";
+import { getAbilityModifier } from "../../../../utils/characterUtils";
 import styles from "./CharacterSkillProfs.module.css";
 import { SKILL_MAPPING } from "./CharacterSkillProfsDefs";
 
@@ -17,7 +18,7 @@ const CharacterSkillProfs = ({
   const sortedSkills = [...skills].sort((a, b) => a.name.localeCompare(b.name));
 
   const createSkillRow = (skill: Skill) => {
-    let bonus = Math.floor((abilityScores[SKILL_MAPPING[skill.name]] - 10) / 2);
+    let bonus = getAbilityModifier(abilityScores[SKILL_MAPPING[skill.name]]);
 
     if (skill.proficient) {
       bonus += proficiencyBonus;

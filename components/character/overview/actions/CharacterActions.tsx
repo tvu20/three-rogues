@@ -4,11 +4,11 @@ import {
   LINKED_ABILITY,
   Weapon,
 } from "../../../../app/character/characterDefs";
+import { getAbilityModifier } from "../../../../utils/characterUtils";
 import Loader from "../../../shared/layout/Loader";
 import ExpandableTable from "../../shared/ExpandableTable";
 import FeatureBlock from "../../shared/FeatureBlock";
 import styles from "./CharacterActions.module.css";
-
 const COLUMNS = ["name", "range", "hit", "damage", "damageType", "properties"];
 
 const MOBILE_COLUMNS = ["name", "hit", "damage"];
@@ -59,9 +59,7 @@ const CharacterActions = () => {
     const updatedWeapons = weapons?.map((weapon) => {
       if (weapon.ability) {
         const hit =
-          Math.floor(
-            (Number(character.abilityScores[weapon.ability]) - 10) / 2
-          ) +
+          getAbilityModifier(Number(character.abilityScores[weapon.ability])) +
           (weapon.proficient ? Number(character.proficiencyBonus) : 0) +
           (Number(weapon.hitBonus) || 0);
 

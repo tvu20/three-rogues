@@ -57,6 +57,12 @@ p {
   box-sizing: border-box;
 }
 
+/* TO DO LATER */
+/* .action-button:hover {
+  border-color: var(--action-button-highlighted-color);
+  color: var(--action-button-highlighted-color);
+} */
+
 .highlighted-action-button {
   background-color: var(--action-button-highlighted-color);
   border: none;
