@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
-import Layout from "../../components/Layout";
-import CharacterHeader from "./header/CharacterHeader";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
-import { useAppDispatch } from "../../utils/redux";
 import { setLiveCharacter } from "../../app/character/characterSlice";
-import Loader from "../Loader";
+import { useAppDispatch } from "../../utils/redux";
+import Layout from "../Layout";
+import Loader from "../shared/layout/Loader";
+import CharacterHeader from "./header/CharacterHeader";
+import CharacterTabs from "./tabs/CharacterTabs";
 
 export default function CharacterPage() {
   const dispatch = useAppDispatch();
@@ -25,10 +27,11 @@ export default function CharacterPage() {
           id: character.id,
           liveStats: character.liveStats,
           name: character.name,
+          creatures: character.creatures,
         })
       );
     }
-  }, [character]);
+  }, [character, dispatch]);
 
   if (isLoading) return <Loader />;
 
@@ -39,12 +42,7 @@ export default function CharacterPage() {
   return (
     <Layout>
       <CharacterHeader id={id} />
-      <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Character Details</h1>
-        <pre className="bg-gray-100 p-4 rounded">
-          {JSON.stringify(character, null, 2)}
-        </pre>
-      </div>
+      <CharacterTabs />
     </Layout>
   );
 }

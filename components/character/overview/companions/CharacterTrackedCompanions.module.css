@@ -1,0 +1,41 @@
+.creatureRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-small);
+}
+
+.sectionHeader {
+  margin-bottom: var(--spacing-small);
+}
+
+.hpContainer {
+  display: flex;
+  align-items: center;
+}
+
+.creatureRow p,
+.creatureRow span {
+  margin: 0;
+  font-weight: 300;
+}
+
+.creatureRow span,
+.creatureRow input {
+  width: 30px;
+  text-align: center;
+  margin-right: var(--spacing-xx-small);
+}
+
+.creatureRow span {
+  position: relative;
+  top: 1px;
+  padding-bottom: 2px;
+  background-color: var(--highlight-background-color);
+}
+
+.creatureRow input {
+  position: relative;
+  top: 2px;
+  padding: 3px 0;
+}

@@ -1,0 +1,33 @@
+.input {
+  border: none;
+  border-bottom: 1px solid black;
+  /* padding: 10px 0px; */
+  font-size: var(--font-size-body-large);
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  line-height: 2.5;
+}
+
+.input::placeholder {
+  color: var(--primary-gray-color);
+}
+
+.search {
+  background: url("../../../assets/magnifying-glass.svg") no-repeat right;
+  background-size: 25px;
+}
+
+.small {
+  font-size: var(--font-size-body-medium);
+  padding: 5px 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  width: 32vw;
+  min-width: 300px;
+  align-items: center;
+  font-size: 18px;
+  line-height: 1.2;
+}

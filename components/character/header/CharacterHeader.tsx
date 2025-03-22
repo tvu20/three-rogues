@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 
 import styles from "./CharacterHeader.module.css";
@@ -9,8 +9,6 @@ type Props = {
 
 const CharacterHeader: React.FC<Props> = ({ id }) => {
   const { data: character } = useGetCharacterQuery(id);
-
-  console.log(character);
 
   const showClasses = () => {
     return character?.class?.map((c) => `${c.name} ${c.level}`).join(" / ");
@@ -34,6 +32,7 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
         className={styles.avatar}
         src={character?.avatar}
         alt={character?.name}
+        loading="lazy"
       />
       <div className={styles.nameContainer}>
         <div>
@@ -49,10 +48,10 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
           <button className="action-button">edit</button>
         </div>
         <div className={styles.infoContainer}>
-          {infoBlock("Race", character?.race)}
-          {infoBlock("Background", character?.background)}
-          {infoBlock("Alignment", character?.alignment)}
-          {infoBlock("Age", character?.age)}
+          {infoBlock("Race", character?.race || "")}
+          {infoBlock("Background", character?.background || "")}
+          {infoBlock("Alignment", character?.alignment || "")}
+          {infoBlock("Age", character?.age || "")}
         </div>
       </div>
     </div>

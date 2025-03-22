@@ -1,0 +1,20 @@
+.container h6 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+}
+
+.container h2 {
+  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
+  margin-bottom: var(--spacing-small-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.container p {
+  font-weight: 300;
+}
+
+@media (max-width: 1050px) {
+  .background {
+    margin-bottom: 0;
+  }
+}

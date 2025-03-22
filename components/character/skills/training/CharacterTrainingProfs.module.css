@@ -1,0 +1,17 @@
+.item:not(:last-child) {
+  padding-bottom: var(--spacing-medium);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.item h3 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium-large);
+  font-weight: 200;
+  margin-bottom: var(--spacing-xxx-small);
+}
+
+.item p {
+  font-size: var(--font-size-body-medium);
+}

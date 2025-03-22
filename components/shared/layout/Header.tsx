@@ -1,10 +1,10 @@
-import React from "react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import React from "react";
 
-import { UserCirclePlus, SignOut, SignIn } from "@phosphor-icons/react";
-import useMediaQuery from "../utils/useMediaQuery";
+import { SignIn, SignOut, UserCirclePlus } from "@phosphor-icons/react";
+import useMediaQuery from "../../../utils/useMediaQuery";
 
 import styles from "./header.module.css";
 

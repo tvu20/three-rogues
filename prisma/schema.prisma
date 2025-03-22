@@ -83,8 +83,133 @@ model Character {
   initiative      Int?
   ac              Json? 
   speed           Json?
-  inspiration     Boolean? 
   darkvision      Int?
+  savingThrows    Json?
+  defenses        String?
+  attacksPerAction    Int?
+  spellcaster     Boolean?
+  spellsKnown     Int?
+  cantripsKnown   Int?
+  maxPrepared     Int?
+  spellcastingFocus      String?
+  armorProficiencies       String?
+  weaponProficiencies      String?
+  toolProficiencies       String?
+  languagesKnown        String?
 
   liveStats       Json?
+  skills          Json?
+  features        Feature[]
+  weapons         Weapon[]
+  spells          Spell[]
+  currency        Json?
+  inventory       Item[]
+  creatures       Creature[]
+
+  height          String?
+  hair            String?
+  eyes            String?
+  skin            String?
+  allies          String?
+  organization    String?
+  backstory       String?
+  images          String[]
+}
+
+model Feature {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name      String
+  level     Int?
+  linkedAbility    String?
+  description       String
+  source      String
+  class       String?
+  options     Json?
+  tracked     Boolean
+  max         Int?
+  used        Int?
+  resetsOn    String?
+  shortDescription      String?
+}
+
+model Weapon {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name          String
+  description   String?
+  linkedAbility     String?
+  range         String?
+  ability       String?
+  proficient    Boolean?
+  damage        String
+  damageType    String?
+  hitBonus      Int?
+  properties    String?
+  equipped      Boolean?
+  inInventory   Boolean?
+  quantity      Int?           
+}
+
+model Spell {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name      String
+  source    String 
+  type      String
+  level     String
+  school    String
+  components      String
+  castingTime     String
+  range     String
+  duration    String
+  ritual      Boolean?
+  concentration     Boolean
+  prepared      Boolean?
+  description     String
+  damage      String?
+  save        String?
+}
+
+model Item {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name        String
+  quantity    Int
+  type        String[]
+  notes       String?
+  description String?
+  equipped    Boolean?
+  attuned     Boolean?
+}
+
+model Creature {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name          String
+  ac            Int
+  maxHP         Int
+  currentHP     Int
+  speed         String
+  type          String
+  notes         String
+  proficiencyBonus    Int
+  passivePerception   Int?
+  abilityScores   Json
+  savingThrows    String
+  skills        String
+  senses        String
+  languages     String
+  features      Json
+  combat        Json
 }

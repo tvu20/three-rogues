@@ -4,20 +4,56 @@ body {
 
   --primary-text-color-dark: #000000;
   --primary-text-color-heading: #000000;
+  --primary-text-color-section: #a12c2c;
+
+  --tab-color: rgba(0, 0, 0, 0.25);
+  --tab-color-text: rgba(0, 0, 0, 0.5);
+  --tab-color-active: rgba(0, 0, 0, 1);
+
+  --content-box-background-color: #fff;
+  --content-box-border-color: #000000;
+  --content-box-separator-color: #bfbfbf;
+
+  --action-button-border-color: #000000;
+  --action-button-hover-color: rgba(213, 140, 38, 0.5);
+  --action-button-highlighted-color: #d58c26;
+  --action-button-highlighted-text-color: #ffffff;
+  --highlight-background-color: #efefec;
+
+  --primary-gray-color: rgba(0, 0, 0, 0.25);
+  --secondary-gray-color: #d5d5d5;
+  --primary-gold-color: #d58c26;
+  --primary-green-color: rgba(173, 193, 120, 0.5);
+  --primary-red-color: rgba(215, 102, 103, 0.5);
+
+  --snackbar-success-color: #9dba50;
+  --snackbar-error-color: #d76667;
+
+  --color-currency-pp: #d8dae5;
+  --color-currency-gp: #d58c26;
+  --color-currency-ep: #9ec5d3;
+  --color-currency-sp: #b6b6b6;
+  --color-currency-cp: #b08068;
+
+  --color-equipped: #e39c39;
+  --color-attuned: #8930b0;
 
   /* fonts  */
   --font-belleza: "Belleza", sans-serif;
-  --font-be-vietnam: "Be Vietnam Pro", sans-serif;
+  --font-be-vietnam: "Be Vietnam", sans-serif;
 
   /* font sizes */
-  /* --font-size-heading-large: 40px; */
+  --font-size-heading-large: 40px;
+  --font-size-heading-medium-large: 36px;
   --font-size-heading-medium: 32px;
   --font-size-heading-small: 24px;
   --font-size-heading-xsmall: 20px;
   --font-size-body-large: 20px;
+  --font-size-body-medium-large: 18px;
   --font-size-body-medium: 16px;
   --font-size-body-small: 14px;
   --font-size-body-xsmall: 12px;
+  --font-size-body-xx-small: 10px;
   /* 
   --font-size-body-medium: 16px;
   --font-size-body-small: 14px; */
@@ -25,7 +61,13 @@ body {
   /* image sizes */
   --avatar-size: 120px;
 
+  --prof-circle-size: 7px;
+  --currency-circle-size: 10px;
+  --save-circle-size: 30px;
+  --tracked-item-size: 24px;
+
   /* spacing */
+  --spacing-page-border: 36px;
   --spacing-xxx-small: 2px;
   --spacing-xx-small: 4px;
   --spacing-xsmall: 6px;

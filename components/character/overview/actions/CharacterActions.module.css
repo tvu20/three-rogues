@@ -1,0 +1,37 @@
+.section {
+  margin-bottom: var(--spacing-xxx-large);
+}
+
+.section p {
+  font-size: var(--font-size-body-medium);
+  margin: var(--spacing-xsmall) 0;
+  font-weight: 300;
+}
+
+.otherSection {
+  margin-bottom: 0;
+}
+
+.actionTitle span {
+  margin-left: var(--spacing-small-medium);
+  font-family: var(--font-be-vietnam);
+  font-weight: 600;
+  font-size: var(--font-size-body-small);
+  text-transform: none;
+  color: var(--primary-text-color-dark);
+}
+
+p.subtitle,
+.otherSection h2 {
+  margin-bottom: var(--spacing-medium);
+}
+
+.actionTable {
+  margin-bottom: var(--spacing-large);
+}
+
+@media (max-width: 1050px) {
+  .container {
+    margin-bottom: 0;
+  }
+}

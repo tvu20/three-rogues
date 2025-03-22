@@ -1,0 +1,18 @@
+.classContainer:not(:last-child) {
+  padding-bottom: var(--spacing-small);
+  margin-bottom: var(--spacing-large);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.classHeading {
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.classHeading span {
+  margin-left: var(--spacing-small-medium);
+  font-family: var(--font-be-vietnam);
+  font-weight: 200;
+  font-size: var(--font-size-body-small);
+  text-transform: none;
+  color: var(--primary-text-color-dark);
+}

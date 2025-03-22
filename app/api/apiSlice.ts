@@ -1,9 +1,13 @@
 // Import the RTK Query methods from the React-specific entry point
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 // Use the `Post` type we've already defined in `postsSlice`,
 // and then re-export it for ease of use
-import type { Character } from "../character/characterDefs";
+import type {
+  Character,
+  Creature,
+  LiveStats,
+} from "../character/characterDefs";
+import { setSnackbar } from "../snackbar/snackbarSlice";
 
 // Define our single API slice object
 export const apiSlice = createApi({
@@ -20,20 +24,68 @@ export const apiSlice = createApi({
       // The URL for the request is '/characters'
       query: () => "/characters",
       providesTags: ["Character"],
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        queryFulfilled.catch((err: any) => {
+          dispatch(
+            setSnackbar({
+              message:
+                "Error fetching characters: " +
+                (err.error.data?.message ||
+                  err.error.message ||
+                  "Unknown error"),
+              severity: "error",
+            })
+          );
+        });
+      },
     }),
     getCharacter: builder.query<Character, string>({
       query: (id) => `/character/${id}`,
-      //   async onQueryStarted(modelId, { dispatch, queryFulfilled }) {
-      //     try {
-      //       const { data } = await queryFulfilled;
-      //       console.log("Character fetched", data);
-      //     } catch (err) {
-      //       console.log("Error fetching character", err);
-      //     }
-      //   },
+      providesTags: (result, error, id) => [{ type: "Character", id }],
+      onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        queryFulfilled.catch((err: any) => {
+          dispatch(
+            setSnackbar({
+              message:
+                "Error fetching character: " +
+                (err.error.data?.message ||
+                  err.error.message ||
+                  "Unknown error"),
+              severity: "error",
+            })
+          );
+        });
+      },
+    }),
+    updateLiveStats: builder.mutation<
+      Character,
+      { id: string; liveStats: LiveStats; creatures: Creature[] }
+    >({
+      query: ({ id, liveStats, creatures }) => ({
+        url: `/liveStats/${id}`,
+        method: "POST",
+        body: {
+          trackedFeatures: liveStats.trackedFeatures,
+          liveStats: {
+            ...liveStats,
+            trackedFeatures: undefined,
+          },
+          creatures,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
     }),
   }),
 });
 
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetCharactersQuery, useGetCharacterQuery } = apiSlice;
+export const {
+  useGetCharactersQuery,
+  useGetCharacterQuery,
+  useUpdateLiveStatsMutation,
+} = apiSlice;

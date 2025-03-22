@@ -1,0 +1,8 @@
+.container h6 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+}
+
+.container p {
+  font-weight: 300;
+}

@@ -1,0 +1,98 @@
+.topRow {
+  display: flex;
+  justify-content: space-around;
+  /* gap: var(--spacing-small); */
+  gap: var(--spacing-medium-large);
+  flex-wrap: wrap;
+}
+
+.displayValue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--highlight-background-color);
+  padding: var(--spacing-small-medium) var(--spacing-medium-large);
+  text-align: center;
+
+  height: 85px;
+}
+
+.displayValue h5 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium);
+  font-weight: 300;
+  margin-bottom: var(--spacing-small);
+}
+
+.displayValue h3 {
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-heading-medium-large);
+  font-weight: 300;
+  line-height: 0.5;
+  margin-bottom: var(--spacing-small);
+}
+
+.initiative,
+.ac,
+.speed {
+  flex-grow: 1;
+}
+
+.speedContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-medium-large);
+}
+
+.speed h3 span {
+  font-size: var(--font-size-body-small);
+}
+
+.otherSpeedsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsmall);
+  border-left: 1px solid var(--content-box-border-color);
+  padding-left: var(--spacing-medium-large);
+  padding-right: var(--spacing-xxx-large);
+}
+
+.otherSpeedsContainer h4 {
+  font-family: var(--font-belleza);
+  font-weight: 300;
+  font-size: var(--font-size-body-small);
+  text-transform: uppercase;
+}
+
+.otherSpeedsContainer p {
+  margin-top: -2px;
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-body-xsmall);
+  font-weight: 300;
+}
+
+@media (max-width: 1150px) {
+  .otherSpeedsContainer {
+    padding-right: var(--spacing-small);
+  }
+}
+
+@media (max-width: 1050px) {
+  .topRow {
+    justify-content: space-around;
+  }
+  .otherSpeedsContainer {
+    padding-right: var(--spacing-xxx-large);
+  }
+}
+
+@media (max-width: 750px) {
+  .topRow {
+    gap: var(--spacing-medium-large);
+  }
+}

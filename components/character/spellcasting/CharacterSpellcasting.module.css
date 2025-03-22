@@ -1,0 +1,128 @@
+.headingContainer {
+  display: flex;
+  gap: var(--spacing-xxx-large);
+  margin: 0 var(--spacing-large) var(--spacing-xx-large);
+  justify-content: space-between;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  flex: 1;
+}
+
+.leftContainer h5 {
+  margin-top: var(--spacing-medium);
+  margin-bottom: var(--spacing-xx-small);
+  font-weight: 500;
+  font-size: var(--font-size-body-medium);
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-small);
+}
+
+.rightContainerHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-large);
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.spellsContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-large);
+}
+
+.spellsContainer > div {
+  margin-bottom: 0;
+}
+
+.modifySpellsButton {
+  font-size: var(--font-size-body-medium);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--spacing-small) var(--spacing-small);
+  align-items: center;
+}
+
+.modifySpellsButton svg {
+  margin-right: var(--spacing-xx-small);
+}
+
+.classDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.classDetails > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--highlight-background-color);
+  padding: var(--spacing-small-medium);
+  text-align: center;
+}
+
+.classDetails > div > h2 {
+  font-size: var(--font-size-heading-medium-large);
+  font-weight: 200;
+}
+
+.classDetails > div > h3 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium);
+  font-weight: 200;
+}
+
+.classDetails > div > p {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-small);
+}
+
+.classModifier h2 {
+  padding-bottom: var(--spacing-xsmall);
+  margin-bottom: var(--spacing-xsmall);
+  border-bottom: 1px solid var(--content-box-border-color);
+}
+
+.spellAttack h2,
+.spellSave h2 {
+  margin-top: -10px;
+}
+
+@media (max-width: 1150px) {
+  .spellsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 950px) {
+  .headingContainer {
+    flex-direction: column;
+  }
+
+  .modifySpellsButton {
+    align-items: flex-end;
+    font-size: var(--font-size-body-large);
+    padding: var(--spacing-small);
+  }
+}
+
+@media (max-width: 800px) {
+  .spellsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

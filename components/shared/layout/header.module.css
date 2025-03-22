@@ -1,6 +1,6 @@
 .navbar {
   display: flex;
-  padding: var(--spacing-medium-large) var(--spacing-large);
+  padding: var(--spacing-medium-large) var(--spacing-page-border);
   align-items: center;
   justify-content: space-between;
 }

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "postinstall": "prisma generate",
-    "update:prisma": "npx prisma db push && npx prisma generate"
+    "update:prisma": "npx prisma db push && npx prisma generate",
+    "lint": "npx tsc && npx next lint --fix"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,8 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/react": "^18.0.1",
+    "eslint": "9.22.0",
+    "eslint-config-next": "15.2.1",
     "prisma": "^6.4.1",
     "typescript": "^5.7.3"
   },

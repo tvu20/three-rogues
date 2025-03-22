@@ -17,6 +17,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
+  cursor: pointer;
 }
 
 h1,
@@ -29,11 +30,103 @@ p {
   margin: 0;
 }
 
+/* global styles */
+
+.split-grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: var(--spacing-large);
+}
+
+.content-box {
+  background-color: var(--content-box-background-color);
+  border: 1px solid var(--content-box-border-color);
+  padding: var(--spacing-large);
+  /* padding: var(--spacing-large) var(--spacing-xlarge); */
+  margin-bottom: var(--spacing-large);
+}
+
 .action-button {
   font-family: var(--font-belleza);
-  border: 1px solid black;
+  border: 1px solid var(--action-button-border-color);
   padding: var(--spacing-xsmall) var(--spacing-medium);
   font-size: var(--font-size-body-medium);
+  background-color: var(--content-box-background-color);
   text-transform: uppercase;
   font-weight: 300;
+  box-sizing: border-box;
+}
+
+/* TO DO LATER */
+/* .action-button:hover {
+  border-color: var(--action-button-highlighted-color);
+  color: var(--action-button-highlighted-color);
+} */
+
+.highlighted-action-button {
+  background-color: var(--action-button-highlighted-color);
+  border-color: var(--action-button-highlighted-color);
+  color: var(--action-button-highlighted-text-color);
+}
+
+.section-header {
+  color: var(--primary-text-color-section);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: var(--font-size-heading-small);
+}
+
+.small-section-header {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-heading-xsmall);
+  font-weight: 200;
+  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.spacer {
+  margin: var(--spacing-medium-large) 0;
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+details summary::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url("../assets/caret-left.png") no-repeat;
+  background-size: cover;
+  margin-left: 0.75em;
+  transition: 0.2s;
+}
+
+details[open] > summary::after {
+  transform: rotate(-90deg);
+}
+
+@media (max-width: 1200px) {
+  .content-box {
+    padding: var(--spacing-medium-large);
+  }
+}
+
+@media (max-width: 1150px) {
+  .split-grid-container {
+    grid-template-columns: 2fr 0.5fr;
+  }
+}
+
+@media (max-width: 1050px) {
+  .split-grid-container {
+    grid-template-columns: 1fr;
+  }
 }
