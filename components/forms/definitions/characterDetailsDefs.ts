@@ -1,6 +1,5 @@
 import {
   AbilityScores,
-  AC,
   Class,
   SavingThrows,
 } from "../../../app/character/characterDefs";
@@ -13,23 +12,27 @@ export type CharacterDetails = {
   pronouns: string;
   background: string;
   alignment: string;
-  age: string;
+  age: number;
   class: Class[];
   abilityScores: AbilityScores;
   maxHP: number;
   proficiencyBonus: number;
   initiative: number;
-  ac: AC;
-  speed: {
-    walk: number;
-    fly: number;
-    swim: number;
-    climb: number;
+  darkvision: string;
+  ac: {
+    armor: number | null;
+    shield: number | null;
+    bonus: number | null;
   };
-  darkvision: number;
-  savingThrows: SavingThrows;
+  speed: {
+    walk: string;
+    fly: string;
+    swim: string;
+    climb: string;
+  };
   defenses: string;
   attacksPerAction?: number;
+  savingThrows: SavingThrows;
   spellcaster: boolean;
   spellsKnown?: number;
   cantripsKnown?: number;
@@ -49,7 +52,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   pronouns: "",
   background: "",
   alignment: "",
-  age: "",
+  age: 0,
   class: [
     {
       name: "",
@@ -60,28 +63,28 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
     },
   ],
   abilityScores: {
-    str: 0,
-    dex: 0,
-    con: 0,
-    int: 0,
-    wis: 0,
-    cha: 0,
+    str: 10,
+    dex: 10,
+    con: 10,
+    int: 10,
+    wis: 10,
+    cha: 10,
   },
   maxHP: 0,
   proficiencyBonus: 0,
   initiative: 0,
   ac: {
-    armor: 0,
-    shield: 0,
-    bonus: 0,
+    armor: null,
+    shield: null,
+    bonus: null,
   },
   speed: {
-    walk: 0,
-    fly: 0,
-    swim: 0,
-    climb: 0,
+    walk: "",
+    fly: "",
+    swim: "",
+    climb: "",
   },
-  darkvision: 0,
+  darkvision: "",
   savingThrows: {
     str: { bonus: 0, proficiency: false },
     dex: { bonus: 0, proficiency: false },

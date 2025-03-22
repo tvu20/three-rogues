@@ -1,4 +1,13 @@
-import { ITEM_TYPE } from "./characterDefs";
+import { ABILITY, ITEM_TYPE } from "./characterDefs";
+
+export const ABILITY_SCORE_MAPPING: Record<ABILITY, string> = {
+  str: "Strength",
+  dex: "Dexterity",
+  con: "Constitution",
+  int: "Intelligence",
+  wis: "Wisdom",
+  cha: "Charisma",
+};
 
 export const SKILL_MAPPING = {
   Acrobatics: "dex",

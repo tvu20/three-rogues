@@ -17,7 +17,9 @@ input.error {
 .submitInput {
   font-size: var(--font-size-body-medium);
   padding: var(--spacing-small) var(--spacing-medium);
-  margin-top: var(--spacing-medium);
+  margin-top: var(--spacing-xx-large);
+  margin-bottom: 300px;
+  /* margin-top: var(--spacing-medium); */
 }
 
 /* TEXT INPUT */
@@ -46,6 +48,10 @@ input.error {
   font-size: var(--font-size-body-medium);
 }
 
+.textInput input::placeholder {
+  opacity: 0.7;
+}
+
 /* CHECKBOX INPUT */
 
 .checkboxInput {
@@ -72,6 +78,7 @@ input.error {
 .classSection {
   display: flex;
   flex-direction: column;
+  margin-bottom: var(--spacing-medium);
 }
 
 .classRow {
@@ -79,6 +86,11 @@ input.error {
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: var(--spacing-small-medium);
+  padding-bottom: 20px;
+}
+
+.classRow:not(:last-of-type) {
+  border-bottom: 1px solid var(--content-box-separator-color);
 }
 
 .classRow .textInput {

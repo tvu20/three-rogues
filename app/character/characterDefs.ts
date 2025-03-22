@@ -222,7 +222,7 @@ export type Character = {
   pronouns: string;
   background: string;
   alignment: string;
-  age: string;
+  age: number;
   class: Class[];
   abilityScores: AbilityScores;
   maxHP: number;

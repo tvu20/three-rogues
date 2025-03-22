@@ -39,7 +39,7 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
             register={register}
             name={`class.${index}.name`}
             label="Class"
-            placeholder="Fighter"
+            placeholder="Rogue"
             width="150px"
             required
             error={errors.class?.[index]?.name?.message}

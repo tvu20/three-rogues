@@ -34,3 +34,7 @@
   font-family: var(--font-be-vietnam);
   text-transform: none;
 }
+
+.form .removeBottomMargin {
+  margin-bottom: 0;
+}

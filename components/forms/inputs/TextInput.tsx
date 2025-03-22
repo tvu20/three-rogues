@@ -13,6 +13,7 @@ type TextInputProps = {
   error?: string;
   fullWidth?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  validate?: (value: string) => string | boolean;
 };
 
 const TextInput = ({
@@ -26,6 +27,7 @@ const TextInput = ({
   error,
   fullWidth = false,
   onChange,
+  validate,
 }: TextInputProps) => {
   const inputId = `text-${name}`;
   return (
@@ -39,6 +41,8 @@ const TextInput = ({
         type={type}
         {...register(name, {
           required: required ? "This field is required" : false,
+          valueAsNumber: type === "number",
+          validate,
         })}
         style={{ width: fullWidth ? "100%" : width }}
         placeholder={placeholder}
