@@ -15,6 +15,10 @@
   padding: var(--spacing-small-medium) var(--spacing-medium);
 }
 
+.container {
+  margin-bottom: var(--spacing-xx-large);
+}
+
 .creatureBlockContainer h3 {
   margin-top: var(--spacing-large);
   margin-bottom: var(--spacing-small-medium);
@@ -26,7 +30,7 @@
 }
 
 .feature:last-child {
-  margin-bottom: var(--spacing-large);
+  margin-bottom: 0;
 }
 
 .feature h4 {

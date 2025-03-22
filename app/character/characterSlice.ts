@@ -1,11 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DeathSaves, HitDice, LiveStats, SpellSlots } from "./characterDefs";
+import {
+  Creature,
+  DeathSaves,
+  HitDice,
+  LiveStats,
+  SpellSlots,
+} from "./characterDefs";
 
 // livestats for the character payload
 export type LiveCharacter = {
   id: string;
   name: string;
   liveStats: LiveStats;
+  creatures: Creature[];
 };
 
 // character reducer state
@@ -13,6 +20,7 @@ export type CharacterState = {
   liveId?: string;
   liveName?: string;
   liveStats?: LiveStats;
+  creatures?: Creature[];
 };
 
 // Define the initial state using that type
@@ -23,23 +31,11 @@ export const characterSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // increment: (state) => {
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // // Use the PayloadAction type to declare the contents of `action.payload`
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
-    // setCharacter: (state, action: PayloadAction<Character>) => {
-    //   state.character = action.payload;
-    // },
     setLiveCharacter: (state, action: PayloadAction<LiveCharacter>) => {
       state.liveId = action.payload.id;
       state.liveName = action.payload.name;
       state.liveStats = action.payload.liveStats;
+      state.creatures = action.payload.creatures;
     },
     setInspiration: (state, action: PayloadAction<boolean>) => {
       if (state.liveStats) {
@@ -95,6 +91,18 @@ export const characterSlice = createSlice({
         }
       }
     },
+    setCreatureHP: (
+      state,
+      action: PayloadAction<{ id: string; hp: number }>
+    ) => {
+      if (state.creatures) {
+        const { id, hp } = action.payload;
+        const creature = state.creatures.find((creature) => creature.id === id);
+        if (creature) {
+          creature.currentHP = hp;
+        }
+      }
+    },
   },
 });
 
@@ -109,6 +117,7 @@ export const {
   setSpellSlots,
   setConcentration,
   setTrackedFeatures,
+  setCreatureHP,
 } = characterSlice.actions;
 
 // // Other code such as selectors can use the imported `RootState` type

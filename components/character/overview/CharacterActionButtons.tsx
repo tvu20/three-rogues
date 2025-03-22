@@ -15,6 +15,7 @@ const CharacterActionButtons = () => {
   const [updateLiveStats] = useUpdateLiveStatsMutation();
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
+  const creatures = useAppSelector((state) => state.character.creatures) || [];
 
   if (!liveStats) {
     return <Loader />;
@@ -22,7 +23,7 @@ const CharacterActionButtons = () => {
 
   const updateLiveStatsHandler = async () => {
     try {
-      await updateLiveStats({ id, liveStats }).unwrap();
+      await updateLiveStats({ id, liveStats, creatures }).unwrap();
 
       dispatch(
         setSnackbar({

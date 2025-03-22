@@ -1,9 +1,12 @@
 // Import the RTK Query methods from the React-specific entry point
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
 // Use the `Post` type we've already defined in `postsSlice`,
 // and then re-export it for ease of use
-import type { Character, LiveStats } from "../character/characterDefs";
+import type {
+  Character,
+  Creature,
+  LiveStats,
+} from "../character/characterDefs";
 import { setSnackbar } from "../snackbar/snackbarSlice";
 
 // Define our single API slice object
@@ -58,9 +61,9 @@ export const apiSlice = createApi({
     }),
     updateLiveStats: builder.mutation<
       Character,
-      { id: string; liveStats: LiveStats }
+      { id: string; liveStats: LiveStats; creatures: Creature[] }
     >({
-      query: ({ id, liveStats }) => ({
+      query: ({ id, liveStats, creatures }) => ({
         url: `/liveStats/${id}`,
         method: "POST",
         body: {
@@ -69,6 +72,7 @@ export const apiSlice = createApi({
             ...liveStats,
             trackedFeatures: undefined,
           },
+          creatures,
         },
       }),
       invalidatesTags: (result, error, arg) => [

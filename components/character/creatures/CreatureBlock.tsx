@@ -36,7 +36,7 @@ const CreatureBlock = ({ creature }: CreatureBlockProps) => {
   };
 
   return (
-    <div className={`split-grid-container ${styles.creatureBlockContainer}`}>
+    <div className={`split-grid-container ${styles.container}`}>
       <div className={styles.creatureBlockContainer}>
         {!isBreakpoint && renderStatblock()}
         <h3 className="small-section-header">Features</h3>
@@ -57,22 +57,24 @@ const CreatureBlock = ({ creature }: CreatureBlockProps) => {
           </div>
           <div className={styles.passiveRow}>
             <h5>Passive Perception</h5>
-            <p>{creature?.passivePerception}</p>
+            {creature?.passivePerception && (
+              <p>{creature?.passivePerception}</p>
+            )}
           </div>
         </div>
         <div className={styles.skillsContainer}>
           <div className="spacer" />
           <h5>Saving Throws</h5>
-          <h6>{creature?.savingThrows}</h6>
+          <h6>{creature?.savingThrows || "None"}</h6>
           <div className="spacer" />
           <h5>Skills</h5>
-          <h6>{creature?.skills}</h6>
+          <h6>{creature?.skills || "None"}</h6>
           <div className="spacer" />
           <h5>Senses</h5>
-          <h6>{creature?.senses}</h6>
+          <h6>{creature?.senses || "None"}</h6>
           <div className="spacer" />
           <h5>Languages</h5>
-          <h6>{creature?.languages}</h6>
+          <h6>{creature?.languages || "None"}</h6>
         </div>
       </div>
     </div>

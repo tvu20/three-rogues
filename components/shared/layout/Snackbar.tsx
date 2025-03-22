@@ -22,6 +22,7 @@ const Snackbar = () => {
       className={`${styles.snackbar} ${display ? styles.active : ""} ${
         styles[severity] ? styles[severity] : ""
       }`}
+      style={{ pointerEvents: display ? "auto" : "none" }}
     >
       <p>{message}</p>
       <button onClick={() => dispatch(clearSnackbar())}>

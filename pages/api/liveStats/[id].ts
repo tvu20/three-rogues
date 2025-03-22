@@ -4,7 +4,7 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handle(req, res) {
   const { id } = req.query;
-  const { trackedFeatures, liveStats } = req.body;
+  const { trackedFeatures, liveStats, creatures } = req.body;
   const session = await getServerSession(req, res, authOptions);
 
   if (!session) {
@@ -23,6 +23,20 @@ export default async function handle(req, res) {
         },
         data: {
           used: feature.used,
+        },
+      });
+    });
+  }
+
+  if (creatures.length > 0) {
+    creatures.map(async (creature) => {
+      await prisma.creature.update({
+        where: {
+          id: creature.id,
+          characterId: id,
+        },
+        data: {
+          currentHP: creature.currentHP,
         },
       });
     });

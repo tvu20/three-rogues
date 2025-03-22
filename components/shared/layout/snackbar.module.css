@@ -17,11 +17,13 @@
   background-color: white;
 
   opacity: 0;
+  pointer-events: none;
   transition: opacity 1s, background-color 1s;
 }
 
 .active {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .success {

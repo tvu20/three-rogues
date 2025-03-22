@@ -27,6 +27,7 @@ export default function CharacterPage() {
           id: character.id,
           liveStats: character.liveStats,
           name: character.name,
+          creatures: character.creatures,
         })
       );
     }
