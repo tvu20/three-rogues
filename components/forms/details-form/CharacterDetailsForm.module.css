@@ -1,0 +1,19 @@
+.form {
+  margin: var(--spacing-medium) var(--spacing-page-border);
+}
+
+.form h1 {
+  font-weight: 500;
+}
+
+.form h2,
+.form h3 {
+  margin-top: var(--spacing-large);
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  /* gap: var(--spacing-medium); */
+  flex-wrap: wrap;
+}

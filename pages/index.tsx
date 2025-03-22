@@ -9,27 +9,6 @@ const Home: React.FC = () => {
 
   if (status === "loading") return <Loader />;
 
-  // useEffect(() => {
-  //   if (status === "loading") return;
-  //   // const userHasValidSession = Boolean(session);
-  //   console.log("SESSION", session);
-
-  //   fetch(`/api/characters`, {
-  //     method: "GET",
-  //     mode: "cors",
-  //     headers: {
-  //       "access-control-allow-origin": "*",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       // setRecipes(data);
-  //     })
-  //     .catch((error) => console.error(error));
-  // }, [session]);
-
   return (
     <Layout>
       <div className="page">

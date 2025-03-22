@@ -1,0 +1,47 @@
+/* ALL INPUTS */
+
+input.error {
+  border-bottom: 1px solid var(--snackbar-error-color);
+}
+
+.errorMessage {
+  height: 5px;
+  color: var(--snackbar-error-color);
+  font-weight: 400;
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-be-vietnam);
+}
+
+/* SUBMIT INPUT */
+
+.submitInput {
+  font-size: var(--font-size-body-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+}
+
+/* TEXT INPUT */
+
+.textInput {
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
+}
+
+.textInput label {
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+}
+
+.textInput input {
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  width: 300px;
+  max-width: 70%;
+  height: 30px;
+  padding: var(--spacing-xx-small) 0;
+  border: none;
+  border-bottom: 1px solid var(--content-box-border-color);
+  font-size: var(--font-size-body-medium);
+}
