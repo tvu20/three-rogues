@@ -12,12 +12,14 @@ type StatProps = {
   bonus: number;
   savingThrowProficiency: boolean;
   savingThrowBonus: number;
+  hideSaves?: boolean;
 };
 
 type StatBlockProps = {
   abilityScores: AbilityScores | null;
   savingThrows: SavingThrows | null;
   proficiencyBonus: number;
+  hideSaves?: boolean;
 };
 
 const Stat = ({
@@ -26,6 +28,7 @@ const Stat = ({
   bonus,
   savingThrowProficiency,
   savingThrowBonus,
+  hideSaves,
 }: StatProps) => {
   return (
     <div className={styles.statItem}>
@@ -34,23 +37,20 @@ const Stat = ({
         <h2>{bonus > 0 ? "+" + bonus : bonus}</h2>
         <p>{name}</p>
       </div>
-      <div className={styles.saveStat}>
-        <div
-          className={`${styles.saveProf} ${
-            savingThrowProficiency ? styles.active : ""
-          }`}
-        />
-        <h5>SAVE</h5>
-        <p>
-          {savingThrowBonus > 0 ? "+" + savingThrowBonus : savingThrowBonus}
-        </p>
-      </div>
+      {!hideSaves && (
+        <div className={styles.saveStat}>
+          <div
+            className={`${styles.saveProf} ${
+              savingThrowProficiency ? styles.active : ""
+            }`}
+          />
+          <h5>SAVE</h5>
+          <p>
+            {savingThrowBonus > 0 ? "+" + savingThrowBonus : savingThrowBonus}
+          </p>
+        </div>
+      )}
     </div>
-    // <div>
-    //   {name}: {stat}, {bonus}
-    //   Proficient: {savingThrowProficiency ? "Yes" : "No"}
-    //   Bonus: {savingThrowBonus}
-    // </div>
   );
 };
 
@@ -58,8 +58,9 @@ const StatBlock = ({
   abilityScores,
   savingThrows,
   proficiencyBonus,
+  hideSaves,
 }: StatBlockProps) => {
-  if (!abilityScores || !savingThrows) {
+  if (!abilityScores) {
     return null;
   }
 
@@ -67,6 +68,21 @@ const StatBlock = ({
     return STATS.map((stat) => {
       const score = abilityScores[stat];
       const bonus = getAbilityModifier(score);
+
+      if (hideSaves || !savingThrows) {
+        console.log("hideSaves");
+        return (
+          <Stat
+            key={stat}
+            name={stat}
+            stat={score}
+            bonus={bonus}
+            savingThrowBonus={0}
+            savingThrowProficiency={false}
+            hideSaves={hideSaves}
+          />
+        );
+      }
 
       const savingThrow = savingThrows[stat];
       const savingThrowProficiency = savingThrow.proficiency;

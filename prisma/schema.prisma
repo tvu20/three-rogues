@@ -104,6 +104,7 @@ model Character {
   spells          Spell[]
   currency        Json?
   inventory       Item[]
+  creatures       Creature[]
 
   height          String?
   hair            String?
@@ -188,4 +189,27 @@ model Item {
   description String?
   equipped    Boolean?
   attuned     Boolean?
+}
+
+model Creature {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name          String
+  ac            Int
+  maxHP         Int
+  currentHP     Int
+  speed         String
+  type          String
+  notes         String
+  proficiencyBonus    Int
+  passivePerception   Int?
+  abilityScores   Json
+  savingThrows    String
+  skills        String
+  senses        String
+  languages     String
+  features      Json
+  combat        Json
 }

@@ -1,5 +1,6 @@
 import { CaretLeft } from "@phosphor-icons/react";
 import useMediaQuery from "../../../utils/useMediaQuery";
+import CreatureBlock from "../creatures/CreatureBlock";
 import styles from "./ExpandableTable.module.css";
 
 type ExpandableTableProps = {
@@ -12,6 +13,7 @@ type ExpandableTableProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   className?: string;
+  creature?: boolean;
 };
 
 export default function ExpandableTable({
@@ -23,6 +25,7 @@ export default function ExpandableTable({
   mobileColumnHeaders,
   mobileColumnSpacing,
   className,
+  creature,
 }: ExpandableTableProps) {
   const isMobile = useMediaQuery(750);
 
@@ -91,7 +94,7 @@ export default function ExpandableTable({
               if (column === "equipped") {
                 return equipped(item);
               }
-              if (column === "type") {
+              if (!creature && column === "type") {
                 return (
                   <div
                     className={`${styles.rowSummaryItem} ${styles.type}`}
@@ -109,7 +112,11 @@ export default function ExpandableTable({
             })}
           </summary>
           <div className={styles.rowDetails}>
-            <p>{item.description || "No description provided."}</p>
+            {creature ? (
+              <CreatureBlock creature={item} />
+            ) : (
+              <p>{item.description || "No description provided."}</p>
+            )}
           </div>
         </details>
       ))}

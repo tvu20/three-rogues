@@ -49,7 +49,7 @@ const CharacterBackstory = () => {
         <div className={`content-box ${styles.alliesContainer}`}>
           <h2>Allies</h2>
           <p>{character.allies}</p>
-          <div className={styles.spacer} />
+          <div className="spacer" />
           <h2>Organizations</h2>
           <p>{character.organization}</p>
         </div>

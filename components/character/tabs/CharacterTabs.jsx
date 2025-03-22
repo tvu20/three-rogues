@@ -10,6 +10,7 @@ import { useState } from "react";
 import useMediaQuery from "../../../utils/useMediaQuery";
 
 import CharacterBackstory from "../backstory/CharacterBackstory";
+import CharacterCreatures from "../creatures/CharacterCreatures";
 import CharacterInventory from "../inventory/CharacterInventory";
 import CharacterOverview from "../overview/CharacterOverview";
 import CharacterSkills from "../skills/CharacterSkills";
@@ -44,7 +45,7 @@ const TABS = [
   {
     id: "creatures",
     label: "Creatures",
-    component: <div>Creatures</div>,
+    component: <CharacterCreatures />,
     icon: PawPrint,
   },
   {

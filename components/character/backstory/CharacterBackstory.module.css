@@ -25,11 +25,6 @@
   margin-bottom: var(--spacing-xx-small);
 }
 
-.spacer {
-  margin: var(--spacing-medium-large) 0;
-  border-bottom: 1px solid var(--content-box-separator-color);
-}
-
 .imageGallery img {
   width: 100%;
 }

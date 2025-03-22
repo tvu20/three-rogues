@@ -181,6 +181,34 @@ export type Spell = {
   save?: ABILITY;
 };
 
+export type Creature = {
+  id: string;
+  createdAt: string;
+  characterId: string;
+  name: string;
+  ac: number;
+  maxHP: number;
+  currentHP: number;
+  speed: string;
+  type: string;
+  notes?: string;
+  proficiencyBonus: number;
+  passivePerception?: number;
+  abilityScores: AbilityScores;
+  savingThrows: string;
+  skills: string;
+  senses: string;
+  languages: string;
+  features: {
+    name: string;
+    description: string;
+  }[];
+  combat: {
+    name: string;
+    description: string;
+  }[];
+};
+
 // eslint-disable-next-line
 export type Character = {
   id: string;
@@ -228,6 +256,7 @@ export type Character = {
   spells: Spell[];
   currency: Currency;
   inventory: Item[];
+  creatures: Creature[];
 
   height?: string;
   hair?: string;
