@@ -4,6 +4,7 @@ import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
 } from "../definitions/characterDetailsDefs";
+import ClassInput from "../inputs/ClassInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextInput from "../inputs/TextInput";
 import styles from "./CharacterDetailsForm.module.css";
@@ -16,12 +17,15 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<CharacterDetails>({
     defaultValues: CharacterDetailsDefaultValues,
   });
 
   const onSubmit: SubmitHandler<CharacterDetails> = (data) => console.log(data);
+
+  console.log(errors);
 
   return (
     <div className={styles.form}>
@@ -95,7 +99,16 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             fullWidth
           />
         </div>
-        <h3 className="small-section-header">Character Stats</h3>
+        <h3 className="small-section-header">
+          Character Stats
+          <span className={styles.errorMessage}>
+            <br />
+            {errors?.class?.[0]?.isStartingClass?.message}
+          </span>
+        </h3>
+        <div className={styles.formRow}>
+          <ClassInput register={register} control={control} errors={errors} />
+        </div>
         <SubmitInput />
       </form>
     </div>

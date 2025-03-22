@@ -6,9 +6,17 @@
   font-weight: 500;
 }
 
-.form h2,
+.form h2 {
+  margin-top: var(--spacing-large);
+  padding-bottom: var(--spacing-xsmall);
+  border-bottom: 1px solid var(--content-box-separator-color);
+  margin-bottom: var(--spacing-xx-small);
+}
+
 .form h3 {
   margin-top: var(--spacing-large);
+  border: none;
+  color: var(--primary-text-color-section);
 }
 
 .formRow {
@@ -16,4 +24,13 @@
   flex-direction: row;
   /* gap: var(--spacing-medium); */
   flex-wrap: wrap;
+}
+
+.form h3 span.errorMessage {
+  height: 5px;
+  color: var(--snackbar-error-color);
+  font-weight: 400;
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-be-vietnam);
+  text-transform: none;
 }

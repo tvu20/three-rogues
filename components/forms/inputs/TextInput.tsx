@@ -1,10 +1,10 @@
-import { UseFormRegister } from "react-hook-form";
+import { Path, UseFormRegister } from "react-hook-form";
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
 import styles from "./inputs.module.css";
 
 type TextInputProps = {
   register: UseFormRegister<CharacterDetails>;
-  name: keyof CharacterDetails;
+  name: Path<CharacterDetails>;
   label: string;
   width?: string;
   placeholder?: string;
@@ -27,13 +27,15 @@ const TextInput = ({
   fullWidth = false,
   onChange,
 }: TextInputProps) => {
+  const inputId = `text-${name}`;
   return (
     <div
       className={styles.textInput}
       style={{ width: fullWidth ? "100%" : "" }}
     >
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={inputId}>{label}</label>
       <input
+        id={inputId}
         type={type}
         {...register(name, {
           required: required ? "This field is required" : false,
