@@ -1,12 +1,12 @@
 import { Sun, SunDim } from "@phosphor-icons/react";
 import { useParams } from "next/navigation";
 import { useGetCharacterQuery } from "../../../../app/api/apiSlice";
+import { SKILL_MAPPING } from "../../../../app/character/characterMapping";
 import { setInspiration } from "../../../../app/character/characterSlice";
 import { getAbilityModifier } from "../../../../utils/characterUtils";
 import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import Loader from "../../../shared/layout/Loader";
 import StatBlock from "../../shared/StatBlock";
-import { SKILL_MAPPING } from "../../skills/proficiencies/CharacterSkillProfsDefs";
 import styles from "./CharacterStats.module.css";
 
 const CharacterStats = () => {

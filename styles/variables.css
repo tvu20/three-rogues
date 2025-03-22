@@ -29,6 +29,15 @@ body {
   --snackbar-success-color: #9dba50;
   --snackbar-error-color: #d76667;
 
+  --color-currency-pp: #d8dae5;
+  --color-currency-gp: #d58c26;
+  --color-currency-ep: #9ec5d3;
+  --color-currency-sp: #b6b6b6;
+  --color-currency-cp: #b08068;
+
+  --color-equipped: #e39c39;
+  --color-attuned: #8930b0;
+
   /* fonts  */
   --font-belleza: "Belleza", sans-serif;
   --font-be-vietnam: "Be Vietnam", sans-serif;
@@ -53,6 +62,7 @@ body {
   --avatar-size: 120px;
 
   --prof-circle-size: 7px;
+  --currency-circle-size: 10px;
   --save-circle-size: 30px;
   --tracked-item-size: 24px;
 

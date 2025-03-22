@@ -22,6 +22,7 @@ export const apiSlice = createApi({
       query: () => "/characters",
       providesTags: ["Character"],
       onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         queryFulfilled.catch((err: any) => {
           dispatch(
             setSnackbar({
@@ -40,6 +41,7 @@ export const apiSlice = createApi({
       query: (id) => `/character/${id}`,
       providesTags: (result, error, id) => [{ type: "Character", id }],
       onQueryStarted: (_, { dispatch, queryFulfilled }) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         queryFulfilled.catch((err: any) => {
           dispatch(
             setSnackbar({

@@ -23,6 +23,7 @@ const Tag: React.FC<Props> = ({
     if (includes && selected !== includes) {
       setSelected(includes);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [includes]);
 
   const clicked = () => {

@@ -15,7 +15,7 @@ const Snackbar = () => {
     if (display) {
       setTimeout(() => dispatch(clearSnackbar()), timeout);
     }
-  }, [display]);
+  }, [display, dispatch, timeout]);
 
   return (
     <div

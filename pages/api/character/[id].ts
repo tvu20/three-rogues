@@ -22,7 +22,7 @@ export default async function handle(req, res) {
         features: true,
         weapons: true,
         spells: true,
-
+        inventory: true,
         //   ingredients: true,
         //   tags: true,
         author: {

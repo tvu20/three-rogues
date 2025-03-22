@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import useMediaQuery from "../../../utils/useMediaQuery";
 
+import CharacterInventory from "../inventory/CharacterInventory";
 import CharacterOverview from "../overview/CharacterOverview";
 import CharacterSkills from "../skills/CharacterSkills";
 import CharacterSpellcasting from "../spellcasting/CharacterSpellcasting";
@@ -36,7 +37,7 @@ const TABS = [
   {
     id: "inventory",
     label: "Inventory",
-    component: <div>Inventory</div>,
+    component: <CharacterInventory />,
     icon: Backpack,
   },
   {

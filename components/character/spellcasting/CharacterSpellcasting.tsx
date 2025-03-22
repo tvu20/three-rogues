@@ -3,7 +3,10 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 import { Spell } from "../../../app/character/characterDefs";
-import { CLASS_SPELLCASTING_ABILITY } from "../../../app/character/characterMapping";
+import {
+  CLASS_SPELLCASTING_ABILITY,
+  SPELL_TYPES,
+} from "../../../app/character/characterMapping";
 import { getAbilityModifier } from "../../../utils/characterUtils";
 import useMediaQuery from "../../../utils/useMediaQuery";
 import Search from "../../shared/inputs/Search";
@@ -11,14 +14,6 @@ import Tag from "../../shared/inputs/Tag";
 import Loader from "../../shared/layout/Loader";
 import styles from "./CharacterSpellcasting.module.css";
 import CharacterSpells from "./CharacterSpells";
-const SPELL_TYPES = [
-  "damage",
-  "buff",
-  "debuff",
-  "utility",
-  "protection",
-  "control",
-];
 
 const CharacterSpellcasting = () => {
   const params = useParams<{ id: string }>();
@@ -34,12 +29,8 @@ const CharacterSpellcasting = () => {
     skip: !id,
   });
 
-  if (!character) {
-    return <Loader />;
-  }
-
   useEffect(() => {
-    if (!character.spells) return;
+    if (!character?.spells) return;
 
     let temp = [...character.spells];
 
@@ -53,7 +44,11 @@ const CharacterSpellcasting = () => {
       temp = temp.filter((r) => filters.includes(r.type));
     }
     setDisplayed(temp);
-  }, [search, character.spells, filters]);
+  }, [search, character?.spells, filters]);
+
+  if (!character) {
+    return <Loader />;
+  }
 
   const addFilter = (item: string) => {
     setFilters((prevState) => [...prevState, item]);
@@ -89,7 +84,7 @@ const CharacterSpellcasting = () => {
       const spellAttack = modifier + character.proficiencyBonus;
       const spellSave = 8 + modifier + character.proficiencyBonus;
       return (
-        <div className={styles.classDetails}>
+        <div className={styles.classDetails} key={c.name}>
           <div key={c.name} className={styles.classModifier}>
             <h2>{CLASS_SPELLCASTING_ABILITY[c.name].toUpperCase()}</h2>
             <p>{c.name}</p>

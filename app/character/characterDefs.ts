@@ -32,6 +32,14 @@ export type SPELL_SCHOOL =
   | "necromancy"
   | "transmutation";
 
+export type ITEM_TYPE =
+  | "weapon"
+  | "equipment"
+  | "magic item"
+  | "consumable"
+  | "gear"
+  | "other";
+
 export type Class = {
   name: string;
   isStartingClass: boolean;
@@ -92,6 +100,14 @@ export type SpellSlots = {
   };
 };
 
+export type Currency = {
+  pp: number;
+  gp: number;
+  ep: number;
+  sp: number;
+  cp: number;
+};
+
 export type Feature = {
   id: string;
   createdAt: string;
@@ -128,6 +144,20 @@ export type Weapon = {
   properties?: string;
   equipped?: boolean;
   inInventory?: boolean;
+  quantity?: number;
+};
+
+export type Item = {
+  id: string;
+  createdAt: string;
+  characterId: string;
+  name: string;
+  quantity: number;
+  type: ITEM_TYPE[];
+  notes?: string;
+  description?: string;
+  attuned?: boolean;
+  equipped?: boolean;
 };
 
 export type Spell = {
@@ -196,4 +226,6 @@ export type Character = {
   features: Feature[];
   weapons: Weapon[];
   spells: Spell[];
+  currency: Currency;
+  inventory: Item[];
 };

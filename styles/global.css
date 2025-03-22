@@ -65,7 +65,7 @@ p {
 
 .highlighted-action-button {
   background-color: var(--action-button-highlighted-color);
-  border: none;
+  border-color: var(--action-button-highlighted-color);
   color: var(--action-button-highlighted-text-color);
 }
 

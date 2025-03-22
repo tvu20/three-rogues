@@ -11,7 +11,7 @@ const CharacterClassFeatures = ({
   features,
   classList,
 }: CharacterClassFeaturesProps) => {
-  const sortedClassList = [...classList].sort((a, b) =>
+  const sortedClassList = [...classList].sort((a) =>
     a.isStartingClass ? -1 : 1
   );
   const sortedFeatures = [...features].sort((a, b) => {

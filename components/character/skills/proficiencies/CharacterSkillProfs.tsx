@@ -1,7 +1,7 @@
 import { AbilityScores, Skill } from "../../../../app/character/characterDefs";
+import { SKILL_MAPPING } from "../../../../app/character/characterMapping";
 import { getAbilityModifier } from "../../../../utils/characterUtils";
 import styles from "./CharacterSkillProfs.module.css";
-import { SKILL_MAPPING } from "./CharacterSkillProfsDefs";
 
 type CharacterSkillProfsProps = {
   skills: Skill[];

@@ -1,0 +1,91 @@
+.currencyContainer h6 {
+  font-size: var(--font-size-body-small);
+  font-weight: 200;
+}
+
+.currencyContainer h2 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-heading-xsmall);
+  font-weight: 200;
+  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
+  margin-bottom: var(--spacing-medium);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.currencyContainer p {
+  font-weight: 300;
+}
+
+.currencyContainer .currency:not(:last-child) {
+  margin-bottom: var(--spacing-small);
+}
+
+.currency {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dot {
+  width: var(--currency-circle-size);
+  height: var(--currency-circle-size);
+  border-radius: 50%;
+  margin-right: var(--spacing-small-medium);
+}
+
+.currencyName {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium);
+  font-weight: 200;
+  flex: 1;
+  text-align: left;
+}
+
+.currencyValue {
+  width: 40px;
+  text-align: center;
+  background-color: var(--highlight-background-color);
+  padding-bottom: 3px;
+}
+
+/* ITEMS */
+
+.itemsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-medium);
+}
+
+.itemsHeader button {
+  padding: var(--spacing-small-medium) var(--spacing-large);
+  margin-left: var(--spacing-xx-large);
+}
+
+.itemsHeader input {
+  flex: 1;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-small);
+  margin-bottom: var(--spacing-medium-large);
+}
+
+@media (max-width: 500px) {
+  .itemsHeader {
+    flex-direction: column-reverse;
+  }
+
+  .itemsHeader button {
+    margin: var(--spacing-large) 0 var(--spacing-medium);
+    width: 100%;
+  }
+
+  .itemsHeader input {
+    width: 100%;
+  }
+}

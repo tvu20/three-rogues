@@ -102,6 +102,8 @@ model Character {
   features        Feature[]
   weapons         Weapon[]
   spells          Spell[]
+  currency        Json?
+  inventory       Item[]
 }
 
 model Feature {
@@ -139,7 +141,8 @@ model Weapon {
   hitBonus      Int?
   properties    String?
   equipped      Boolean?
-  inInventory   Boolean?           
+  inInventory   Boolean?
+  quantity      Int?           
 }
 
 model Spell {
@@ -162,4 +165,18 @@ model Spell {
   description     String
   damage      String?
   save        String?
+}
+
+model Item {
+  id        String    @id @default(cuid())
+  createdAt       DateTime @default(now())
+  character    Character?   @relation(fields: [characterId], references: [id])
+  characterId  String?
+  name        String
+  quantity    Int
+  type        String[]
+  notes       String?
+  description String?
+  equipped    Boolean?
+  attuned     Boolean?
 }
