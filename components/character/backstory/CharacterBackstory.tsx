@@ -16,7 +16,9 @@ const CharacterBackstory = () => {
   }
 
   const renderImageGallery = () => {
-    return character.images.map((image) => <img src={image} alt="Character" />);
+    return character.images.map((image, index) => (
+      <img key={index} src={image} alt="Character" />
+    ));
   };
 
   return (

@@ -28,12 +28,8 @@ const CharacterCreatures = () => {
     skip: !id,
   });
 
-  if (!character) {
-    return <Loader />;
-  }
-
   useEffect(() => {
-    if (!character.creatures) return;
+    if (!character || !character.creatures) return;
 
     let temp = [...character.creatures];
 
@@ -44,7 +40,11 @@ const CharacterCreatures = () => {
     }
 
     setDisplayed(temp);
-  }, [search, character?.creatures]);
+  }, [search, character]);
+
+  if (!character) {
+    return <Loader />;
+  }
 
   return (
     <div>
