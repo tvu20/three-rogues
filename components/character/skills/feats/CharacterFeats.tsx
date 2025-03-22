@@ -22,7 +22,7 @@ const CharacterFeats = ({ feats }: CharacterFeatsProps) => {
   };
   return (
     <div className={`content-box ${styles.container}`}>
-      <h2>Feats</h2>
+      <h2 className="small-section-header">Feats</h2>
       {createFeaturesBlock()}
     </div>
   );

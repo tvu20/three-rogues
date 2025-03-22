@@ -64,7 +64,7 @@ const CharacterSkillProfs = ({
 
   return (
     <div className={`content-box ${styles.container}`}>
-      <h2>Skills</h2>
+      <h2 className="small-section-header">Skills</h2>
       {sortedSkills.map(createSkillRow)}
     </div>
   );

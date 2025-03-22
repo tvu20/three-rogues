@@ -228,4 +228,13 @@ export type Character = {
   spells: Spell[];
   currency: Currency;
   inventory: Item[];
+
+  height?: string;
+  hair?: string;
+  eyes?: string;
+  skin?: string;
+  allies?: string;
+  organization?: string;
+  backstory?: string;
+  images: string[];
 };

@@ -1,0 +1,39 @@
+.backstoryContainer h2 {
+  margin-bottom: var(--spacing-medium);
+}
+
+.appearanceContainer h2 {
+  margin-bottom: var(--spacing-small);
+}
+
+.appearanceValues {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.alliesContainer {
+  display: flex;
+  flex-direction: column;
+  /* gap: var(--spacing-small); */
+}
+
+.alliesContainer h2 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-heading-xsmall);
+  font-weight: 200;
+  margin-bottom: var(--spacing-xx-small);
+}
+
+.spacer {
+  margin: var(--spacing-medium-large) 0;
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.imageGallery img {
+  width: 100%;
+}
+
+.imageGallery img:not(:last-child) {
+  margin-bottom: var(--spacing-medium);
+}

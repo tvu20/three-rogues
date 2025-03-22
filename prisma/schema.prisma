@@ -104,6 +104,15 @@ model Character {
   spells          Spell[]
   currency        Json?
   inventory       Item[]
+
+  height          String?
+  hair            String?
+  eyes            String?
+  skin            String?
+  allies          String?
+  organization    String?
+  backstory       String?
+  images          String[]
 }
 
 model Feature {

@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import useMediaQuery from "../../../utils/useMediaQuery";
 
+import CharacterBackstory from "../backstory/CharacterBackstory";
 import CharacterInventory from "../inventory/CharacterInventory";
 import CharacterOverview from "../overview/CharacterOverview";
 import CharacterSkills from "../skills/CharacterSkills";
@@ -49,7 +50,7 @@ const TABS = [
   {
     id: "backstory",
     label: "Backstory",
-    component: <div>Backstory</div>,
+    component: <CharacterBackstory />,
     icon: BookOpenText,
   },
 ];

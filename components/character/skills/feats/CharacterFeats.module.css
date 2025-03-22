@@ -3,16 +3,6 @@
   font-weight: 200;
 }
 
-.container h2 {
-  font-family: var(--font-belleza);
-  text-transform: uppercase;
-  font-size: var(--font-size-heading-xsmall);
-  font-weight: 200;
-  padding: var(--spacing-xx-small) 0 var(--spacing-xsmall);
-  margin-bottom: var(--spacing-medium);
-  border-bottom: 1px solid var(--content-box-separator-color);
-}
-
 .container p {
   font-weight: 300;
 }

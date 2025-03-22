@@ -24,7 +24,7 @@ const CharacterCurrency = ({ currency }: { currency: Currency }) => {
 
   return (
     <div className={`content-box ${styles.currencyContainer}`}>
-      <h2>Currency</h2>
+      <h2 className="small-section-header">Currency</h2>
       {createCurrencies()}
     </div>
   );
