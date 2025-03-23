@@ -59,6 +59,15 @@ export const apiSlice = createApi({
         });
       },
     }),
+    // TODO: fix type
+    createCharacter: builder.mutation<Character, any>({
+      query: (character) => ({
+        url: "/character",
+        method: "POST",
+        body: character,
+      }),
+      invalidatesTags: ["Character"],
+    }),
     updateLiveStats: builder.mutation<
       Character,
       { id: string; liveStats: LiveStats; creatures: Creature[] }
@@ -88,4 +97,5 @@ export const {
   useGetCharactersQuery,
   useGetCharacterQuery,
   useUpdateLiveStatsMutation,
+  useCreateCharacterMutation,
 } = apiSlice;

@@ -8,7 +8,16 @@ import styles from "./CharacterInventory.module.css";
 
 const CharacterCurrency = ({ currency }: { currency: Currency }) => {
   const createCurrencies = () => {
-    return Object.entries(currency).map(([key, value]) => {
+    const currencyValues = currency
+      ? currency
+      : {
+          cp: 0,
+          ep: 0,
+          gp: 0,
+          pp: 0,
+          sp: 0,
+        };
+    return Object.entries(currencyValues).map(([key, value]) => {
       return (
         <div key={key} className={styles.currency}>
           <div

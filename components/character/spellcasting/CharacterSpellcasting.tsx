@@ -78,6 +78,7 @@ const CharacterSpellcasting = () => {
   const renderClassRows = () => {
     return character.class.map((c) => {
       if (!c.spellcasting) return null;
+      if (c.name === "Barbarian") return null;
 
       const ability = CLASS_SPELLCASTING_ABILITY[c.name];
       const modifier = getAbilityModifier(character.abilityScores[ability]);

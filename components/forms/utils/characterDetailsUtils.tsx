@@ -38,7 +38,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
 
   const cleanedData = {
     ...data,
-    age: cleanNumber(data.age),
+    darkvision: cleanNumberNull(data.darkvision),
     cantripsKnown: cleanNumber(data.cantripsKnown),
     maxPrepared: cleanNumber(data.maxPrepared),
     spellsKnown: cleanNumber(data.spellsKnown),
@@ -57,6 +57,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
         current: dice.max,
       })),
       inspiration: false,
+      concentration: "",
     },
     features: cleanedFeatures,
     skills: cleanedSkills,

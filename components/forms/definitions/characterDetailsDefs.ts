@@ -12,14 +12,14 @@ export type CharacterDetails = {
   pronouns: string;
   background: string;
   alignment: string;
-  age: number;
+  age: string;
   class: Class[];
   abilityScores: AbilityScores;
   savingThrows: SavingThrows;
   maxHP: number;
   proficiencyBonus: number;
   initiative: number;
-  darkvision: string;
+  darkvision: number;
   ac: {
     armor: number | null;
     shield: number | null;
@@ -99,7 +99,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   pronouns: "",
   background: "",
   alignment: "",
-  age: 0,
+  age: "",
   class: [
     {
       name: "",
@@ -131,7 +131,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
     swim: "",
     climb: "",
   },
-  darkvision: "",
+  darkvision: 60,
   savingThrows: {
     str: { bonus: 0, proficiency: false },
     dex: { bonus: 0, proficiency: false },

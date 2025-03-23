@@ -24,6 +24,9 @@ const CharacterClassFeatures = ({
     const features = sortedFeatures.filter(
       (feature) => feature.class === className
     );
+
+    if (features.length === 0)
+      return <p style={{ fontWeight: 300 }}>No features found. </p>;
     return features.map((feature) => (
       <FeatureBlock
         key={feature.id}

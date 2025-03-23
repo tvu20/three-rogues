@@ -198,7 +198,7 @@ const FeatureInput = ({ register, control, errors }: FeatureInputProps) => {
             level: null,
             linkedAbility: "",
             description: "",
-            source: "",
+            source: "class",
             class: "",
             options: [],
             tracked: false,

@@ -70,6 +70,8 @@ const CharacterTrackedFeatures = ({
       );
     });
   };
+
+  if (liveStats.trackedFeatures?.length === 0) return null;
   return (
     <div className={`content-box ${styles.container}`}>{createItems()}</div>
   );

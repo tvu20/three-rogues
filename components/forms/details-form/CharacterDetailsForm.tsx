@@ -1,11 +1,15 @@
 import { Character } from "@prisma/client";
+import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useCreateCharacterMutation } from "../../../app/api/apiSlice";
 import { ABILITY } from "../../../app/character/characterDefs";
 import {
   ABILITY_SCORE_MAPPING,
   SKILL_DESCRIPTION_MAPPING,
   SKILL_MAPPING,
 } from "../../../app/character/characterMapping";
+import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
+import { useAppDispatch } from "../../../utils/redux";
 import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
@@ -27,6 +31,9 @@ type CharacterDetailsFormProps = {
 };
 
 const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   // TODO: if character is provided, fill defaultValues with character data
   const {
     register,
@@ -36,6 +43,8 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   } = useForm<CharacterDetails>({
     defaultValues: CharacterDetailsDefaultValues,
   });
+
+  const [createCharacter] = useCreateCharacterMutation();
 
   const abilityScoreFields = () => {
     return Object.keys(ABILITY_SCORE_MAPPING).map((ability: ABILITY) => (
@@ -136,9 +145,29 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     ));
   };
 
-  const onSubmit: SubmitHandler<CharacterDetails> = (data) => {
+  const onSubmit: SubmitHandler<CharacterDetails> = async (data) => {
     const cleanedData = cleanCharacterDetails(data);
-    console.log(cleanedData);
+    // console.log(cleanedData);
+    try {
+      await createCharacter(cleanedData).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Live stats successfully updated!",
+          severity: "success",
+        })
+      );
+
+      router.push("/");
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
   return (
@@ -204,7 +233,6 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             name="age"
             label="Age"
             placeholder="263"
-            type="number"
             width="80px"
           />
         </div>
@@ -284,7 +312,8 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             register={register}
             name="darkvision"
             label="Darkvision"
-            placeholder="30ft"
+            placeholder="60"
+            type="number"
             width="150px"
           />
         </div>
@@ -325,28 +354,28 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             register={register}
             name="speed.walk"
             label="Walking Speed"
-            placeholder="30ft"
+            placeholder="30"
             width="150px"
           />
           <TextInput
             register={register}
             name="speed.fly"
             label="Flying Speed"
-            placeholder="30ft"
+            placeholder="30"
             width="150px"
           />
           <TextInput
             register={register}
             name="speed.swim"
             label="Swimming Speed"
-            placeholder="30ft"
+            placeholder="30"
             width="150px"
           />
           <TextInput
             register={register}
             name="speed.climb"
             label="Climbing Speed"
-            placeholder="30ft"
+            placeholder="30"
             width="150px"
           />
         </div>
