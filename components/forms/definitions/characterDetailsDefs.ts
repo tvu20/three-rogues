@@ -41,6 +41,18 @@ export type CharacterDetails = {
   weaponProficiencies?: string;
   toolProficiencies?: string;
   languagesKnown?: string;
+
+  liveStats: {
+    hitDice: {
+      max: number;
+      type: string;
+    }[];
+    spellSlots: {
+      [key: string]: {
+        max: number;
+      };
+    };
+  };
 };
 
 export const CharacterDetailsDefaultValues: CharacterDetails = {
@@ -102,4 +114,9 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   weaponProficiencies: "",
   toolProficiencies: "",
   languagesKnown: "",
+
+  liveStats: {
+    hitDice: [],
+    spellSlots: {},
+  },
 };

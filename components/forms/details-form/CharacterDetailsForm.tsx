@@ -8,12 +8,12 @@ import {
 } from "../definitions/characterDetailsDefs";
 import CheckboxInput from "../inputs/CheckboxInput";
 import ClassInput from "../inputs/ClassInput";
+import HitDiceInput from "../inputs/HitDiceInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextInput from "../inputs/TextInput";
-import cleanNumber from "../utils/formUtils";
+import { cleanCharacterDetails } from "../utils/characterDetailsUtils";
 import styles from "./CharacterDetailsForm.module.css";
-
-const requiredTesting = true;
+const requiredTesting = false;
 
 type CharacterDetailsFormProps = {
   character?: Character;
@@ -74,14 +74,24 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     ));
   };
 
+  const spellSlotFields = () => {
+    return Array.from({ length: 9 }, (_, index) => (
+      <div key={index} className={styles.spellSlotRow}>
+        <TextInput
+          key={index}
+          register={register}
+          name={`liveStats.spellSlots.${index}.max`}
+          label={`Level ${index + 1}`}
+          placeholder="4"
+          type="number"
+          width="60px"
+        />
+      </div>
+    ));
+  };
+
   const onSubmit: SubmitHandler<CharacterDetails> = (data) => {
-    const cleanedData = {
-      ...data,
-      age: cleanNumber(data.age),
-      cantripsKnown: cleanNumber(data.cantripsKnown),
-      maxPrepared: cleanNumber(data.maxPrepared),
-      spellsKnown: cleanNumber(data.spellsKnown),
-    };
+    const cleanedData = cleanCharacterDetails(data);
     console.log(cleanedData);
   };
 
@@ -304,6 +314,12 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
           />
         </div>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Hit Dice
+        </h3>
+        <div className={styles.formRow}>
+          <HitDiceInput register={register} control={control} errors={errors} />
+        </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Spellcasting
         </h3>
         <div className={styles.formRow}>
@@ -339,6 +355,10 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             width="300px"
           />
         </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Spell Slots
+        </h3>
+        <div className={styles.formRow}>{spellSlotFields()}</div>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Proficiencies
         </h3>
