@@ -1,7 +1,11 @@
 import { Character } from "@prisma/client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ABILITY } from "../../../app/character/characterDefs";
-import { ABILITY_SCORE_MAPPING } from "../../../app/character/characterMapping";
+import {
+  ABILITY_SCORE_MAPPING,
+  SKILL_DESCRIPTION_MAPPING,
+  SKILL_MAPPING,
+} from "../../../app/character/characterMapping";
 import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
@@ -86,6 +90,45 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
           placeholder="4"
           type="number"
           width="60px"
+        />
+      </div>
+    ));
+  };
+
+  const skillFields = () => {
+    return Object.keys(SKILL_MAPPING).map((skill: string) => (
+      <div key={skill} className={styles.skillRow}>
+        <div className={styles.skillLabelContainer}>
+          <h6 className={styles.skillLabel}>{skill}</h6>
+          <p className={styles.skillDescription}>
+            {SKILL_DESCRIPTION_MAPPING[skill]}
+          </p>
+        </div>
+        <CheckboxInput
+          register={register}
+          name={`skills.${skill}.proficient`}
+          label="Proficient"
+        />
+        <CheckboxInput
+          register={register}
+          name={`skills.${skill}.expertise`}
+          label="Expertise"
+        />
+        <div style={{ width: "20px" }} />
+        <TextInput
+          register={register}
+          name={`skills.${skill}.bonus`}
+          label="Extra Bonus"
+          placeholder="0"
+          type="number"
+          width="100px"
+        />
+        <TextInput
+          register={register}
+          name={`skills.${skill}.source`}
+          label="Source"
+          placeholder="Racial Bonus"
+          width="150px"
         />
       </div>
     ));
@@ -360,6 +403,12 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
           Spell Slots
         </h3>
         <div className={styles.formRow}>{spellSlotFields()}</div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Skills
+        </h3>
+        <div className={`${styles.formRow} ${styles.skillsContainer}`}>
+          {skillFields()}
+        </div>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Proficiencies
         </h3>

@@ -30,6 +30,27 @@ export const SKILL_MAPPING = {
   Survival: "wis",
 };
 
+export const SKILL_DESCRIPTION_MAPPING = {
+  Acrobatics: "How well can I stay on my feet?",
+  "Animal Handling": "How good am I with animals?",
+  Arcana: "How much do I know about magic?",
+  Athletics: "How physically fit am I?",
+  Deception: "How good am I at lying?",
+  History: "How much do I know about history?",
+  Insight: "How well can I read people?",
+  Intimidation: "How well can I threaten others?",
+  Investigation: "How good am I at solving puzzles?",
+  Medicine: "How well can I heal others?",
+  Nature: "How much do I know about nature?",
+  Perception: "How much do I notice around me?",
+  Performance: "How well can I entertain others?",
+  Persuasion: "How good am I at convincing others?",
+  Religion: "How much do I know about religion?",
+  "Sleight of Hand": "How good am I at picking pockets?",
+  Stealth: "How well can I hide from others?",
+  Survival: "How good am I at surviving in the wild?",
+};
+
 export const CLASS_SPELLCASTING_ABILITY = {
   Bard: "cha",
   Paladin: "cha",

@@ -53,6 +53,15 @@ export type CharacterDetails = {
       };
     };
   };
+  skills: {
+    [key: string]: {
+      name: string;
+      proficient: boolean;
+      expertise: boolean;
+      bonus: number;
+      source: string;
+    };
+  };
 
   height: string;
   hair: string;
@@ -136,4 +145,133 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   allies: "",
   organization: "",
   backstory: "",
+
+  skills: {
+    Acrobatics: {
+      name: "Acrobatics",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    "Animal Handling": {
+      name: "Animal Handling",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Arcana: {
+      name: "Arcana",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Athletics: {
+      name: "Athletics",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Deception: {
+      name: "Deception",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    History: {
+      name: "History",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Insight: {
+      name: "Insight",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Intimidation: {
+      name: "Intimidation",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Investigation: {
+      name: "Investigation",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Medicine: {
+      name: "Medicine",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Nature: {
+      name: "Nature",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Perception: {
+      name: "Perception",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Performance: {
+      name: "Performance",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Persuasion: {
+      name: "Persuasion",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Religion: {
+      name: "Religion",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    "Sleight of Hand": {
+      name: "Sleight of Hand",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Stealth: {
+      name: "Stealth",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+    Survival: {
+      name: "Survival",
+      proficient: false,
+      expertise: false,
+      bonus: 0,
+      source: "",
+    },
+  },
 };

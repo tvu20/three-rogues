@@ -12,6 +12,11 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
     }
   });
 
+  const cleanedSkills = Object.values(data.skills).map((skill) => ({
+    ...skill,
+    bonus: cleanNumber(skill.bonus),
+  }));
+
   const cleanedData = {
     ...data,
     age: cleanNumber(data.age),
@@ -34,6 +39,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
       })),
       inspiration: false,
     },
+    skills: cleanedSkills,
   };
   return cleanedData;
 };
