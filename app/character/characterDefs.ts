@@ -239,7 +239,6 @@ export type Character = {
   savingThrows: SavingThrows;
   defenses: string;
   attacksPerAction?: number;
-  spellcaster: boolean;
   spellsKnown?: number;
   cantripsKnown?: number;
   maxPrepared?: number;

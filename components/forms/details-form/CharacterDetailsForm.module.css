@@ -3,7 +3,11 @@
 }
 
 .form h1 {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
   font-weight: 500;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 1px solid var(--content-box-separator-color);
 }
 
 .form h2 {
@@ -37,4 +41,10 @@
 
 .form .removeBottomMargin {
   margin-bottom: 0;
+}
+
+.savingThrowRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

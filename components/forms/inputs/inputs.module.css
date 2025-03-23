@@ -65,6 +65,7 @@ input.error {
   font-weight: 300;
   font-size: var(--font-size-body-medium);
   font-family: var(--font-be-vietnam);
+  margin-top: -4px;
 }
 
 .checkboxInput input {
@@ -103,4 +104,12 @@ input.error {
 
 .addButton {
   max-width: 200px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1050px) {
+  .classRow .textInput {
+    margin-bottom: var(--spacing-medium);
+  }
 }

@@ -6,12 +6,14 @@ import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
 } from "../definitions/characterDetailsDefs";
+import CheckboxInput from "../inputs/CheckboxInput";
 import ClassInput from "../inputs/ClassInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextInput from "../inputs/TextInput";
+import cleanNumber from "../utils/formUtils";
 import styles from "./CharacterDetailsForm.module.css";
 
-const requiredTesting = false;
+const requiredTesting = true;
 
 type CharacterDetailsFormProps = {
   character?: Character;
@@ -49,13 +51,47 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     ));
   };
 
-  const onSubmit: SubmitHandler<CharacterDetails> = (data) => console.log(data);
+  const savingThrowFields = () => {
+    return Object.keys(ABILITY_SCORE_MAPPING).map((ability: ABILITY) => (
+      <div key={ability} className={styles.savingThrowRow}>
+        <TextInput
+          key={ability}
+          register={register}
+          name={`savingThrows.${ability}.bonus`}
+          label={`${ability.toUpperCase()} Save Bonus`}
+          placeholder="2"
+          type="number"
+          width="120px"
+          required={requiredTesting}
+          error={errors.savingThrows?.[ability]?.bonus?.message}
+        />
+        <CheckboxInput
+          register={register}
+          name={`savingThrows.${ability}.proficiency`}
+          label={`Proficient`}
+        />
+      </div>
+    ));
+  };
+
+  const onSubmit: SubmitHandler<CharacterDetails> = (data) => {
+    const cleanedData = {
+      ...data,
+      age: cleanNumber(data.age),
+      cantripsKnown: cleanNumber(data.cantripsKnown),
+      maxPrepared: cleanNumber(data.maxPrepared),
+      spellsKnown: cleanNumber(data.spellsKnown),
+    };
+    console.log(cleanedData);
+  };
 
   return (
     <div className={styles.form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>Create a New Character</h1>
-        <h2 className="section-header">Basic Information</h2>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Basic Information
+        </h3>
         <div className={styles.formRow}>
           <TextInput
             register={register}
@@ -80,6 +116,9 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             label="Level"
             width="80px"
             type="number"
+            placeholder="1"
+            required={requiredTesting}
+            error={errors.level?.message}
           />
         </div>
         <div className={styles.formRow}>
@@ -137,6 +176,10 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
           Ability Scores
         </h3>
         <div className={styles.formRow}>{abilityScoreFields()}</div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Saving Throws
+        </h3>
+        <div className={styles.formRow}>{savingThrowFields()}</div>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Combat Stats
         </h3>
@@ -257,6 +300,75 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             name="defenses"
             label="Defenses"
             placeholder="Immune to Magical Sleep"
+            fullWidth
+          />
+        </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Spellcasting
+        </h3>
+        <div className={styles.formRow}>
+          <TextInput
+            register={register}
+            name="cantripsKnown"
+            label="Cantrips Known"
+            placeholder="2"
+            type="number"
+            width="100px"
+          />
+          <TextInput
+            register={register}
+            name="spellsKnown"
+            label="Spells Known"
+            placeholder="4"
+            type="number"
+            width="100px"
+          />
+          <TextInput
+            register={register}
+            name="maxPrepared"
+            label="Max Spells Prepared"
+            placeholder="3"
+            type="number"
+            width="130px"
+          />
+          <TextInput
+            register={register}
+            name="spellcastingFocus"
+            label="Spellcasting Focus"
+            placeholder="Amulet of the Moon"
+            width="300px"
+          />
+        </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Proficiencies
+        </h3>
+        <div className={styles.formRow}>
+          <TextInput
+            register={register}
+            name="armorProficiencies"
+            label="Armor Proficiencies"
+            placeholder="Light Armor, Medium Armor"
+            fullWidth
+          />
+          <TextInput
+            register={register}
+            name="weaponProficiencies"
+            label="Weapon Proficiencies"
+            placeholder="Longsword, Shortsword"
+            fullWidth
+          />
+          <TextInput
+            register={register}
+            name="toolProficiencies"
+            label="Tool Proficiencies"
+            placeholder="Smith's Tools, Herbalism Kit"
+            fullWidth
+          />
+          <TextInput
+            register={register}
+            name="languagesKnown"
+            label="Languages Known"
+            placeholder="Common, Elvish"
             fullWidth
           />
         </div>

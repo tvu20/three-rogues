@@ -24,9 +24,13 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
 
   const validateStartingClass = (value, index) => {
     const classes = control._formValues.class;
-    console.log(classes);
-    if (!value && !classes.some((c, i) => i !== index && c.isStartingClass)) {
-      return "At least one class must be marked as starting class";
+    const startingClassCount = classes.filter((c) => c.isStartingClass).length;
+
+    if (value && startingClassCount > 1) {
+      return "Only one class can be marked as starting class";
+    }
+    if (!value && startingClassCount === 0) {
+      return "One class must be marked as starting class";
     }
     return true;
   };
@@ -50,6 +54,7 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
             label="Level"
             type="number"
             width="80px"
+            placeholder="1"
             required
             error={errors.class?.[index]?.level?.message}
           />

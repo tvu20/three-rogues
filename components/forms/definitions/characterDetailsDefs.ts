@@ -15,6 +15,7 @@ export type CharacterDetails = {
   age: number;
   class: Class[];
   abilityScores: AbilityScores;
+  savingThrows: SavingThrows;
   maxHP: number;
   proficiencyBonus: number;
   initiative: number;
@@ -32,11 +33,9 @@ export type CharacterDetails = {
   };
   defenses: string;
   attacksPerAction?: number;
-  savingThrows: SavingThrows;
-  spellcaster: boolean;
-  spellsKnown?: number;
-  cantripsKnown?: number;
-  maxPrepared?: number;
+  spellsKnown: number;
+  cantripsKnown: number;
+  maxPrepared: number;
   spellcastingFocus?: string;
   armorProficiencies?: string;
   weaponProficiencies?: string;
@@ -95,7 +94,6 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   },
   defenses: "",
   attacksPerAction: 1,
-  spellcaster: false,
   spellsKnown: 0,
   cantripsKnown: 0,
   maxPrepared: 0,
