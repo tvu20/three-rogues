@@ -106,7 +106,7 @@ const FeatureInput = ({ register, control, errors }: FeatureInputProps) => {
               label="Source"
             >
               {FEATURE_SOURCES.map((source) => (
-                <option value={source}>
+                <option key={source} value={source}>
                   {source.charAt(0).toUpperCase() + source.slice(1)}
                 </option>
               ))}
@@ -118,7 +118,9 @@ const FeatureInput = ({ register, control, errors }: FeatureInputProps) => {
             >
               <option value="">None</option>
               {CLASSES.map((className) => (
-                <option value={className}>{className}</option>
+                <option key={className} value={className}>
+                  {className}
+                </option>
               ))}
             </SelectInput>
           </div>

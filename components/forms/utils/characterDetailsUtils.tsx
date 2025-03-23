@@ -1,5 +1,61 @@
+import { Character } from "../../../app/character/characterDefs";
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
 import cleanNumber, { cleanNumberNull, cleanStringNull } from "./formUtils";
+
+export const generateDefaultValues = (character: Character) => {
+  const {
+    weapons,
+    spells,
+    currency,
+    inventory,
+    creatures,
+    author,
+    authorId,
+    createdAt,
+    id,
+    ...rest
+  } = character;
+  return {
+    ...rest,
+    liveStats: {
+      hitDice: character.liveStats.hitDice.map((dice) => ({
+        max: dice.max,
+        type: dice.type,
+      })),
+      spellSlots: Object.fromEntries(
+        Object.entries(character.liveStats.spellSlots).map(([key, value]) => [
+          Number(key) - 1,
+          value,
+        ])
+      ),
+    },
+    skills: Object.fromEntries(
+      character.skills.map((skill) => [skill.name, skill])
+    ),
+    features: character.features.map((feature) => ({
+      name: feature.name,
+      class: feature.class,
+      description: feature.description,
+      level: feature.level,
+      linkedAbility: feature.linkedAbility,
+      max: feature.max,
+      options: feature.options
+        ? Object.entries(feature.options).map(([key, value]) => ({
+            name: key,
+            description: value,
+          }))
+        : null,
+      resetsOn: feature.resetsOn,
+      shortDescription: feature.shortDescription,
+      source: feature.source,
+      tracked: feature.tracked,
+      used: feature.used,
+    })),
+    images: character.images.map((image) => ({
+      value: image,
+    })),
+  };
+};
 
 export const cleanCharacterDetails = (data: CharacterDetails) => {
   const cleanedSpellSlots = {};
@@ -23,9 +79,9 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
     linkedAbility: cleanStringNull(feature.linkedAbility),
     class: cleanStringNull(feature.class),
     max: cleanNumberNull(feature.max),
-    used: 0,
+    used: feature.used || 0,
     resetsOn: cleanStringNull(feature.resetsOn),
-    options: feature.options.length
+    options: feature.options?.length
       ? Object.fromEntries(
           feature.options.map((option) => [option.name, option.description])
         )

@@ -34,7 +34,6 @@ const TextAreaInput = ({
         cols={100}
         rows={5}
         wrap="soft"
-        autoFocus
         id={name}
         style={{ width, height }}
         {...register(name, {

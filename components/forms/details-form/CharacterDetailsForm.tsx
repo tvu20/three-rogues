@@ -1,8 +1,7 @@
-import { Character } from "@prisma/client";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useCreateCharacterMutation } from "../../../app/api/apiSlice";
-import { ABILITY } from "../../../app/character/characterDefs";
+import { ABILITY, Character } from "../../../app/character/characterDefs";
 import {
   ABILITY_SCORE_MAPPING,
   SKILL_DESCRIPTION_MAPPING,
@@ -10,6 +9,7 @@ import {
 } from "../../../app/character/characterMapping";
 import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch } from "../../../utils/redux";
+import Loader from "../../shared/layout/Loader";
 import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
@@ -22,8 +22,12 @@ import ImageArrayInput from "../inputs/ImageArrayInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextAreaInput from "../inputs/TextAreaInput";
 import TextInput from "../inputs/TextInput";
-import { cleanCharacterDetails } from "../utils/characterDetailsUtils";
+import {
+  cleanCharacterDetails,
+  generateDefaultValues,
+} from "../utils/characterDetailsUtils";
 import styles from "./CharacterDetailsForm.module.css";
+
 const requiredTesting = true;
 
 type CharacterDetailsFormProps = {
@@ -34,17 +38,28 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  // TODO: if character is provided, fill defaultValues with character data
+  const defaultValues = character
+    ? generateDefaultValues(character)
+    : CharacterDetailsDefaultValues;
+
+  //   if (character) {
+  //     const test = generateDefaultValues(character);
+  //     console.log("test", test);
+  //     console.log("clean", cleanCharacterDetails(test));
+  //   }
+
+  //   console.log(CharacterDetailsDefaultValues);
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<CharacterDetails>({
-    defaultValues: CharacterDetailsDefaultValues,
+    defaultValues,
   });
 
-  const [createCharacter] = useCreateCharacterMutation();
+  const [createCharacter, { isLoading }] = useCreateCharacterMutation();
 
   const abilityScoreFields = () => {
     return Object.keys(ABILITY_SCORE_MAPPING).map((ability: ABILITY) => (
@@ -172,10 +187,12 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     }
   };
 
+  if (isLoading) return <Loader />;
+
   return (
     <div className={styles.form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Create a New Character</h1>
+        <h1>{character ? "Edit Character" : "Create a New Character"}</h1>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Basic Information
         </h3>

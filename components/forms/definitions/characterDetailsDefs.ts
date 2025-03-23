@@ -69,14 +69,17 @@ export type CharacterDetails = {
     description: string;
     source: string;
     class: string;
-    options: {
-      name: string;
-      description: string;
-    }[];
+    options:
+      | {
+          name: string;
+          description: string;
+        }[]
+      | null;
     tracked: boolean;
     max: number;
-    resetsOn: string;
+    resetsOn: string | null;
     shortDescription: string;
+    used?: number;
   }[];
 
   height: string;

@@ -6,8 +6,8 @@ export const cleanNumberNull = (value: number | null) => {
   return value === null ? null : isNaN(value) ? null : value;
 };
 
-export const cleanStringNull = (value: string) => {
-  return value === "" ? null : value;
+export const cleanStringNull = (value: string | null) => {
+  return value === null || value === "" ? null : value;
 };
 
 export default cleanNumber;

@@ -60,6 +60,7 @@ export const apiSlice = createApi({
       },
     }),
     // TODO: fix type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createCharacter: builder.mutation<Character, any>({
       query: (character) => ({
         url: "/character",

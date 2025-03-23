@@ -24,7 +24,7 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
     name: "class",
   });
 
-  const validateStartingClass = (value, index) => {
+  const validateStartingClass = (value) => {
     const classes = control._formValues.class;
     const startingClassCount = classes.filter((c) => c.isStartingClass).length;
 
@@ -49,7 +49,9 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
             error={errors.class?.[index]?.name?.message}
           >
             {CLASSES.map((className) => (
-              <option value={className}>{className}</option>
+              <option key={className} value={className}>
+                {className}
+              </option>
             ))}
           </SelectInput>
           <TextInput
@@ -78,7 +80,7 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
             register={register}
             name={`class.${index}.isStartingClass`}
             label="Starting Class"
-            validate={(value) => validateStartingClass(value, index)}
+            validate={(value) => validateStartingClass(value)}
           />
           <button
             type="button"
