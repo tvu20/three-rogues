@@ -86,7 +86,9 @@ export type CharacterDetails = {
   allies: string;
   organization: string;
   backstory: string;
-  // missing images here
+  images: {
+    value: string;
+  }[];
 };
 
 export const CharacterDetailsDefaultValues: CharacterDetails = {
@@ -176,6 +178,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   allies: "",
   organization: "",
   backstory: "",
+  images: [],
 
   skills: {
     Acrobatics: {

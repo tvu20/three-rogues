@@ -130,6 +130,18 @@ input.error {
   height: 20px;
 }
 
+/* IMAGE ARRAY INPUT */
+
+.arrayRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.arrayRow .textInput {
+  margin-top: 0;
+}
+
 /* CLASS INPUT */
 
 .classSection {

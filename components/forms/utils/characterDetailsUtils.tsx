@@ -32,6 +32,10 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
       : null,
   }));
 
+  const cleanedImages = data.images
+    .filter((image) => image.value !== "")
+    .map((image) => image.value);
+
   const cleanedData = {
     ...data,
     age: cleanNumber(data.age),
@@ -56,6 +60,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
     },
     features: cleanedFeatures,
     skills: cleanedSkills,
+    images: cleanedImages,
   };
   return cleanedData;
 };

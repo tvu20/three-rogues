@@ -14,6 +14,7 @@ import CheckboxInput from "../inputs/CheckboxInput";
 import ClassInput from "../inputs/ClassInput";
 import FeatureInput from "../inputs/FeatureInput";
 import HitDiceInput from "../inputs/HitDiceInput";
+import ImageArrayInput from "../inputs/ImageArrayInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextAreaInput from "../inputs/TextAreaInput";
 import TextInput from "../inputs/TextInput";
@@ -476,6 +477,9 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             placeholder="Tan"
           />
         </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Backstory
+        </h3>
         <div className={styles.formRow}>
           <TextInput
             register={register}
@@ -498,7 +502,16 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             placeholder="Once upon a time..."
           />
         </div>
-        {/* // missing backstory slot here */}
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Images
+        </h3>
+        <div className={styles.formRow}>
+          <ImageArrayInput
+            register={register}
+            control={control}
+            name="images"
+          />
+        </div>
         <SubmitInput />
       </form>
     </div>
