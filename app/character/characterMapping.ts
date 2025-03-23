@@ -1,5 +1,23 @@
 import { ABILITY, ITEM_TYPE } from "./characterDefs";
 
+export const CLASSES = [
+  "Artificer",
+  "Barbarian",
+  "Bard",
+  "Cleric",
+  "Druid",
+  "Fighter",
+  "Monk",
+  "Paladin",
+  "Ranger",
+  "Rogue",
+  "Sorcerer",
+  "Warlock",
+  "Wizard",
+];
+
+export const FEATURE_SOURCES = ["class", "race", "background", "feat"];
+
 export const ABILITY_SCORE_MAPPING: Record<ABILITY, string> = {
   str: "Strength",
   dex: "Dexterity",

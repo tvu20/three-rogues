@@ -12,6 +12,7 @@ import {
 } from "../definitions/characterDetailsDefs";
 import CheckboxInput from "../inputs/CheckboxInput";
 import ClassInput from "../inputs/ClassInput";
+import FeatureInput from "../inputs/FeatureInput";
 import HitDiceInput from "../inputs/HitDiceInput";
 import SubmitInput from "../inputs/SubmitInput";
 import TextAreaInput from "../inputs/TextAreaInput";
@@ -442,6 +443,10 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             fullWidth
           />
         </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Features
+        </h3>
+        <FeatureInput register={register} control={control} errors={errors} />
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Appearance
         </h3>

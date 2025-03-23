@@ -251,11 +251,11 @@ export type Character = {
   liveStats: LiveStats;
   skills: Skill[];
   features: Feature[];
-  weapons: Weapon[];
-  spells: Spell[];
-  currency: Currency;
-  inventory: Item[];
-  creatures: Creature[];
+  weapons: Weapon[]; // TODO
+  spells: Spell[]; // TODO
+  currency: Currency; // TODO
+  inventory: Item[]; // TODO
+  creatures: Creature[]; // TODO
 
   height?: string;
   hair?: string;

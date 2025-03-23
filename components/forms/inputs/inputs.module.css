@@ -78,8 +78,34 @@ input.error {
   font-size: var(--font-size-body-medium);
 }
 
-.textAreaInput input::placeholder {
+.textAreaInput textarea::placeholder {
   opacity: 0.7;
+}
+
+/* SELECT INPUT */
+
+.selectInput {
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
+}
+
+.selectInput label {
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+
+.selectInput select {
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  width: 150px;
+  max-width: 70vw;
+  padding: var(--spacing-xsmall) 0;
+  border: none;
+  border-bottom: 1px solid var(--content-box-border-color);
+  font-size: var(--font-size-body-medium);
 }
 
 /* CHECKBOX INPUT */
@@ -157,6 +183,64 @@ input.error {
 
 .hitDiceRow svg {
   margin-top: 30px;
+}
+
+/* FEATURE INPUT */
+
+.featureSection {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-medium);
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* flex-wrap: wrap; */
+  margin-bottom: var(--spacing-small-medium);
+  padding-bottom: 20px;
+}
+
+.featureItemRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-small-medium);
+  width: 100%;
+}
+
+.featureItemRow div {
+  margin-top: 0;
+  margin-bottom: var(--spacing-small);
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.optionRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.featureDeleteButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--snackbar-error-color);
+  /* color: var(--snackbar-error-color); */
+  color: var(--action-button-highlighted-text-color);
+  /* border: 2px solid var(--snackbar-error-color); */
+  font-weight: 400;
+  padding: var(--spacing-xsmall) var(--spacing-small-medium);
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  text-transform: uppercase;
 }
 
 /* MEDIA QUERIES */

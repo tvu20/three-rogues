@@ -62,6 +62,22 @@ export type CharacterDetails = {
       source: string;
     };
   };
+  features: {
+    name: string;
+    level: number | null;
+    linkedAbility: string;
+    description: string;
+    source: string;
+    class: string;
+    options: {
+      name: string;
+      description: string;
+    }[];
+    tracked: boolean;
+    max: number;
+    resetsOn: string;
+    shortDescription: string;
+  }[];
 
   height: string;
   hair: string;
@@ -137,6 +153,21 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
     hitDice: [],
     spellSlots: {},
   },
+  features: [
+    {
+      name: "",
+      level: null,
+      linkedAbility: "",
+      description: "",
+      source: "class",
+      class: "",
+      options: [],
+      tracked: false,
+      max: 0,
+      resetsOn: "",
+      shortDescription: "",
+    },
+  ],
 
   height: "",
   hair: "",

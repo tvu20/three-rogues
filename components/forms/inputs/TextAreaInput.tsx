@@ -10,6 +10,8 @@ type TextAreaInputProps = {
   placeholder?: string;
   required?: boolean;
   error?: string;
+  width?: string;
+  height?: string;
   //   fullWidth?: boolean;
   //   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   //   validate?: (value: string) => string | boolean;
@@ -22,16 +24,19 @@ const TextAreaInput = ({
   placeholder,
   required = false,
   error,
+  width = "100%",
+  height = "",
 }: TextAreaInputProps) => {
   return (
     <div className={styles.textAreaInput}>
       <label htmlFor={name}>{label}</label>
       <textarea
-        cols={300}
+        cols={100}
         rows={5}
+        wrap="soft"
         autoFocus
         id={name}
-        style={{ whiteSpace: "pre" }}
+        style={{ width, height }}
         {...register(name, {
           required: required ? "This field is required" : false,
           setValueAs: (v: string) => v,

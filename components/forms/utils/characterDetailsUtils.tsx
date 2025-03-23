@@ -1,5 +1,5 @@
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
-import cleanNumber from "./formUtils";
+import cleanNumber, { cleanNumberNull, cleanStringNull } from "./formUtils";
 
 export const cleanCharacterDetails = (data: CharacterDetails) => {
   const cleanedSpellSlots = {};
@@ -15,6 +15,21 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
   const cleanedSkills = Object.values(data.skills).map((skill) => ({
     ...skill,
     bonus: cleanNumber(skill.bonus),
+  }));
+
+  const cleanedFeatures = data.features.map((feature) => ({
+    ...feature,
+    level: cleanNumberNull(feature.level),
+    linkedAbility: cleanStringNull(feature.linkedAbility),
+    class: cleanStringNull(feature.class),
+    max: cleanNumberNull(feature.max),
+    used: cleanNumberNull(feature.max),
+    resetsOn: cleanStringNull(feature.resetsOn),
+    options: feature.options.length
+      ? Object.fromEntries(
+          feature.options.map((option) => [option.name, option.description])
+        )
+      : null,
   }));
 
   const cleanedData = {
@@ -39,6 +54,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
       })),
       inspiration: false,
     },
+    features: cleanedFeatures,
     skills: cleanedSkills,
   };
   return cleanedData;
