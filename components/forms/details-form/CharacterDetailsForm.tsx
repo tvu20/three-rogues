@@ -10,6 +10,7 @@ import CheckboxInput from "../inputs/CheckboxInput";
 import ClassInput from "../inputs/ClassInput";
 import HitDiceInput from "../inputs/HitDiceInput";
 import SubmitInput from "../inputs/SubmitInput";
+import TextAreaInput from "../inputs/TextAreaInput";
 import TextInput from "../inputs/TextInput";
 import { cleanCharacterDetails } from "../utils/characterDetailsUtils";
 import styles from "./CharacterDetailsForm.module.css";
@@ -392,6 +393,58 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             fullWidth
           />
         </div>
+        <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
+          Appearance
+        </h3>
+        <div className={styles.formRow}>
+          <TextInput
+            register={register}
+            name="height"
+            label="Height"
+            placeholder="5'8''"
+          />
+          <TextInput
+            register={register}
+            name="hair"
+            label="Hair"
+            placeholder="Brown"
+          />
+          <TextInput
+            register={register}
+            name="eyes"
+            label="Eyes"
+            placeholder="Brown"
+          />
+          <TextInput
+            register={register}
+            name="skin"
+            label="Skin"
+            placeholder="Tan"
+          />
+        </div>
+        <div className={styles.formRow}>
+          <TextInput
+            register={register}
+            name="allies"
+            label="Allies"
+            placeholder="The High Priestess of the Moon"
+            fullWidth
+          />
+          <TextInput
+            register={register}
+            name="organization"
+            label="Organization"
+            placeholder="The Order of the Silver Moon"
+            fullWidth
+          />
+          <TextAreaInput
+            register={register}
+            name="backstory"
+            label="Backstory"
+            placeholder="Once upon a time..."
+          />
+        </div>
+        {/* // missing backstory slot here */}
         <SubmitInput />
       </form>
     </div>

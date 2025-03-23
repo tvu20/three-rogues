@@ -53,6 +53,15 @@ export type CharacterDetails = {
       };
     };
   };
+
+  height: string;
+  hair: string;
+  eyes: string;
+  skin: string;
+  allies: string;
+  organization: string;
+  backstory: string;
+  // missing images here
 };
 
 export const CharacterDetailsDefaultValues: CharacterDetails = {
@@ -119,4 +128,12 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
     hitDice: [],
     spellSlots: {},
   },
+
+  height: "",
+  hair: "",
+  eyes: "",
+  skin: "",
+  allies: "",
+  organization: "",
+  backstory: "",
 };
