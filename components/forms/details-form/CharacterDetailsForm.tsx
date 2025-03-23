@@ -24,7 +24,7 @@ import TextAreaInput from "../inputs/TextAreaInput";
 import TextInput from "../inputs/TextInput";
 import { cleanCharacterDetails } from "../utils/characterDetailsUtils";
 import styles from "./CharacterDetailsForm.module.css";
-const requiredTesting = false;
+const requiredTesting = true;
 
 type CharacterDetailsFormProps = {
   character?: Character;
@@ -149,7 +149,9 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     const cleanedData = cleanCharacterDetails(data);
     // console.log(cleanedData);
     try {
-      await createCharacter(cleanedData).unwrap();
+      if (requiredTesting) {
+        await createCharacter(cleanedData).unwrap();
+      }
 
       dispatch(
         setSnackbar({

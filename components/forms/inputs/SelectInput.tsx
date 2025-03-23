@@ -7,6 +7,8 @@ type SelectInputProps = {
   label: string;
   children: React.ReactNode;
   width?: string;
+  required?: boolean;
+  error?: string;
 };
 
 const SelectInput = ({
@@ -15,13 +17,21 @@ const SelectInput = ({
   label,
   children,
   width,
+  required,
+  error,
 }: SelectInputProps) => {
   return (
     <div className={styles.selectInput}>
       <label htmlFor={name}>{label}</label>
-      <select {...register(name)} style={{ width }}>
+      <select
+        {...register(name, {
+          required: required ? "This field is required" : false,
+        })}
+        style={{ width }}
+      >
         {children}
       </select>
+      {<span className={styles.errorMessage}>{error || " "}</span>}
     </div>
   );
 };

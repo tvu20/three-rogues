@@ -5,8 +5,10 @@ import {
   useFieldArray,
   UseFormRegister,
 } from "react-hook-form";
+import { CLASSES } from "../../../app/character/characterMapping";
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
 import CheckboxInput from "./CheckboxInput";
+import SelectInput from "./SelectInput";
 import TextInput from "./TextInput";
 import styles from "./inputs.module.css";
 
@@ -39,15 +41,17 @@ const ClassInput = ({ register, control, errors }: ClassInputProps) => {
     <div className={styles.classSection}>
       {fields.map((field, index) => (
         <div key={field.id} className={styles.classRow}>
-          <TextInput
+          <SelectInput
             register={register}
             name={`class.${index}.name`}
             label="Class"
-            placeholder="Rogue"
-            width="150px"
             required
             error={errors.class?.[index]?.name?.message}
-          />
+          >
+            {CLASSES.map((className) => (
+              <option value={className}>{className}</option>
+            ))}
+          </SelectInput>
           <TextInput
             register={register}
             name={`class.${index}.level`}

@@ -95,6 +95,7 @@ input.error {
   font-family: var(--font-belleza);
   text-transform: uppercase;
   margin-bottom: 1px;
+  margin-left: 4px;
 }
 
 .selectInput select {
@@ -162,7 +163,8 @@ input.error {
   border-bottom: 1px solid var(--content-box-separator-color);
 }
 
-.classRow .textInput {
+.classRow .textInput,
+.classRow .selectInput {
   margin-top: 0;
 }
 

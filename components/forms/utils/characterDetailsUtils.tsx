@@ -23,7 +23,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
     linkedAbility: cleanStringNull(feature.linkedAbility),
     class: cleanStringNull(feature.class),
     max: cleanNumberNull(feature.max),
-    used: cleanNumberNull(feature.max),
+    used: 0,
     resetsOn: cleanStringNull(feature.resetsOn),
     options: feature.options.length
       ? Object.fromEntries(

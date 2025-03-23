@@ -102,7 +102,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   age: "",
   class: [
     {
-      name: "",
+      name: "Artificer",
       isStartingClass: true,
       level: 1,
       subclass: "",

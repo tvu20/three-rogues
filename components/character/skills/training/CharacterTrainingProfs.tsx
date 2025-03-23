@@ -17,19 +17,19 @@ const CharacterTrainingProfs = ({
     <div className={`content-box ${styles.container}`}>
       <div className={styles.item}>
         <h3>Armor</h3>
-        <p>{armor}</p>
+        <p>{armor || "None"}</p>
       </div>
       <div className={styles.item}>
         <h3>Weapons</h3>
-        <p>{weapons}</p>
+        <p>{weapons || "None"}</p>
       </div>
       <div className={styles.item}>
         <h3>Tools</h3>
-        <p>{tools}</p>
+        <p>{tools || "None"}</p>
       </div>
       <div className={styles.item}>
         <h3>Languages</h3>
-        <p>{languages}</p>
+        <p>{languages || "None"}</p>
       </div>
     </div>
   );
