@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Character } from "../../../app/character/characterDefs";
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
 import cleanNumber, { cleanNumberNull, cleanStringNull } from "./formUtils";
