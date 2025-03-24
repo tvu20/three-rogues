@@ -1,5 +1,6 @@
 import { PencilSimple } from "@phosphor-icons/react";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 import { Spell } from "../../../app/character/characterDefs";
@@ -18,6 +19,8 @@ import CharacterSpells from "./CharacterSpells";
 const CharacterSpellcasting = () => {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
+
+  const router = useRouter();
 
   const isMobile = useMediaQuery(950);
 
@@ -68,7 +71,10 @@ const CharacterSpellcasting = () => {
 
   const ModifySpellsButton = () => {
     return (
-      <button className={`action-button ${styles.modifySpellsButton}`}>
+      <button
+        className={`action-button ${styles.modifySpellsButton}`}
+        onClick={() => router.push(`/character/${id}/spells`)}
+      >
         <PencilSimple size={24} />
         <p>Modify Spells</p>
       </button>

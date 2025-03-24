@@ -1,9 +1,8 @@
-import { Path, UseFormRegister } from "react-hook-form";
-import { CharacterDetails } from "../definitions/characterDetailsDefs";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import styles from "./inputs.module.css";
-type SelectInputProps = {
-  register: UseFormRegister<CharacterDetails>;
-  name: Path<CharacterDetails>;
+type SelectInputProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
+  name: Path<T>;
   label: string;
   children: React.ReactNode;
   width?: string;
@@ -11,7 +10,7 @@ type SelectInputProps = {
   error?: string;
 };
 
-const SelectInput = ({
+const SelectInput = <T extends FieldValues>({
   register,
   name,
   label,
@@ -19,7 +18,7 @@ const SelectInput = ({
   width,
   required,
   error,
-}: SelectInputProps) => {
+}: SelectInputProps<T>) => {
   return (
     <div className={styles.selectInput}>
       <label htmlFor={name}>{label}</label>

@@ -1,23 +1,24 @@
-import { Path, UseFormRegister } from "react-hook-form";
-import { CharacterDetails } from "../definitions/characterDetailsDefs";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import styles from "./inputs.module.css";
-type CheckboxInputProps = {
-  register: UseFormRegister<CharacterDetails>;
-  name: Path<CharacterDetails>;
+type CheckboxInputProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
+  name: Path<T>;
   label: string;
   validate?: (value: boolean) => string | boolean;
+  marginTop?: string;
 };
 
-const CheckboxInput = ({
+const CheckboxInput = <T extends FieldValues>({
   register,
   name,
   label,
   validate,
-}: CheckboxInputProps) => {
+  marginTop,
+}: CheckboxInputProps<T>) => {
   const inputId = `checkbox-${name}`;
 
   return (
-    <div className={styles.checkboxInput}>
+    <div className={styles.checkboxInput} style={{ marginTop }}>
       <input id={inputId} type="checkbox" {...register(name, { validate })} />
       <label htmlFor={inputId}>{label}</label>
     </div>

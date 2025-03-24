@@ -3,6 +3,7 @@
 }
 
 .form h1 {
+  font-size: var(--font-size-heading-large);
   font-family: var(--font-belleza);
   text-transform: uppercase;
   font-weight: 500;

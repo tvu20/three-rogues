@@ -1,10 +1,9 @@
-import { Path, UseFormRegister } from "react-hook-form";
-import { CharacterDetails } from "../definitions/characterDetailsDefs";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import styles from "./inputs.module.css";
 
-type TextInputProps = {
-  register: UseFormRegister<CharacterDetails>;
-  name: Path<CharacterDetails>;
+type TextInputProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
+  name: Path<T>;
   label: string;
   width?: string;
   placeholder?: string;
@@ -16,7 +15,7 @@ type TextInputProps = {
   validate?: (value: string) => string | boolean;
 };
 
-const TextInput = ({
+const TextInput = <T extends FieldValues>({
   register,
   name,
   label,
@@ -28,7 +27,7 @@ const TextInput = ({
   fullWidth = false,
   onChange,
   validate,
-}: TextInputProps) => {
+}: TextInputProps<T>) => {
   const inputId = `text-${name}`;
   return (
     <div

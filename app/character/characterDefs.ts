@@ -161,9 +161,9 @@ export type Item = {
 };
 
 export type Spell = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
   description: string;
   source: string;
@@ -171,14 +171,14 @@ export type Spell = {
   level: string;
   school: SPELL_SCHOOL;
   components: string;
-  castingTime: string;
+  castingTime: string; // todo
   range: string;
-  duration: string;
-  ritual?: boolean;
+  duration: string; // todo
+  ritual: boolean;
   concentration: boolean;
-  prepared?: boolean;
-  damage?: string;
-  save?: ABILITY;
+  prepared: string | boolean | null;
+  damage: string | null;
+  save: ABILITY | "null" | null;
 };
 
 export type Creature = {

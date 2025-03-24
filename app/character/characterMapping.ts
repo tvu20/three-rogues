@@ -93,6 +93,30 @@ export const SPELL_TYPES = [
   "control",
 ];
 
+export const SPELL_LEVELS = [
+  "cantrip",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+];
+
+export const SPELL_SCHOOLS = [
+  "abjuration",
+  "conjuration",
+  "divination",
+  "enchantment",
+  "evocation",
+  "illusion",
+  "necromancy",
+  "transmutation",
+];
+
 export const ITEM_TYPES: ITEM_TYPE[] = [
   "weapon",
   "equipment",

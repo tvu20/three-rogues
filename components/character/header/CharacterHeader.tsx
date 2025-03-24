@@ -31,8 +31,11 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
     <div className={styles.container}>
       <img
         className={styles.avatar}
-        src={character?.avatar}
-        alt={character?.name}
+        src={
+          character?.avatar ||
+          "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+        }
+        alt={character?.name ?? "Character avatar"}
         loading="lazy"
       />
       <div className={styles.nameContainer}>
