@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { useUpdateSpellsMutation } from "../../../app/api/apiSlice";
 import { Spell, STATS } from "../../../app/character/characterDefs";
 import {
   ABILITY_SCORE_MAPPING,
@@ -6,6 +8,9 @@ import {
   SPELL_SCHOOLS,
   SPELL_TYPES,
 } from "../../../app/character/characterMapping";
+import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
+import { useAppDispatch } from "../../../utils/redux";
+import Loader from "../../shared/layout/Loader";
 import {
   CharacterSpells,
   SpellStartingValues,
@@ -20,7 +25,6 @@ import {
   generateDefaultValues,
 } from "../utils/characterSpellsUtils";
 import styles from "./CharacterSpellsForm.module.css";
-
 type CharacterSpellsFormProps = {
   id: string;
   spells: Spell[];
@@ -28,10 +32,14 @@ type CharacterSpellsFormProps = {
 };
 
 const CharacterSpellsForm = ({
-  //   id,
+  id,
   spells,
   name,
 }: CharacterSpellsFormProps) => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const [updateSpells, { isLoading }] = useUpdateSpellsMutation();
   const defaultValues = generateDefaultValues(spells);
 
   const {
@@ -49,8 +57,34 @@ const CharacterSpellsForm = ({
   });
 
   const onSubmit: SubmitHandler<CharacterSpells> = async (data) => {
+    console.log("data", data);
+    const cleanedData = cleanCharacterSpells(data);
     console.log("onSubmit");
-    console.log(cleanCharacterSpells(data));
+    console.log(cleanedData);
+
+    try {
+      await updateSpells({
+        id,
+        spells: cleanedData,
+      }).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Spells updated!",
+          severity: "success",
+        })
+      );
+
+      router.push(`/character/${id}`);
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
   const createSpells = () => {
@@ -245,6 +279,10 @@ const CharacterSpellsForm = ({
       ));
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.form}>

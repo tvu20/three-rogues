@@ -6,6 +6,7 @@ import type {
   Character,
   Creature,
   LiveStats,
+  Spell,
 } from "../character/characterDefs";
 import { setSnackbar } from "../snackbar/snackbarSlice";
 
@@ -104,6 +105,17 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    updateSpells: builder.mutation<Character, { id: string; spells: Spell[] }>({
+      query: ({ id, spells }) => ({
+        url: `/character/${id}/spells`,
+        method: "PUT",
+        body: { spells },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
   }),
 });
 
@@ -114,4 +126,5 @@ export const {
   useUpdateLiveStatsMutation,
   useCreateCharacterMutation,
   useUpdateCharacterMutation,
+  useUpdateSpellsMutation,
 } = apiSlice;

@@ -171,14 +171,14 @@ export type Spell = {
   level: string;
   school: SPELL_SCHOOL;
   components: string;
-  castingTime: string; // todo
+  castingTime: string;
   range: string;
-  duration: string; // todo
+  duration: string;
   ritual: boolean;
   concentration: boolean;
   prepared: string | boolean | null;
   damage: string | null;
-  save: ABILITY | "null" | null;
+  save: ABILITY | "null" | string | null; // not sure why string is needed
 };
 
 export type Creature = {

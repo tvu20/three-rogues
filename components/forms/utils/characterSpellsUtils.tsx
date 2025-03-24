@@ -1,4 +1,4 @@
-import { Spell } from "../../../app/character/characterDefs";
+import { ABILITY, Spell } from "../../../app/character/characterDefs";
 import { CharacterSpells } from "../definitions/characterSpellsDefs";
 import {
   booleanNullToString,
@@ -9,7 +9,7 @@ export const generateDefaultValues = (spells: Spell[]) => {
   const modifiedSpellValues = spells.map((spell) => ({
     ...spell,
     prepared: booleanNullToString(spell.prepared),
-    save: spell.save === null ? "null" : spell.save,
+    save: spell.save === null ? "null" : (spell.save as ABILITY),
   }));
   return {
     data: modifiedSpellValues,
@@ -17,13 +17,11 @@ export const generateDefaultValues = (spells: Spell[]) => {
 };
 
 export const cleanCharacterSpells = (spells: CharacterSpells) => {
-  const modifiedSpellValues = spells.data.map((spell) => ({
+  const modifiedSpellValues = spells.data.map(({ characterId, ...spell }) => ({
     ...spell,
     prepared: stringToBooleanNull(spell.prepared),
     damage: cleanStringNull(spell.damage),
-    save: cleanStringNull(spell.save),
+    save: spell.save === "null" ? null : (spell.save as ABILITY),
   }));
-  return {
-    data: modifiedSpellValues,
-  };
+  return modifiedSpellValues;
 };

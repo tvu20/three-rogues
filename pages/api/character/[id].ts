@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 
-// GET /api/character/[id]
 export default async function handle(req, res) {
   const id = req.query.id;
   const session = await getServerSession(req, res, authOptions);
@@ -63,7 +62,7 @@ export default async function handle(req, res) {
           deleteMany: {
             characterId: id,
             NOT: {
-              id: { in: features.map((f) => f.id) },
+              id: { in: features.map((f) => f.id ?? "") },
             },
           },
           upsert: features.map((feature) => ({
