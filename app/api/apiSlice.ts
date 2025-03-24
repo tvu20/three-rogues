@@ -69,13 +69,27 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Character"],
     }),
+    updateCharacter: builder.mutation<
+      Character,
+      { id: string; character: Character }
+    >({
+      query: ({ id, character }) => ({
+        url: `/character/${id}`,
+        method: "PUT",
+        body: character,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
     updateLiveStats: builder.mutation<
       Character,
       { id: string; liveStats: LiveStats; creatures: Creature[] }
     >({
       query: ({ id, liveStats, creatures }) => ({
         url: `/liveStats/${id}`,
-        method: "POST",
+        method: "PUT",
         body: {
           trackedFeatures: liveStats.trackedFeatures,
           liveStats: {
@@ -99,4 +113,5 @@ export const {
   useGetCharacterQuery,
   useUpdateLiveStatsMutation,
   useCreateCharacterMutation,
+  useUpdateCharacterMutation,
 } = apiSlice;

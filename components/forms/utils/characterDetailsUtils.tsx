@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Character } from "../../../app/character/characterDefs";
+import {
+  Character,
+  LINKED_ABILITY,
+  RESETS_ON,
+} from "../../../app/character/characterDefs";
 import { CharacterDetails } from "../definitions/characterDetailsDefs";
 import cleanNumber, { cleanNumberNull, cleanStringNull } from "./formUtils";
 
@@ -14,7 +18,6 @@ export const generateDefaultValues = (character: Character) => {
     author,
     authorId,
     createdAt,
-    id,
     ...rest
   } = character;
   return {
@@ -35,8 +38,9 @@ export const generateDefaultValues = (character: Character) => {
       character.skills.map((skill) => [skill.name, skill])
     ),
     features: character.features.map((feature) => ({
+      id: feature.id,
       name: feature.name,
-      class: feature.class,
+      class: feature.class || null,
       description: feature.description,
       level: feature.level,
       linkedAbility: feature.linkedAbility,
@@ -78,11 +82,12 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
   const cleanedFeatures = data.features.map((feature) => ({
     ...feature,
     level: cleanNumberNull(feature.level),
-    linkedAbility: cleanStringNull(feature.linkedAbility),
+    linkedAbility: (cleanStringNull(feature.linkedAbility) ||
+      "") as LINKED_ABILITY,
     class: cleanStringNull(feature.class),
-    max: cleanNumberNull(feature.max),
+    max: cleanNumber(feature.max),
     used: feature.used || 0,
-    resetsOn: cleanStringNull(feature.resetsOn),
+    resetsOn: cleanStringNull(feature.resetsOn) as RESETS_ON,
     options: feature.options?.length
       ? Object.fromEntries(
           feature.options.map((option) => [option.name, option.description])

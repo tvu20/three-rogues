@@ -1,10 +1,13 @@
 import {
   AbilityScores,
   Class,
+  LINKED_ABILITY,
+  RESETS_ON,
   SavingThrows,
 } from "../../../app/character/characterDefs";
 
 export type CharacterDetails = {
+  id?: string;
   name: string;
   avatar: string;
   race: string;
@@ -19,11 +22,11 @@ export type CharacterDetails = {
   maxHP: number;
   proficiencyBonus: number;
   initiative: number;
-  darkvision: number;
+  darkvision: number | null;
   ac: {
-    armor: number | null;
-    shield: number | null;
-    bonus: number | null;
+    armor: number;
+    shield: number;
+    bonus: number;
   };
   speed: {
     walk: string;
@@ -32,15 +35,15 @@ export type CharacterDetails = {
     climb: string;
   };
   defenses: string;
-  attacksPerAction?: number;
+  attacksPerAction: number;
   spellsKnown: number;
   cantripsKnown: number;
   maxPrepared: number;
-  spellcastingFocus?: string;
-  armorProficiencies?: string;
-  weaponProficiencies?: string;
-  toolProficiencies?: string;
-  languagesKnown?: string;
+  spellcastingFocus: string;
+  armorProficiencies: string;
+  weaponProficiencies: string;
+  toolProficiencies: string;
+  languagesKnown: string;
 
   liveStats: {
     hitDice: {
@@ -63,12 +66,13 @@ export type CharacterDetails = {
     };
   };
   features: {
+    id?: string;
     name: string;
     level: number | null;
-    linkedAbility: string;
+    linkedAbility: LINKED_ABILITY;
     description: string;
     source: string;
-    class: string;
+    class: string | null;
     options:
       | {
           name: string;
@@ -77,7 +81,7 @@ export type CharacterDetails = {
       | null;
     tracked: boolean;
     max: number;
-    resetsOn: string | null;
+    resetsOn: RESETS_ON;
     shortDescription: string;
     used?: number;
   }[];
@@ -124,9 +128,9 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   proficiencyBonus: 0,
   initiative: 0,
   ac: {
-    armor: null,
-    shield: null,
-    bonus: null,
+    armor: 0,
+    shield: 0,
+    bonus: 0,
   },
   speed: {
     walk: "",
@@ -169,7 +173,7 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
       options: [],
       tracked: false,
       max: 0,
-      resetsOn: "",
+      resetsOn: null,
       shortDescription: "",
     },
   ],

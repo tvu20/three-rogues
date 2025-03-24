@@ -11,7 +11,10 @@ export default async function handle(req, res) {
       error: "Not authorized",
       message: "You must be signed in to view this content",
     });
-  } else {
+  }
+
+  // GET /api/character/[id]
+  if (req.method === "GET") {
     const character = await prisma.character.findUnique({
       where: {
         id: id,
@@ -24,19 +27,9 @@ export default async function handle(req, res) {
         spells: true,
         inventory: true,
         creatures: true,
-        //   ingredients: true,
-        //   tags: true,
         author: {
           select: { name: true, email: true },
         },
-        //   comments: {
-        //     where: { author: { is: { email: email } } },
-        //     include: {
-        //       author: {
-        //         select: { email: true },
-        //       },
-        //     },
-        //   },
       },
     });
 
@@ -54,5 +47,36 @@ export default async function handle(req, res) {
     };
 
     res.status(200).json(combinedCharacter);
+
+    // PUT /api/character/[id]
+  } else if (req.method === "PUT") {
+    const { features, ...characterData } = req.body;
+    const character = await prisma.character.update({
+      where: {
+        id: id,
+        // @ts-ignore
+        author: { email: session.user.email },
+      },
+      data: {
+        ...characterData,
+        features: {
+          deleteMany: {
+            characterId: id,
+            NOT: {
+              id: { in: features.map((f) => f.id) },
+            },
+          },
+          upsert: features.map((feature) => ({
+            where: { id: feature.id ?? "" },
+            update: {
+              ...feature,
+            },
+            create: feature,
+          })),
+        },
+      },
+    });
+
+    res.status(200).json(character);
   }
 }

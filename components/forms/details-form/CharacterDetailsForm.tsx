@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useCreateCharacterMutation } from "../../../app/api/apiSlice";
+import {
+  useCreateCharacterMutation,
+  useUpdateCharacterMutation,
+} from "../../../app/api/apiSlice";
 import { ABILITY, Character } from "../../../app/character/characterDefs";
 import {
   ABILITY_SCORE_MAPPING,
@@ -42,14 +45,6 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     ? generateDefaultValues(character)
     : CharacterDetailsDefaultValues;
 
-  //   if (character) {
-  //     const test = generateDefaultValues(character);
-  //     console.log("test", test);
-  //     console.log("clean", cleanCharacterDetails(test));
-  //   }
-
-  //   console.log(CharacterDetailsDefaultValues);
-
   const {
     register,
     handleSubmit,
@@ -60,6 +55,8 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   });
 
   const [createCharacter, { isLoading }] = useCreateCharacterMutation();
+  const [updateCharacter, { isLoading: isUpdating }] =
+    useUpdateCharacterMutation();
 
   const abilityScoreFields = () => {
     return Object.keys(ABILITY_SCORE_MAPPING).map((ability: ABILITY) => (
@@ -162,20 +159,35 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
 
   const onSubmit: SubmitHandler<CharacterDetails> = async (data) => {
     const cleanedData = cleanCharacterDetails(data);
-    // console.log(cleanedData);
     try {
-      if (requiredTesting) {
-        await createCharacter(cleanedData).unwrap();
+      let message;
+      let path;
+
+      if (character && character.id) {
+        message = "Character successfully updated!";
+        path = `/character/${character.id}`;
+        if (requiredTesting) {
+          await updateCharacter({
+            id: character.id,
+            character: cleanedData,
+          }).unwrap();
+        }
+      } else {
+        message = "Character successfully created!";
+        path = "/";
+        if (requiredTesting) {
+          await createCharacter(cleanedData).unwrap();
+        }
       }
 
       dispatch(
         setSnackbar({
-          message: "Live stats successfully updated!",
+          message: message,
           severity: "success",
         })
       );
 
-      router.push("/");
+      router.push(path);
     } catch (err) {
       dispatch(
         setSnackbar({
@@ -187,7 +199,7 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     }
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading || isUpdating) return <Loader />;
 
   return (
     <div className={styles.form}>

@@ -9,7 +9,8 @@ export type LINKED_ABILITY =
   | "bonusaction"
   | "reaction"
   | "other"
-  | "";
+  | ""
+  | null;
 
 export type RESETS_ON = "short" | "long" | null;
 
@@ -108,18 +109,18 @@ export type Currency = {
 };
 
 export type Feature = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
   level: number | null;
   linkedAbility: LINKED_ABILITY;
   description: string;
   source: string;
-  class: string;
+  class: string | null;
   options: {
     [key: string]: string;
-  };
+  } | null;
   tracked: boolean;
   max: number;
   used?: number;
@@ -133,7 +134,7 @@ export type Weapon = {
   characterId: string;
   name: string;
   description?: string;
-  linkedAbility?: LINKED_ABILITY;
+  linkedAbility: LINKED_ABILITY;
   range?: string;
   ability?: ABILITY;
   proficient?: boolean;
@@ -210,11 +211,11 @@ export type Creature = {
 
 // eslint-disable-next-line
 export type Character = {
-  id: string;
+  id?: string;
   name: string;
-  createdAt: Date;
-  author: { name: string; email: string };
-  authorId: string;
+  createdAt?: Date;
+  author?: { name: string; email: string };
+  authorId?: string;
   avatar: string;
   race: string;
   level: number;
@@ -234,7 +235,7 @@ export type Character = {
     swim: string;
     climb: string;
   };
-  darkvision: number;
+  darkvision: number | null;
   savingThrows: SavingThrows;
   defenses: string;
   attacksPerAction: number;
@@ -250,11 +251,11 @@ export type Character = {
   liveStats: LiveStats;
   skills: Skill[];
   features: Feature[];
-  weapons: Weapon[]; // TODO
-  spells: Spell[]; // TODO
-  currency: Currency; // TODO
-  inventory: Item[]; // TODO
-  creatures: Creature[]; // TODO
+  weapons?: Weapon[]; // TODO
+  spells?: Spell[]; // TODO
+  currency?: Currency; // TODO
+  inventory?: Item[]; // TODO
+  creatures?: Creature[]; // TODO
 
   height: string;
   hair: string;

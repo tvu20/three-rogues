@@ -70,7 +70,6 @@ const StatBlock = ({
       const bonus = getAbilityModifier(score);
 
       if (hideSaves || !savingThrows) {
-        console.log("hideSaves");
         return (
           <Stat
             key={stat}
