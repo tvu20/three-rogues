@@ -205,7 +205,7 @@ const FeatureInput = ({ register, control, errors }: FeatureInputProps) => {
             options: [],
             tracked: false,
             max: 0,
-            resetsOn: "",
+            resetsOn: null,
             shortDescription: "",
           })
         }

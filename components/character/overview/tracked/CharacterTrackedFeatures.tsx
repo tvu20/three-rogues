@@ -27,9 +27,9 @@ const CharacterTrackedItem = ({
           onChange={() => {
             // if this is the last checked checkbox, uncheck it and set used to i
             if (used === i + 1) {
-              onChange(item.id, i);
+              onChange(item.id ?? "", i);
             } else {
-              onChange(item.id, i + 1);
+              onChange(item.id ?? "", i + 1);
             }
           }}
         />

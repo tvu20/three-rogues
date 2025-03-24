@@ -19,12 +19,14 @@ const CharacterInventory = () => {
     <div className="split-grid-container">
       <div>
         <CharacterItems
-          items={character.inventory}
-          weapons={character.weapons.filter((w) => w.inInventory)}
+          items={character.inventory || []}
+          weapons={(character.weapons || []).filter((w) => w.inInventory)}
         />
       </div>
       <div>
-        <CharacterCurrency currency={character.currency} />
+        <CharacterCurrency
+          currency={character.currency || { pp: 0, gp: 0, ep: 0, sp: 0, cp: 0 }}
+        />
       </div>
     </div>
   );
