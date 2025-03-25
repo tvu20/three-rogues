@@ -141,6 +141,13 @@ const CharacterInventoryForm = ({
         <h3 className={styles.marginBottom}>Inventory</h3>
         <InventoryInput register={register} control={control} errors={errors} />
         <div className={`${styles.formRow} ${styles.buttonContainer}`}>
+          <button
+            className={`action-button ${styles.cancelButton}`}
+            type="button"
+            onClick={() => router.push(`/character/${id}`)}
+          >
+            Cancel
+          </button>
           <SubmitInput />
         </div>
       </form>

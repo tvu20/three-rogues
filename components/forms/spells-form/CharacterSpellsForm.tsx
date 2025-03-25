@@ -298,7 +298,16 @@ const CharacterSpellsForm = ({
           >
             Add Spell
           </button>
-          <SubmitInput />
+          <div>
+            <button
+              className={`action-button ${styles.cancelButton}`}
+              type="button"
+              onClick={() => router.push(`/character/${id}`)}
+            >
+              Cancel
+            </button>
+            <SubmitInput />
+          </div>
         </div>
       </form>
     </div>

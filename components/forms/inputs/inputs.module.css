@@ -241,6 +241,7 @@ input.error {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-medium-large);
+  margin-bottom: var(--spacing-medium);
 }
 
 /* FEATURE INPUT */

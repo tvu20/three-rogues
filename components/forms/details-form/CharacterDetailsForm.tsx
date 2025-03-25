@@ -572,7 +572,16 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
             name="images"
           />
         </div>
-        <SubmitInput />
+        <div className={`${styles.formRow} ${styles.buttonContainer}`}>
+          <button
+            className={`action-button ${styles.cancelButton}`}
+            type="button"
+            onClick={() => router.push(`/character/${character?.id}`)}
+          >
+            Cancel
+          </button>
+          <SubmitInput />
+        </div>
       </form>
     </div>
   );
