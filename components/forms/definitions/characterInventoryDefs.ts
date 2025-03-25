@@ -21,3 +21,13 @@ export const WeaponStartingValues: Weapon = {
   inInventory: false,
   quantity: 0,
 };
+
+export const ItemStartingValues: Item = {
+  name: "",
+  quantity: 1,
+  type: [],
+  notes: "",
+  description: "",
+  attuned: "true",
+  equipped: "true",
+};

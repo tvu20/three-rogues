@@ -18,6 +18,18 @@ export const generateDefaultWeaponValues = (weapons: Weapon[]) => {
   return modifiedWeaponValues;
 };
 
+export const generateDefaultItemValues = (items: Item[]) => {
+  const modifiedItemValues = items.map((item) => ({
+    ...item,
+
+    // have to handle "type" somehow
+    attuned: booleanNullToString(item.attuned),
+    equipped: booleanNullToString(item.equipped),
+  }));
+  console.log(modifiedItemValues);
+  return modifiedItemValues;
+};
+
 export const cleanCharacterInventory = (
   weapons: Weapon[],
   inventory: Item[],
@@ -31,5 +43,12 @@ export const cleanCharacterInventory = (
     quantity: cleanNumberNull(weapon.quantity),
   }));
 
-  return { weapons: cleanedWeapons, inventory, currency };
+  const cleanedItems = inventory.map((item) => ({
+    ...item,
+    attuned: stringToBooleanNull(item.attuned),
+    equipped: stringToBooleanNull(item.equipped),
+    quantity: cleanNumberNull(item.quantity),
+  }));
+
+  return { weapons: cleanedWeapons, inventory: cleanedItems, currency };
 };

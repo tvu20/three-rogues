@@ -148,16 +148,16 @@ export type Weapon = {
 };
 
 export type Item = {
-  id: string;
-  createdAt: string;
-  characterId: string;
-  name: string;
-  quantity: number;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
+  name: string; // done
+  quantity: number; // done
   type: ITEM_TYPE[];
-  notes?: string;
-  description?: string;
-  attuned?: boolean;
-  equipped?: boolean;
+  notes: string; // done
+  description: string; // done
+  attuned: string | boolean | null; // done
+  equipped: string | boolean | null; // done
 };
 
 export type Spell = {

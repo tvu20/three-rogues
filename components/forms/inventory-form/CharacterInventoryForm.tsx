@@ -8,10 +8,13 @@ import TextInput from "../inputs/TextInput";
 import WeaponInput from "../inputs/WeaponInput";
 import {
   cleanCharacterInventory,
+  generateDefaultItemValues,
   generateDefaultWeaponValues,
 } from "../utils/characterInventoryUtils";
 
+import InventoryInput from "../inputs/InventoryInput";
 import styles from "./CharacterInventoryForm.module.css";
+
 type CharacterInventoryFormProps = {
   id: string;
   inventory: Item[];
@@ -38,7 +41,7 @@ const CharacterInventoryForm = ({
   } = useForm<CharacterInventory>({
     defaultValues: {
       currency,
-      inventory,
+      inventory: generateDefaultItemValues(inventory),
       weapons: generateDefaultWeaponValues(weapons),
     },
   });
@@ -106,6 +109,8 @@ const CharacterInventoryForm = ({
         </div>
         <h3 className={styles.marginBottom}>Weapons and Attacks</h3>
         <WeaponInput register={register} control={control} errors={errors} />
+        <h3 className={styles.marginBottom}>Inventory</h3>
+        <InventoryInput register={register} control={control} errors={errors} />
         <div className={`${styles.formRow} ${styles.buttonContainer}`}>
           <SubmitInput />
         </div>
