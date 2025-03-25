@@ -182,18 +182,18 @@ export type Spell = {
 };
 
 export type Creature = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
   ac: number;
   maxHP: number;
-  currentHP: number;
+  currentHP?: number;
   speed: string;
   type: string;
-  notes?: string;
+  notes: string;
   proficiencyBonus: number;
-  passivePerception?: number;
+  passivePerception: number | null;
   abilityScores: AbilityScores;
   savingThrows: string;
   skills: string;
@@ -251,11 +251,11 @@ export type Character = {
   liveStats: LiveStats;
   skills: Skill[];
   features: Feature[];
-  weapons?: Weapon[]; // TODO
-  spells?: Spell[]; // TODO
-  currency: Currency; // TODO
-  inventory?: Item[]; // TODO
-  creatures?: Creature[]; // TODO
+  weapons?: Weapon[];
+  spells?: Spell[];
+  currency: Currency;
+  inventory?: Item[];
+  creatures?: Creature[];
 
   height: string;
   hair: string;
