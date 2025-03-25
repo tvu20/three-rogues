@@ -6,14 +6,18 @@ export type CharacterInventory = {
   currency: Currency;
 };
 
-export const InventoryStartingValues: CharacterInventory = {
-  inventory: [],
-  weapons: [],
-  currency: {
-    pp: 0,
-    cp: 0,
-    gp: 0,
-    ep: 0,
-    sp: 0,
-  },
+export const WeaponStartingValues: Weapon = {
+  name: "",
+  description: "",
+  linkedAbility: "action", // might restrict this to certain values
+  range: "",
+  ability: "str", // also restricted
+  proficient: "true", // null/true/false, see spell prepared
+  damage: "",
+  damageType: "",
+  hitBonus: 0,
+  properties: "",
+  equipped: false,
+  inInventory: false,
+  quantity: 0,
 };

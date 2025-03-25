@@ -199,6 +199,14 @@ input.error {
   margin-top: 30px;
 }
 
+/* WEAPON INPUT */
+
+.weaponSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-medium-large);
+}
+
 /* FEATURE INPUT */
 
 .featureSection {
@@ -262,5 +270,13 @@ input.error {
 @media (max-width: 1050px) {
   .classRow .textInput {
     margin-bottom: var(--spacing-medium);
+  }
+
+  .weaponSection {
+    grid-template-columns: 1fr;
+  }
+
+  .weaponSection > div {
+    margin-bottom: 0;
   }
 }

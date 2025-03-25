@@ -5,6 +5,12 @@ import { useAppDispatch } from "../../../utils/redux";
 import { CharacterInventory } from "../definitions/characterInventoryDefs";
 import SubmitInput from "../inputs/SubmitInput";
 import TextInput from "../inputs/TextInput";
+import WeaponInput from "../inputs/WeaponInput";
+import {
+  cleanCharacterInventory,
+  generateDefaultWeaponValues,
+} from "../utils/characterInventoryUtils";
+
 import styles from "./CharacterInventoryForm.module.css";
 type CharacterInventoryFormProps = {
   id: string;
@@ -33,12 +39,17 @@ const CharacterInventoryForm = ({
     defaultValues: {
       currency,
       inventory,
-      weapons,
+      weapons: generateDefaultWeaponValues(weapons),
     },
   });
 
   const onSubmit: SubmitHandler<CharacterInventory> = async (data) => {
-    console.log("data", data);
+    const cleanedData = cleanCharacterInventory(
+      data.weapons,
+      data.inventory,
+      data.currency
+    );
+    console.log("data", cleanedData);
   };
 
   //   if (isLoading) {
@@ -93,6 +104,8 @@ const CharacterInventoryForm = ({
             width="120px"
           />
         </div>
+        <h3 className={styles.marginBottom}>Weapons and Attacks</h3>
+        <WeaponInput register={register} control={control} errors={errors} />
         <div className={`${styles.formRow} ${styles.buttonContainer}`}>
           <SubmitInput />
         </div>

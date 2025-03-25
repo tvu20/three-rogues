@@ -28,6 +28,10 @@
   color: var(--primary-text-color-section);
 }
 
+.form h3.marginBottom {
+  margin-bottom: var(--spacing-small-medium);
+}
+
 .formRow {
   display: flex;
   flex-direction: row;
@@ -69,7 +73,4 @@
 
 .buttonContainer input {
   height: 50px;
-}
-
-@media (max-width: 1050px) {
 }

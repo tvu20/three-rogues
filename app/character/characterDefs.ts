@@ -129,22 +129,22 @@ export type Feature = {
 };
 
 export type Weapon = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
-  description?: string;
+  description: string;
   linkedAbility: LINKED_ABILITY;
-  range?: string;
-  ability?: ABILITY;
-  proficient?: boolean;
+  range: string;
+  ability: ABILITY | "null" | null;
+  proficient: string | boolean | null;
   damage: string;
-  damageType?: string;
-  hitBonus?: number;
-  properties?: string;
-  equipped?: boolean;
-  inInventory?: boolean;
-  quantity?: number;
+  damageType: string;
+  hitBonus: number;
+  properties: string;
+  equipped: boolean;
+  inInventory: boolean;
+  quantity: number;
 };
 
 export type Item = {
