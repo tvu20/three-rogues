@@ -65,7 +65,7 @@ const CharacterActions = () => {
 
         return {
           ...weapon,
-          hit: `+${hit}`,
+          hit: hit > 0 ? `+${hit}` : hit,
         };
       }
       return weapon;

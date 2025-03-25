@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Currency, Item, Weapon } from "../../../app/character/characterDefs";
 import { useAppDispatch } from "../../../utils/redux";
+import Loader from "../../shared/layout/Loader";
 import { CharacterInventory } from "../definitions/characterInventoryDefs";
 import SubmitInput from "../inputs/SubmitInput";
 import TextInput from "../inputs/TextInput";
@@ -12,9 +13,10 @@ import {
   generateDefaultWeaponValues,
 } from "../utils/characterInventoryUtils";
 
+import { useUpdateInventoryMutation } from "../../../app/api/apiSlice";
+import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import InventoryInput from "../inputs/InventoryInput";
 import styles from "./CharacterInventoryForm.module.css";
-
 type CharacterInventoryFormProps = {
   id: string;
   inventory: Item[];
@@ -32,6 +34,8 @@ const CharacterInventoryForm = ({
 }: CharacterInventoryFormProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const [updateInventory, { isLoading }] = useUpdateInventoryMutation();
 
   const {
     register,
@@ -52,12 +56,37 @@ const CharacterInventoryForm = ({
       data.inventory,
       data.currency
     );
-    console.log("data", cleanedData);
+
+    try {
+      await updateInventory({
+        id,
+        inventory: cleanedData.inventory,
+        weapons: cleanedData.weapons,
+        currency: cleanedData.currency,
+      }).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Inventory updated!",
+          severity: "success",
+        })
+      );
+
+      router.push(`/character/${id}`);
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.form}>

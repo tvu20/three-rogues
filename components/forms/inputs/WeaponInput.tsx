@@ -81,9 +81,9 @@ const WeaponInput = ({ register, control, errors }: WeaponInputProps) => {
               <TextInput
                 register={register}
                 name={`weapons.${index}.hitBonus`}
-                label="Hit Bonus"
+                label="Bonus to Hit"
                 type="number"
-                placeholder="7"
+                placeholder="0"
                 width="80px"
               />
               <TextInput

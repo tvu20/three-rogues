@@ -140,24 +140,24 @@ export type Weapon = {
   proficient: string | boolean | null;
   damage: string;
   damageType: string;
-  hitBonus: number;
+  hitBonus: number | null;
   properties: string;
   equipped: boolean;
   inInventory: boolean;
-  quantity: number;
+  quantity: number | null;
 };
 
 export type Item = {
   id?: string;
   createdAt?: string;
   characterId?: string;
-  name: string; // done
-  quantity: number; // done
+  name: string;
+  quantity: number | null;
   type: ITEM_TYPE[];
-  notes: string; // done
-  description: string; // done
-  attuned: string | boolean | null; // done
-  equipped: string | boolean | null; // done
+  notes: string;
+  description: string;
+  attuned: string | boolean | null;
+  equipped: string | boolean | null;
 };
 
 export type Spell = {

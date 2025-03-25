@@ -5,8 +5,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type {
   Character,
   Creature,
+  Currency,
+  Item,
   LiveStats,
   Spell,
+  Weapon,
 } from "../character/characterDefs";
 import { setSnackbar } from "../snackbar/snackbarSlice";
 
@@ -116,6 +119,20 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    updateInventory: builder.mutation<
+      Character,
+      { id: string; inventory: Item[]; weapons: Weapon[]; currency: Currency }
+    >({
+      query: ({ id, inventory, weapons, currency }) => ({
+        url: `/character/${id}/inventory`,
+        method: "PUT",
+        body: { inventory, weapons, currency },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
   }),
 });
 
@@ -127,4 +144,5 @@ export const {
   useCreateCharacterMutation,
   useUpdateCharacterMutation,
   useUpdateSpellsMutation,
+  useUpdateInventoryMutation,
 } = apiSlice;
