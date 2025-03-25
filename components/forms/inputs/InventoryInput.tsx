@@ -4,11 +4,13 @@ import {
   UseFormRegister,
   useFieldArray,
 } from "react-hook-form";
+import { ITEM_TYPES } from "../../../app/character/characterMapping";
 import {
   CharacterInventory,
   ItemStartingValues,
 } from "../definitions/characterInventoryDefs";
 import styles from "./inputs.module.css";
+import MultiSelectInput from "./MultiSelectInput";
 import SelectInput from "./SelectInput";
 import TextAreaInput from "./TextAreaInput";
 import TextInput from "./TextInput";
@@ -47,13 +49,11 @@ const InventoryInput = ({ register, control, errors }: InventoryInputProps) => {
                 placeholder="2"
                 width="100px"
               />
-            </div>
-            <div className={styles.featureItemRow}>
               <SelectInput
                 register={register}
                 name={`inventory.${index}.equipped`}
                 label="Equipped?"
-                width="150px"
+                width="100px"
               >
                 <option value="true">Yes</option>
                 <option value="false">No</option>
@@ -71,6 +71,13 @@ const InventoryInput = ({ register, control, errors }: InventoryInputProps) => {
               </SelectInput>
             </div>
             <div className={styles.featureItemRow}>
+              <MultiSelectInput
+                register={register}
+                name={`inventory.${index}.type`}
+                label="Type"
+                options={ITEM_TYPES.filter((type) => type !== "weapon")}
+                width="200px"
+              />
               <TextInput
                 register={register}
                 name={`inventory.${index}.notes`}
@@ -86,6 +93,22 @@ const InventoryInput = ({ register, control, errors }: InventoryInputProps) => {
                 height="140px"
                 placeholder="Usually found in a box or pouch, this deck contains a number of cards made of ivory or vellum. As soon as you draw a card from the deck, its magic takes effect. "
               />
+            </div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className={styles.featureDeleteButton}
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}

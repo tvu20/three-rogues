@@ -145,6 +145,22 @@ const WeaponInput = ({ register, control, errors }: WeaponInputProps) => {
                 placeholder="Immediately after you take the Attack action on your turn, you can spend 1 ki point to make two unarmed strikes as a bonus action."
               />
             </div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className={styles.featureDeleteButton}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>

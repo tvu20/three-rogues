@@ -99,6 +99,12 @@ input.error {
 }
 
 .selectInput select {
+  /* padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 14px; */
   font-family: var(--font-be-vietnam);
   font-weight: 300;
   width: 150px;
@@ -107,6 +113,36 @@ input.error {
   border: none;
   border-bottom: 1px solid var(--content-box-border-color);
   font-size: var(--font-size-body-medium);
+}
+
+/* multiselect */
+
+.multiSelectInput {
+  display: flex;
+  flex-direction: column;
+  margin: 0 var(--spacing-medium) var(--spacing-xx-small) 0;
+}
+
+.multiSelectInput label {
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xsmall);
+}
+
+.multiSelectInput select {
+  height: 100px;
+  border: 1px solid var(--content-box-separator-color);
+}
+
+.multiSelectInput option {
+  padding: 4px 8px;
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+}
+
+.multiSelectInput option:checked {
+  background-color: var(--secondary-gray-color);
 }
 
 /* CHECKBOX INPUT */
