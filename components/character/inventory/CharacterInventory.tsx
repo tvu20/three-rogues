@@ -19,6 +19,7 @@ const CharacterInventory = () => {
     <div className="split-grid-container">
       <div>
         <CharacterItems
+          id={id}
           items={character.inventory || []}
           weapons={(character.weapons || []).filter((w) => w.inInventory)}
         />

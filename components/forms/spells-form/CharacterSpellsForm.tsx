@@ -57,10 +57,10 @@ const CharacterSpellsForm = ({
   });
 
   const onSubmit: SubmitHandler<CharacterSpells> = async (data) => {
-    console.log("data", data);
+    // console.log("data", data);
     const cleanedData = cleanCharacterSpells(data);
-    console.log("onSubmit");
-    console.log(cleanedData);
+    // console.log("onSubmit");
+    // console.log(cleanedData);
 
     try {
       await updateSpells({

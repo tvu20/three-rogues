@@ -253,7 +253,7 @@ export type Character = {
   features: Feature[];
   weapons?: Weapon[]; // TODO
   spells?: Spell[]; // TODO
-  currency?: Currency; // TODO
+  currency: Currency; // TODO
   inventory?: Item[]; // TODO
   creatures?: Creature[]; // TODO
 

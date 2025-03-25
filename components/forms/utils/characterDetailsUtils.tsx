@@ -125,6 +125,7 @@ export const cleanCharacterDetails = (data: CharacterDetails) => {
     features: cleanedFeatures,
     skills: cleanedSkills,
     images: cleanedImages,
+    currency: { cp: 0, ep: 0, gp: 0, pp: 0, sp: 0 },
   };
   return cleanedData;
 };

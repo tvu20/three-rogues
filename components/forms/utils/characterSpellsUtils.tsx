@@ -17,6 +17,7 @@ export const generateDefaultValues = (spells: Spell[]) => {
 };
 
 export const cleanCharacterSpells = (spells: CharacterSpells) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const modifiedSpellValues = spells.data.map(({ characterId, ...spell }) => ({
     ...spell,
     prepared: stringToBooleanNull(spell.prepared),
