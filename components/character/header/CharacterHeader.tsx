@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
-
 import styles from "./CharacterHeader.module.css";
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
 
 const CharacterHeader: React.FC<Props> = ({ id }) => {
   const { data: character } = useGetCharacterQuery(id);
+  const router = useRouter();
 
   const showClasses = () => {
     return character?.class?.map((c) => `${c.name} ${c.level}`).join(" / ");
@@ -30,8 +31,11 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
     <div className={styles.container}>
       <img
         className={styles.avatar}
-        src={character?.avatar}
-        alt={character?.name}
+        src={
+          character?.avatar ||
+          "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+        }
+        alt={character?.name ?? "Character avatar"}
         loading="lazy"
       />
       <div className={styles.nameContainer}>
@@ -44,14 +48,19 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.actionButtons}>
-          <button className="action-button">download</button>
-          <button className="action-button">edit</button>
+          {/* <button className="action-button">download</button> */}
+          <button
+            className="action-button"
+            onClick={() => router.push(`/edit/${id}`)}
+          >
+            edit
+          </button>
         </div>
         <div className={styles.infoContainer}>
           {infoBlock("Race", character?.race || "")}
           {infoBlock("Background", character?.background || "")}
           {infoBlock("Alignment", character?.alignment || "")}
-          {infoBlock("Age", character?.age || "")}
+          {infoBlock("Age", String(character?.age || ""))}
         </div>
       </div>
     </div>

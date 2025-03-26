@@ -29,7 +29,7 @@ const CharacterSkillProfs = ({
     }
 
     return (
-      <div className={styles.skillRow}>
+      <div className={styles.skillRow} key={skill.name}>
         <div className={styles.firstColumn}>
           <div className={styles.proficiencyIcons}>
             <div

@@ -81,7 +81,7 @@ export type LiveStats = {
   conditions: string;
   inspiration: boolean;
   concentration?: string;
-  spellSlots?: SpellSlots;
+  spellSlots: SpellSlots;
   trackedFeatures?: Feature[];
 };
 
@@ -109,61 +109,61 @@ export type Currency = {
 };
 
 export type Feature = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
-  level?: number;
-  linkedAbility?: LINKED_ABILITY;
+  level: number | null;
+  linkedAbility: LINKED_ABILITY;
   description: string;
   source: string;
-  class?: string;
-  options?: {
+  class: string | null;
+  options: {
     [key: string]: string;
   } | null;
   tracked: boolean;
-  max?: number;
+  max: number;
   used?: number;
-  resetsOn?: RESETS_ON;
-  shortDescription?: string;
+  resetsOn: RESETS_ON;
+  shortDescription: string;
 };
 
 export type Weapon = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
-  description?: string;
-  linkedAbility?: LINKED_ABILITY;
-  range?: string;
-  ability?: ABILITY;
-  proficient?: boolean;
+  description: string;
+  linkedAbility: LINKED_ABILITY;
+  range: string;
+  ability: ABILITY | "null" | null;
+  proficient: string | boolean | null;
   damage: string;
-  damageType?: string;
-  hitBonus?: number;
-  properties?: string;
-  equipped?: boolean;
-  inInventory?: boolean;
-  quantity?: number;
+  damageType: string;
+  hitBonus: number | null;
+  properties: string;
+  equipped: boolean;
+  inInventory: boolean;
+  quantity: number | null;
 };
 
 export type Item = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
-  quantity: number;
+  quantity: number | null;
   type: ITEM_TYPE[];
-  notes?: string;
-  description?: string;
-  attuned?: boolean;
-  equipped?: boolean;
+  notes: string;
+  description: string;
+  attuned: string | boolean | null;
+  equipped: string | boolean | null;
 };
 
 export type Spell = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
   description: string;
   source: string;
@@ -174,26 +174,26 @@ export type Spell = {
   castingTime: string;
   range: string;
   duration: string;
-  ritual?: boolean;
+  ritual: boolean;
   concentration: boolean;
-  prepared?: boolean;
-  damage?: string;
-  save?: ABILITY;
+  prepared: string | boolean | null;
+  damage: string | null;
+  save: ABILITY | "null" | string | null; // not sure why string is needed
 };
 
 export type Creature = {
-  id: string;
-  createdAt: string;
-  characterId: string;
+  id?: string;
+  createdAt?: string;
+  characterId?: string;
   name: string;
   ac: number;
   maxHP: number;
-  currentHP: number;
+  currentHP?: number;
   speed: string;
   type: string;
-  notes?: string;
+  notes: string;
   proficiencyBonus: number;
-  passivePerception?: number;
+  passivePerception: number | null;
   abilityScores: AbilityScores;
   savingThrows: string;
   skills: string;
@@ -211,11 +211,11 @@ export type Creature = {
 
 // eslint-disable-next-line
 export type Character = {
-  id: string;
+  id?: string;
   name: string;
-  createdAt: string;
-  author: { name: string; email: string };
-  authorId: string;
+  createdAt?: Date;
+  author?: { name: string; email: string };
+  authorId?: string;
   avatar: string;
   race: string;
   level: number;
@@ -230,40 +230,39 @@ export type Character = {
   initiative: number;
   ac: AC;
   speed: {
-    walk: number;
-    fly: number;
-    swim: number;
-    climb: number;
+    walk: string;
+    fly: string;
+    swim: string;
+    climb: string;
   };
-  darkvision: number;
+  darkvision: number | null;
   savingThrows: SavingThrows;
   defenses: string;
-  attacksPerAction?: number;
-  spellcaster: boolean;
-  spellsKnown?: number;
-  cantripsKnown?: number;
-  maxPrepared?: number;
-  spellcastingFocus?: string;
-  armorProficiencies?: string;
-  weaponProficiencies?: string;
-  toolProficiencies?: string;
-  languagesKnown?: string;
+  attacksPerAction: number;
+  spellsKnown: number;
+  cantripsKnown: number;
+  maxPrepared: number;
+  spellcastingFocus: string;
+  armorProficiencies: string;
+  weaponProficiencies: string;
+  toolProficiencies: string;
+  languagesKnown: string;
 
   liveStats: LiveStats;
   skills: Skill[];
   features: Feature[];
-  weapons: Weapon[];
-  spells: Spell[];
+  weapons?: Weapon[];
+  spells?: Spell[];
   currency: Currency;
-  inventory: Item[];
-  creatures: Creature[];
+  inventory?: Item[];
+  creatures?: Creature[];
 
-  height?: string;
-  hair?: string;
-  eyes?: string;
-  skin?: string;
-  allies?: string;
-  organization?: string;
-  backstory?: string;
+  height: string;
+  hair: string;
+  eyes: string;
+  skin: string;
+  allies: string;
+  organization: string;
+  backstory: string;
   images: string[];
 };

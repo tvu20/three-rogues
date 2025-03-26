@@ -11,7 +11,7 @@ const LINKED_ABILITY_LABELS = {
 type FeatureBlockProps = {
   title: string;
   description: string;
-  level?: number;
+  level?: number | null;
   linkedAbility?: LINKED_ABILITY;
   options?: {
     [key: string]: string;

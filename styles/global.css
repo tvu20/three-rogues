@@ -47,6 +47,7 @@ p {
 }
 
 .action-button {
+  cursor: pointer;
   font-family: var(--font-belleza);
   border: 1px solid var(--action-button-border-color);
   padding: var(--spacing-xsmall) var(--spacing-medium);

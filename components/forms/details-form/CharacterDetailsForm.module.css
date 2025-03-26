@@ -1,0 +1,108 @@
+.form {
+  margin: var(--spacing-medium) var(--spacing-page-border);
+}
+
+.form h1 {
+  font-size: var(--font-size-heading-large);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 1px solid var(--content-box-separator-color);
+}
+
+.form h2 {
+  margin-top: var(--spacing-large);
+  padding-bottom: var(--spacing-xsmall);
+  border-bottom: 1px solid var(--content-box-separator-color);
+  margin-bottom: var(--spacing-xx-small);
+}
+
+.form h3 {
+  margin-top: var(--spacing-large);
+  border: none;
+  color: var(--primary-text-color-section);
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  /* gap: var(--spacing-medium); */
+  flex-wrap: wrap;
+}
+
+.form h3 span.errorMessage {
+  height: 5px;
+  color: var(--snackbar-error-color);
+  font-weight: 400;
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-be-vietnam);
+  text-transform: none;
+}
+
+.form .removeBottomMargin {
+  margin-bottom: 0;
+}
+
+.savingThrowRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.skillRow {
+  display: flex;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  gap: var(--spacing-xsmall);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xx-small);
+}
+
+.skillLabelContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 250px;
+  margin-right: var(--spacing-medium);
+}
+
+.skillRow .skillLabel {
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-size: var(--font-size-body-medium);
+}
+
+.skillRow .skillDescription {
+  font-size: var(--font-size-body-small);
+}
+
+.skillRow div {
+  margin-top: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonContainer input {
+  height: 50px;
+}
+
+.cancelButton {
+  font-size: var(--font-size-body-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
+  margin-top: var(--spacing-xx-large);
+  margin-bottom: 300px;
+  height: 50px;
+  margin-right: var(--spacing-medium);
+}

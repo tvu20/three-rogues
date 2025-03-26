@@ -4,10 +4,10 @@ import { ITEM_TYPES } from "../../../app/character/characterMapping";
 import Search from "../../shared/inputs/Search";
 import Tag from "../../shared/inputs/Tag";
 
+import { useRouter } from "next/router";
 import { ITEM_TYPE } from "../../../app/character/characterDefs";
 import ExpandableTable from "../shared/ExpandableTable";
 import styles from "./CharacterInventory.module.css";
-
 const COLUMNS = ["equipped", "name", "quantity", "type", "notes"];
 
 const MOBILE_COLUMNS = ["equipped", "name", "quantity"];
@@ -17,13 +17,15 @@ const COLUMN_HEADERS = ["", "Name", "Qty", "Type", "Notes"];
 const MOBILE_HEADERS = ["", "Name", "Qty"];
 
 type CharacterItemsProps = {
+  id: string;
   items: Item[];
   weapons: Weapon[];
 };
-const CharacterItems = ({ items, weapons }: CharacterItemsProps) => {
+const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
   const [search, setSearch] = useState("");
   const [displayed, setDisplayed] = useState<Item[]>([]);
   const [filters, setFilters] = useState<ITEM_TYPE[]>([]);
+  const router = useRouter();
 
   const addFilter = (item: ITEM_TYPE) => {
     setFilters((prevState) => [...prevState, item]);
@@ -81,7 +83,12 @@ const CharacterItems = ({ items, weapons }: CharacterItemsProps) => {
           placeholder="Search for an item"
           small
         />
-        <button className="action-button">Manage Items</button>
+        <button
+          className="action-button"
+          onClick={() => router.push(`/character/${id}/inventory`)}
+        >
+          Manage Items
+        </button>
       </div>
       <div className={styles.tagContainer}>{renderTags()}</div>
       <ExpandableTable

@@ -24,10 +24,10 @@ export default function CharacterPage() {
     if (character) {
       dispatch(
         setLiveCharacter({
-          id: character.id,
+          id: character.id ?? "",
           liveStats: character.liveStats,
           name: character.name,
-          creatures: character.creatures,
+          creatures: character.creatures ?? [],
         })
       );
     }

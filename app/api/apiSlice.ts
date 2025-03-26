@@ -5,7 +5,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type {
   Character,
   Creature,
+  Currency,
+  Item,
   LiveStats,
+  Spell,
+  Weapon,
 } from "../character/characterDefs";
 import { setSnackbar } from "../snackbar/snackbarSlice";
 
@@ -59,13 +63,37 @@ export const apiSlice = createApi({
         });
       },
     }),
+    // TODO: fix type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    createCharacter: builder.mutation<Character, any>({
+      query: (character) => ({
+        url: "/character",
+        method: "POST",
+        body: character,
+      }),
+      invalidatesTags: ["Character"],
+    }),
+    updateCharacter: builder.mutation<
+      Character,
+      { id: string; character: Character }
+    >({
+      query: ({ id, character }) => ({
+        url: `/character/${id}`,
+        method: "PUT",
+        body: character,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
     updateLiveStats: builder.mutation<
       Character,
       { id: string; liveStats: LiveStats; creatures: Creature[] }
     >({
       query: ({ id, liveStats, creatures }) => ({
         url: `/liveStats/${id}`,
-        method: "POST",
+        method: "PUT",
         body: {
           trackedFeatures: liveStats.trackedFeatures,
           liveStats: {
@@ -80,6 +108,45 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    updateSpells: builder.mutation<Character, { id: string; spells: Spell[] }>({
+      query: ({ id, spells }) => ({
+        url: `/character/${id}/spells`,
+        method: "PUT",
+        body: { spells },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
+    updateCreatures: builder.mutation<
+      Character,
+      { id: string; creatures: Creature[] }
+    >({
+      query: ({ id, creatures }) => ({
+        url: `/character/${id}/creatures`,
+        method: "PUT",
+        body: { creatures },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
+    updateInventory: builder.mutation<
+      Character,
+      { id: string; inventory: Item[]; weapons: Weapon[]; currency: Currency }
+    >({
+      query: ({ id, inventory, weapons, currency }) => ({
+        url: `/character/${id}/inventory`,
+        method: "PUT",
+        body: { inventory, weapons, currency },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
   }),
 });
 
@@ -88,4 +155,9 @@ export const {
   useGetCharactersQuery,
   useGetCharacterQuery,
   useUpdateLiveStatsMutation,
+  useCreateCharacterMutation,
+  useUpdateCharacterMutation,
+  useUpdateSpellsMutation,
+  useUpdateCreaturesMutation,
+  useUpdateInventoryMutation,
 } = apiSlice;

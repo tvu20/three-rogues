@@ -15,8 +15,8 @@ const CharacterClassFeatures = ({
     a.isStartingClass ? -1 : 1
   );
   const sortedFeatures = [...features].sort((a, b) => {
-    if (a.level === undefined) return 1;
-    if (b.level === undefined) return -1;
+    if (a.level === null) return 1;
+    if (b.level === null) return -1;
     return a.level - b.level;
   });
 
@@ -24,12 +24,15 @@ const CharacterClassFeatures = ({
     const features = sortedFeatures.filter(
       (feature) => feature.class === className
     );
+
+    if (features.length === 0)
+      return <p style={{ fontWeight: 300 }}>No features found. </p>;
     return features.map((feature) => (
       <FeatureBlock
         key={feature.id}
         title={feature.name}
         description={feature.description}
-        level={feature.level}
+        level={feature.level ?? undefined}
         linkedAbility={feature.linkedAbility}
         options={feature.options}
       />

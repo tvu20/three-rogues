@@ -1,0 +1,98 @@
+.page {
+  margin: var(--spacing-xlarge) var(--spacing-page-border)
+    var(--spacing-medium-large);
+}
+
+.title {
+  font-size: var(--font-size-heading-large);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 1px solid var(--content-box-separator-color);
+  margin-bottom: var(--spacing-large);
+}
+
+.itemContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-large);
+  /* margin: var(--spacing-xlarge) var(--spacing-page-border)
+    var(--spacing-medium-large); */
+}
+
+.container {
+  flex-flow: column wrap;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nameContainer {
+  margin-bottom: 4px;
+}
+
+.name {
+  color: var(--primary-text-color-heading);
+  font-size: var(--font-size-heading-medium);
+  font-weight: 600;
+  display: inline-block;
+  margin-right: var(--spacing-small-medium);
+  line-height: 1;
+}
+
+.pronouns {
+  margin-top: var(--spacing-xsmall);
+  color: var(--primary-text-color-dark);
+  font-size: var(--font-size-body-small);
+  font-weight: 300;
+  display: inline-block;
+  position: relative;
+  bottom: var(--spacing-xxx-small);
+}
+
+.class {
+  margin-top: var(--spacing-small-medium);
+  color: var(--primary-text-color-dark);
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-heading-xsmall);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.subclass {
+  margin-top: var(--spacing-xx-small);
+  color: var(--primary-text-color-dark);
+  font-size: var(--font-size-body-small);
+  line-height: 1;
+  font-weight: 300;
+}
+
+.name,
+.pronouns,
+.class,
+.subclass {
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .itemContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .itemContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

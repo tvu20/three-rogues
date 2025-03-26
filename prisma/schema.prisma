@@ -87,7 +87,6 @@ model Character {
   savingThrows    Json?
   defenses        String?
   attacksPerAction    Int?
-  spellcaster     Boolean?
   spellsKnown     Int?
   cantripsKnown   Int?
   maxPrepared     Int?

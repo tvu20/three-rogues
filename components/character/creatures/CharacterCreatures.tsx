@@ -1,4 +1,4 @@
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 import { Creature } from "../../../app/character/characterDefs";
@@ -18,6 +18,7 @@ const MOBILE_COLUMNS = ["name", "ac", "maxHP", "speed"];
 const MOBILE_HEADERS = ["Name", "AC", "HP", "Speed"];
 
 const CharacterCreatures = () => {
+  const router = useRouter();
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
@@ -55,7 +56,12 @@ const CharacterCreatures = () => {
           value={search}
           placeholder="Search for a stat block"
         />
-        <button className="action-button">Modify Creatures</button>
+        <button
+          className="action-button"
+          onClick={() => router.push(`/character/${id}/creatures`)}
+        >
+          Modify Creatures
+        </button>
       </div>
       <ExpandableTable
         columns={COLUMNS}

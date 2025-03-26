@@ -52,7 +52,7 @@ const CharacterActions = () => {
 
   const createExpandableTable = (linkedAbility: LINKED_ABILITY) => {
     const weapons: Weapon[] =
-      character?.weapons.filter(
+      (character?.weapons ?? []).filter(
         (weapon) => weapon.linkedAbility === linkedAbility && weapon.equipped
       ) || [];
 
@@ -65,7 +65,7 @@ const CharacterActions = () => {
 
         return {
           ...weapon,
-          hit: `+${hit}`,
+          hit: hit > 0 ? `+${hit}` : hit,
         };
       }
       return weapon;

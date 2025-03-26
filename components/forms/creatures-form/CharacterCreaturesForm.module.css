@@ -1,0 +1,123 @@
+.form {
+  margin: var(--spacing-medium) var(--spacing-page-border);
+}
+
+.form h1 {
+  font-size: var(--font-size-heading-large);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 500;
+  /* padding-bottom: var(--spacing-small); */
+}
+
+.form h2 {
+  font-family: var(--font-be-vietnam);
+  font-size: var(--font-size-heading-small);
+  font-weight: 200;
+  padding-bottom: var(--spacing-small);
+  border-bottom: 1px solid var(--content-box-separator-color);
+  opacity: 0.7;
+  margin-bottom: var(--spacing-large);
+}
+
+.form h3 {
+  padding-bottom: var(--spacing-xx-small);
+  margin-top: var(--spacing-medium);
+  font-size: var(--font-size-body-large);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: 1px solid var(--content-box-separator-color);
+  color: var(--primary-text-color-section);
+}
+
+.formRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.form .removeBottomMargin {
+  margin-bottom: 0;
+}
+
+.deleteButton {
+  margin-top: var(--spacing-small-medium);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--snackbar-error-color);
+  color: var(--action-button-highlighted-text-color);
+  font-weight: 400;
+  padding: var(--spacing-xsmall) var(--spacing-small-medium);
+  font-family: var(--font-belleza);
+  font-size: var(--font-size-body-medium);
+  text-transform: uppercase;
+}
+
+.creaturesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-medium-large);
+}
+
+.creatureContainer {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addButton {
+  margin-top: var(--spacing-xx-large);
+  height: 50px;
+  margin-bottom: 300px;
+  margin-right: var(--spacing-medium);
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonContainer input {
+  height: 50px;
+}
+
+.cancelButton {
+  font-size: var(--font-size-body-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
+  margin-top: var(--spacing-xx-large);
+  margin-bottom: 300px;
+  height: 50px;
+  margin-right: var(--spacing-medium);
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.optionRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.optionRow svg {
+  margin-top: 26px;
+}
+
+.addTraitButton {
+  margin-top: var(--spacing-small);
+}
+
+@media (max-width: 1050px) {
+  .creaturesContainer {
+    grid-template-columns: 1fr;
+  }
+}

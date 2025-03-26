@@ -28,8 +28,8 @@ const CharacterTrackedCompanions = ({
           <p>{creature.name}</p>
           <div className={styles.hpContainer}>
             <EditableCell
-              value={creature.currentHP}
-              onBlur={(value) => handleHPChange(value, creature.id)}
+              value={creature.currentHP ?? 0}
+              onBlur={(value) => handleHPChange(value, creature.id ?? "")}
             />
             <p> / {creature.maxHP}</p>
           </div>

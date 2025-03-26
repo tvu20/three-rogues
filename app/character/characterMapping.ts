@@ -1,4 +1,31 @@
-import { ITEM_TYPE } from "./characterDefs";
+import { ABILITY, ITEM_TYPE } from "./characterDefs";
+
+export const CLASSES = [
+  "Artificer",
+  "Barbarian",
+  "Bard",
+  "Cleric",
+  "Druid",
+  "Fighter",
+  "Monk",
+  "Paladin",
+  "Ranger",
+  "Rogue",
+  "Sorcerer",
+  "Warlock",
+  "Wizard",
+];
+
+export const FEATURE_SOURCES = ["class", "race", "background", "feat"];
+
+export const ABILITY_SCORE_MAPPING: Record<ABILITY, string> = {
+  str: "Strength",
+  dex: "Dexterity",
+  con: "Constitution",
+  int: "Intelligence",
+  wis: "Wisdom",
+  cha: "Charisma",
+};
 
 export const SKILL_MAPPING = {
   Acrobatics: "dex",
@@ -19,6 +46,27 @@ export const SKILL_MAPPING = {
   "Sleight of Hand": "dex",
   Stealth: "dex",
   Survival: "wis",
+};
+
+export const SKILL_DESCRIPTION_MAPPING = {
+  Acrobatics: "How well can I stay on my feet?",
+  "Animal Handling": "How good am I with animals?",
+  Arcana: "How much do I know about magic?",
+  Athletics: "How physically fit am I?",
+  Deception: "How good am I at lying?",
+  History: "How much do I know about history?",
+  Insight: "How well can I read people?",
+  Intimidation: "How well can I threaten others?",
+  Investigation: "How good am I at solving puzzles?",
+  Medicine: "How well can I heal others?",
+  Nature: "How much do I know about nature?",
+  Perception: "How much do I notice around me?",
+  Performance: "How well can I entertain others?",
+  Persuasion: "How good am I at convincing others?",
+  Religion: "How much do I know about religion?",
+  "Sleight of Hand": "How good am I at picking pockets?",
+  Stealth: "How well can I hide from others?",
+  Survival: "How good am I at surviving in the wild?",
 };
 
 export const CLASS_SPELLCASTING_ABILITY = {
@@ -43,6 +91,30 @@ export const SPELL_TYPES = [
   "utility",
   "protection",
   "control",
+];
+
+export const SPELL_LEVELS = [
+  "cantrip",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+];
+
+export const SPELL_SCHOOLS = [
+  "abjuration",
+  "conjuration",
+  "divination",
+  "enchantment",
+  "evocation",
+  "illusion",
+  "necromancy",
+  "transmutation",
 ];
 
 export const ITEM_TYPES: ITEM_TYPE[] = [

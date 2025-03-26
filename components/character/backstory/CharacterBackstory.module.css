@@ -2,6 +2,10 @@
   margin-bottom: var(--spacing-medium);
 }
 
+.backstoryContainer p {
+  white-space: pre-wrap;
+}
+
 .appearanceContainer h2 {
   margin-bottom: var(--spacing-small);
 }
