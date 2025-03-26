@@ -6,9 +6,11 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => (
-  <div>
+  <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
     <Header />
-    <div className="layout">{props.children}</div>
+    <div className="layout" style={{ flex: 1 }}>
+      {props.children}
+    </div>
   </div>
 );
 

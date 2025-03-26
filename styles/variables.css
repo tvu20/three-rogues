@@ -38,11 +38,15 @@ body {
   --color-equipped: #e39c39;
   --color-attuned: #8930b0;
 
+  /* layout */
+  --header-height: 85px;
+
   /* fonts  */
   --font-belleza: "Belleza", sans-serif;
   --font-be-vietnam: "Be Vietnam", sans-serif;
 
   /* font sizes */
+  --font-size-heading-xlarge: 70px;
   --font-size-heading-large: 40px;
   --font-size-heading-medium-large: 36px;
   --font-size-heading-medium: 32px;
