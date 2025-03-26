@@ -81,7 +81,7 @@ export default async function handle(req, res) {
     // DELETE /api/character/:id
   } else if (req.method === "DELETE") {
     const { id } = req.query;
-    const character = await prisma.character.delete({
+    await prisma.character.delete({
       where: { id: id as string },
     });
 
