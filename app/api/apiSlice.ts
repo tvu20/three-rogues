@@ -87,6 +87,13 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    deleteCharacter: builder.mutation<Character, string>({
+      query: (id) => ({
+        url: `/character/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Character"],
+    }),
     updateLiveStats: builder.mutation<
       Character,
       { id: string; liveStats: LiveStats; creatures: Creature[] }
@@ -160,4 +167,5 @@ export const {
   useUpdateSpellsMutation,
   useUpdateCreaturesMutation,
   useUpdateInventoryMutation,
+  useDeleteCharacterMutation,
 } = apiSlice;

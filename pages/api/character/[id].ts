@@ -77,5 +77,35 @@ export default async function handle(req, res) {
     });
 
     res.status(200).json(character);
+
+    // DELETE /api/character/:id
+  } else if (req.method === "DELETE") {
+    const { id } = req.query;
+    const character = await prisma.character.delete({
+      where: { id: id as string },
+    });
+
+    // delete all related fields in other tables
+    await prisma.feature.deleteMany({
+      where: { characterId: null },
+    });
+
+    await prisma.weapon.deleteMany({
+      where: { characterId: null },
+    });
+
+    await prisma.spell.deleteMany({
+      where: { characterId: null },
+    });
+
+    await prisma.item.deleteMany({
+      where: { characterId: null },
+    });
+
+    await prisma.creature.deleteMany({
+      where: { characterId: null },
+    });
+
+    res.status(200).json({ message: "Character deleted" });
   }
 }

@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   useCreateCharacterMutation,
+  useDeleteCharacterMutation,
   useUpdateCharacterMutation,
 } from "../../../app/api/apiSlice";
 import { ABILITY, Character } from "../../../app/character/characterDefs";
@@ -13,6 +15,7 @@ import {
 import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch } from "../../../utils/redux";
 import Loader from "../../shared/layout/Loader";
+import Modal from "../../shared/layout/Modal";
 import {
   CharacterDetails,
   CharacterDetailsDefaultValues,
@@ -40,6 +43,7 @@ type CharacterDetailsFormProps = {
 const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const defaultValues = character
     ? generateDefaultValues(character)
@@ -57,6 +61,8 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
   const [createCharacter, { isLoading }] = useCreateCharacterMutation();
   const [updateCharacter, { isLoading: isUpdating }] =
     useUpdateCharacterMutation();
+  const [deleteCharacter, { isLoading: isDeleting }] =
+    useDeleteCharacterMutation();
 
   const abilityScoreFields = () => {
     return Object.keys(ABILITY_SCORE_MAPPING).map((ability: ABILITY) => (
@@ -157,6 +163,33 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     ));
   };
 
+  const handleDelete = async () => {
+    setIsDeleteModalOpen(false);
+
+    try {
+      if (character?.id) {
+        await deleteCharacter(character.id).unwrap();
+
+        dispatch(
+          setSnackbar({
+            message: "Character successfully deleted",
+            severity: "success",
+          })
+        );
+
+        router.push("/");
+      }
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
+  };
+
   const onSubmit: SubmitHandler<CharacterDetails> = async (data) => {
     const cleanedData = cleanCharacterDetails(data);
     try {
@@ -199,12 +232,30 @@ const CharacterDetailsForm = ({ character }: CharacterDetailsFormProps) => {
     }
   };
 
-  if (isLoading || isUpdating) return <Loader />;
+  if (isLoading || isUpdating || isDeleting) return <Loader />;
 
   return (
     <div className={styles.form}>
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={handleDelete}
+        title="Delete Character"
+        message="Are you sure you want to delete this character? This action cannot be undone."
+      />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>{character ? "Edit Character" : "Create a New Character"}</h1>
+        <div className={styles.formHeader}>
+          <h1>{character ? "Edit Character" : "Create a New Character"}</h1>
+          {character && (
+            <button
+              type="button"
+              className={`action-button ${styles.deleteButton}`}
+              onClick={() => setIsDeleteModalOpen(true)}
+            >
+              Delete Character
+            </button>
+          )}
+        </div>
         <h3 className={`small-section-header ${styles.removeBottomMargin}`}>
           Basic Information
         </h3>
