@@ -12,7 +12,6 @@ const Home: React.FC = () => {
   return (
     <Layout>
       <div className="page">
-        <h1>Public Feed</h1>
         {session && <CharacterList />}
         {!session && <div>Unauthenticated!</div>}
       </div>

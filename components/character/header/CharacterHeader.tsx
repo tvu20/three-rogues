@@ -48,7 +48,7 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.actionButtons}>
-          <button className="action-button">download</button>
+          {/* <button className="action-button">download</button> */}
           <button
             className="action-button"
             onClick={() => router.push(`/edit/${id}`)}
