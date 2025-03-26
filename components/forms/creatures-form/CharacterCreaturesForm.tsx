@@ -151,126 +151,146 @@ const CharacterCreaturesForm = ({
   const createCreatures = () => {
     return fields.map((field, index) => (
       <div key={field.id} className={`content-box ${styles.creatureContainer}`}>
-        <div className={styles.formRow}>
-          <TextInput
-            register={register}
-            name={`data.${index}.name`}
-            label="Name"
-            placeholder="Wolf"
-            required
-            error={errors.data?.[index]?.name?.message}
-            width="250px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.ac`}
-            label="AC"
-            type="number"
-            placeholder="13"
-            required
-            error={errors.data?.[index]?.ac?.message}
-            width="80px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.maxHP`}
-            label="Max HP"
-            type="number"
-            placeholder="11"
-            required
-            error={errors.data?.[index]?.maxHP?.message}
-            width="80px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.speed`}
-            label="Speed"
-            placeholder="40ft"
-            width="140px"
-          />
+        <div>
+          <div className={styles.formRow}>
+            <TextInput
+              register={register}
+              name={`data.${index}.name`}
+              label="Name"
+              placeholder="Wolf"
+              required
+              error={errors.data?.[index]?.name?.message}
+              width="250px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.ac`}
+              label="AC"
+              type="number"
+              placeholder="13"
+              required
+              error={errors.data?.[index]?.ac?.message}
+              width="80px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.maxHP`}
+              label="Max HP"
+              type="number"
+              placeholder="11"
+              required
+              error={errors.data?.[index]?.maxHP?.message}
+              width="80px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.speed`}
+              label="Speed"
+              placeholder="40ft"
+              width="140px"
+            />
+          </div>
+          <div className={styles.formRow}>{abilityScoreFields(index)}</div>
+          <div className={styles.formRow}>
+            <TextInput
+              register={register}
+              name={`data.${index}.proficiencyBonus`}
+              label="Proficiency Bonus"
+              type="number"
+              placeholder="2"
+              width="120px"
+              required
+              error={errors.data?.[index]?.proficiencyBonus?.message}
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.passivePerception`}
+              label="Passive Perception"
+              type="number"
+              placeholder="13"
+              width="120px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.type`}
+              label="Type"
+              placeholder="Wild Shape"
+              width="140px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.notes`}
+              label="Notes"
+              placeholder="Challenge rating 1/4"
+              width="300px"
+            />
+          </div>
+          <div className={styles.formRow}>
+            <TextInput
+              register={register}
+              name={`data.${index}.savingThrows`}
+              label="Saving Throws"
+              placeholder="Str +3, Dex +4"
+              width="120px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.skills`}
+              label="Skills"
+              placeholder="Perception +3, Stealth +4"
+              width="220px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.senses`}
+              label="Senses"
+              placeholder="Darkvision 60ft"
+              width="220px"
+            />
+            <TextInput
+              register={register}
+              name={`data.${index}.languages`}
+              label="Languages"
+              placeholder="None"
+              width="200px"
+            />
+          </div>
+          <h3>Traits</h3>
+          <div className={styles.formRow}>
+            <Feature
+              control={control}
+              register={register}
+              featureIndex={index}
+              fieldName="features"
+            />
+          </div>
+          <h3>Combat Actions</h3>
+          <div className={styles.formRow}>
+            <Feature
+              control={control}
+              register={register}
+              featureIndex={index}
+              fieldName="combat"
+            />
+          </div>
         </div>
-        <div className={styles.formRow}>{abilityScoreFields(index)}</div>
-        <div className={styles.formRow}>
-          <TextInput
-            register={register}
-            name={`data.${index}.proficiencyBonus`}
-            label="Proficiency Bonus"
-            type="number"
-            placeholder="2"
-            width="120px"
-            required
-            error={errors.data?.[index]?.proficiencyBonus?.message}
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.passivePerception`}
-            label="Passive Perception"
-            type="number"
-            placeholder="13"
-            width="120px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.type`}
-            label="Type"
-            placeholder="Wild Shape"
-            width="140px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.notes`}
-            label="Notes"
-            placeholder="Challenge rating 1/4"
-            width="300px"
-          />
-        </div>
-        <div className={styles.formRow}>
-          <TextInput
-            register={register}
-            name={`data.${index}.savingThrows`}
-            label="Saving Throws"
-            placeholder="Str +3, Dex +4"
-            width="120px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.skills`}
-            label="Skills"
-            placeholder="Perception +3, Stealth +4"
-            width="220px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.senses`}
-            label="Senses"
-            placeholder="Darkvision 60ft"
-            width="220px"
-          />
-          <TextInput
-            register={register}
-            name={`data.${index}.languages`}
-            label="Languages"
-            placeholder="None"
-            width="200px"
-          />
-        </div>
-        <h3>Traits</h3>
-        <div className={styles.formRow}>
-          <Feature
-            control={control}
-            register={register}
-            featureIndex={index}
-            fieldName="features"
-          />
-        </div>
-        <h3>Combat Actions</h3>
-        <div className={styles.formRow}>
-          <Feature
-            control={control}
-            register={register}
-            featureIndex={index}
-            fieldName="combat"
-          />
+        <div>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => remove(index)}
+              className={styles.deleteButton}
+            >
+              Delete Creature
+            </button>
+          </div>
         </div>
       </div>
     ));

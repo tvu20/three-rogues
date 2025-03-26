@@ -32,6 +32,7 @@ export const cleanCharacterInventory = (
   inventory: Item[],
   currency: Currency
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const cleanedWeapons = weapons.map(({ characterId, ...weapon }) => ({
     ...weapon,
     proficient: stringToBooleanNull(weapon.proficient),
@@ -40,6 +41,7 @@ export const cleanCharacterInventory = (
     quantity: cleanNumberNull(weapon.quantity),
   }));
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const cleanedItems = inventory.map(({ characterId, ...item }) => ({
     ...item,
     attuned: stringToBooleanNull(item.attuned),

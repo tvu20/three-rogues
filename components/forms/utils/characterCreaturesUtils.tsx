@@ -8,6 +8,7 @@ export const generateDefaultValues = (creatures: Creature[]) => {
 };
 
 export const cleanCharacterCreatures = (creatures: CharacterCreatures) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return creatures.data.map(({ characterId, ...creature }) => ({
     ...creature,
     currentHP: creature.currentHP || creature.maxHP,
