@@ -119,6 +119,20 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    updateCreatures: builder.mutation<
+      Character,
+      { id: string; creatures: Creature[] }
+    >({
+      query: ({ id, creatures }) => ({
+        url: `/character/${id}/creatures`,
+        method: "PUT",
+        body: { creatures },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
     updateInventory: builder.mutation<
       Character,
       { id: string; inventory: Item[]; weapons: Weapon[]; currency: Currency }
@@ -144,5 +158,6 @@ export const {
   useCreateCharacterMutation,
   useUpdateCharacterMutation,
   useUpdateSpellsMutation,
+  useUpdateCreaturesMutation,
   useUpdateInventoryMutation,
 } = apiSlice;

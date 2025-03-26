@@ -1,9 +1,12 @@
 import { Trash } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { useUpdateCreaturesMutation } from "../../../app/api/apiSlice";
 import { ABILITY, Creature } from "../../../app/character/characterDefs";
 import { ABILITY_SCORE_MAPPING } from "../../../app/character/characterMapping";
+import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch } from "../../../utils/redux";
+import Loader from "../../shared/layout/Loader";
 import {
   CharacterCreatures,
   CreatureStartingValues,
@@ -78,6 +81,8 @@ const CharacterCreaturesForm = ({
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const [updateCreatures, { isLoading }] = useUpdateCreaturesMutation();
+
   const defaultValues = generateDefaultValues(creatures);
 
   const {
@@ -96,7 +101,30 @@ const CharacterCreaturesForm = ({
 
   const onSubmit: SubmitHandler<CharacterCreatures> = async (data) => {
     const cleanedData = cleanCharacterCreatures(data);
-    console.log(cleanedData);
+
+    try {
+      await updateCreatures({
+        id,
+        creatures: cleanedData,
+      }).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Creatures updated!",
+          severity: "success",
+        })
+      );
+
+      router.push(`/character/${id}`);
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
   const abilityScoreFields = (index: number) => {
@@ -248,9 +276,9 @@ const CharacterCreaturesForm = ({
     ));
   };
 
-  //   if (isLoading) {
-  //     return <Loader />;
-  //   }
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.form}>
