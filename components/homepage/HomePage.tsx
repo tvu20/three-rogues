@@ -9,7 +9,7 @@ const HomePage = () => {
         <h1>Three Rogues</h1>
         <h2>in a repository</h2>
         <h3>
-          An Interactive Character Sheet with Zero Bugs… Unless You’re a Druid.
+          An interactive character sheet wih zero bugs... unless you're a druid.
         </h3>
         <button
           onClick={() => router.push("/api/auth/signin")}
