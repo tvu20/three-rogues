@@ -30,7 +30,7 @@ const CharacterSpellSlots = () => {
         </thead>
         <tbody>
           <tr className={styles.usedRow}>
-            <td className={styles.tableLabel}>Used</td>
+            <td className={styles.tableLabel}>Current</td>
             {Array.from({ length: 9 }, (_, i) => (
               <td key={i} className={styles.spellSlotCell}>
                 {liveStats.spellSlots?.[i + 1]?.max && (

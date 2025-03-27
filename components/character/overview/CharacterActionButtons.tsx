@@ -2,7 +2,11 @@ import { Campfire, FloppyDisk, MoonStars } from "@phosphor-icons/react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useUpdateLiveStatsMutation } from "../../../app/api/apiSlice";
+import {
+  useLongRestMutation,
+  useShortRestMutation,
+  useUpdateLiveStatsMutation,
+} from "../../../app/api/apiSlice";
 import { setSnackbar } from "../../../app/snackbar/snackbarSlice";
 import { useAppDispatch, useAppSelector } from "../../../utils/redux";
 import useMediaQuery from "../../../utils/useMediaQuery";
@@ -30,6 +34,8 @@ const CharacterActionButtons = () => {
   const [showLongRestModal, setShowLongRestModal] = useState(false);
 
   const [updateLiveStats] = useUpdateLiveStatsMutation();
+  const [shortRest] = useShortRestMutation();
+  const [longRest] = useLongRestMutation();
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
   const creatures = useAppSelector((state) => state.character.creatures) || [];
@@ -107,11 +113,48 @@ const CharacterActionButtons = () => {
       concentration: "",
     };
 
-    console.log(updatedLiveStats);
+    setShowShortRestModal(false);
+
+    try {
+      await shortRest({ id, liveStats: updatedLiveStats }).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Short rest completed!",
+          severity: "success",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
   const longRestHandler = async () => {
-    // actually i can handle this all on the backend so just send the api request here
+    setShowLongRestModal(false);
+    try {
+      await longRest({ id }).unwrap();
+
+      dispatch(
+        setSnackbar({
+          message: "Long rest completed!",
+          severity: "success",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        setSnackbar({
+          message:
+            "Error: " + (err.data?.message || err.message || "Unknown error"),
+          severity: "error",
+        })
+      );
+    }
   };
 
   const updateLiveStatsHandler = async () => {
@@ -179,7 +222,7 @@ const CharacterActionButtons = () => {
       <Modal
         isOpen={showLongRestModal}
         onClose={() => setShowLongRestModal(false)}
-        onConfirm={() => console.log("long rest")}
+        onConfirm={longRestHandler}
         title="Long Rest"
         message="On a long rest, you will regain all your hit points, hit dice, spell slots, and uses of tracked features."
       ></Modal>

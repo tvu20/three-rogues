@@ -154,6 +154,30 @@ export const apiSlice = createApi({
         { type: "Character", id: arg.id },
       ],
     }),
+    shortRest: builder.mutation<
+      Character,
+      { id: string; liveStats: LiveStats }
+    >({
+      query: ({ id, liveStats }) => ({
+        url: `/liveStats/${id}/shortRest`,
+        method: "PUT",
+        body: { liveStats },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
+    longRest: builder.mutation<Character, { id: string }>({
+      query: ({ id }) => ({
+        url: `/liveStats/${id}/longRest`,
+        method: "PUT",
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg.id },
+      ],
+    }),
   }),
 });
 
@@ -168,4 +192,6 @@ export const {
   useUpdateCreaturesMutation,
   useUpdateInventoryMutation,
   useDeleteCharacterMutation,
+  useShortRestMutation,
+  useLongRestMutation,
 } = apiSlice;
