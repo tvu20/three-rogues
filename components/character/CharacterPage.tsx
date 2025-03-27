@@ -16,7 +16,7 @@ export default function CharacterPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
-  const { data: character, isLoading } = useGetCharacterQuery(id, {
+  const { data: character, isFetching } = useGetCharacterQuery(id, {
     skip: !id,
   });
 
@@ -33,7 +33,7 @@ export default function CharacterPage() {
     }
   }, [character, dispatch]);
 
-  if (isLoading) return <Loader />;
+  if (isFetching) return <Loader />;
 
   if (!character) {
     router.push("/");

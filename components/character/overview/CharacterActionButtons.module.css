@@ -19,11 +19,40 @@
   margin-right: var(--spacing-xx-small);
 }
 
-/* @media (max-width: 1140px) {
-  .container {
-    flex-wrap: wrap;
-  }
+.hitDiceTitle {
+  font-size: var(--font-size-body-small);
+  margin-top: var(--spacing-medium-large);
+  margin-bottom: var(--spacing-small);
+}
+
+.hitDiceList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--spacing-xx-large);
+  margin-bottom: var(--spacing-medium);
+}
+
+.hitDiceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hitDiceContainer > div:first-child {
+  margin-right: 4px;
+  margin-top: 0;
+}
+
+/* .hitDiceContainer > div > input {
+  text-align: right;
 } */
+
+.hitDiceType {
+  margin: 0 !important;
+  /* margin-left: var(--spacing-small) !important; */
+  margin-top: 4px !important;
+}
 
 @media (max-width: 1050px) {
   .container {
