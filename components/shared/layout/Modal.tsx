@@ -7,6 +7,7 @@ type ModalProps = {
   title: string;
   message: string;
   color?: string;
+  children?: React.ReactNode;
 };
 
 const Modal = ({
@@ -16,6 +17,7 @@ const Modal = ({
   title,
   message,
   color = "var(--snackbar-error-color)",
+  children,
 }: ModalProps) => {
   if (!isOpen) return null;
 
@@ -24,6 +26,7 @@ const Modal = ({
       <div className={styles.modalContent}>
         <h2 className={styles.modalTitle}>{title}</h2>
         <p>{message}</p>
+        {children}
         <div className={styles.modalButtons}>
           <button className="action-button" onClick={onClose}>
             Cancel
