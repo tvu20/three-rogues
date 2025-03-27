@@ -40,10 +40,6 @@ const CharacterActionButtons = () => {
   const liveStats = useAppSelector((state) => state.character.liveStats);
   const creatures = useAppSelector((state) => state.character.creatures) || [];
 
-  if (!liveStats) {
-    return <Loader />;
-  }
-
   const {
     register,
     control,
@@ -52,17 +48,18 @@ const CharacterActionButtons = () => {
     formState: { errors },
   } = useForm<HitDiceForm>({
     defaultValues: {
-      data: liveStats.hitDice.map((hitDice) => ({
+      data: liveStats?.hitDice.map((hitDice) => ({
         type: hitDice.type,
         toUse: 0,
         current: hitDice.current,
         max: hitDice.max,
       })),
-      hp: liveStats.currentHP,
+      hp: liveStats?.currentHP,
     },
   });
 
   useEffect(() => {
+    if (!liveStats) return;
     reset({
       data: liveStats.hitDice.map((hitDice) => ({
         type: hitDice.type,
@@ -72,12 +69,17 @@ const CharacterActionButtons = () => {
       })),
       hp: liveStats.currentHP,
     });
-  }, [liveStats.currentHP, liveStats.hitDice, reset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liveStats?.currentHP, liveStats?.hitDice, reset]);
 
   const { fields } = useFieldArray({
     control,
     name: "data",
   });
+
+  if (!liveStats) {
+    return <Loader />;
+  }
 
   const cleanedData = (hitDice: HitDiceForm) => {
     const cleanedHitDice = hitDice.data.map((hitDice) => {
