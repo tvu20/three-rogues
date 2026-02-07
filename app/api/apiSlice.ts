@@ -94,6 +94,19 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Character"],
     }),
+    togglePublic: builder.mutation<
+      { id: string; isPublic: boolean },
+      string
+    >({
+      query: (id) => ({
+        url: `/character/${id}/togglePublic`,
+        method: "POST",
+      }),
+      invalidatesTags: (result, error, arg) => [
+        "Character",
+        { type: "Character", id: arg },
+      ],
+    }),
     updateLiveStats: builder.mutation<
       Character,
       { id: string; liveStats: LiveStats; creatures: Creature[] }
@@ -192,6 +205,7 @@ export const {
   useUpdateCreaturesMutation,
   useUpdateInventoryMutation,
   useDeleteCharacterMutation,
+  useTogglePublicMutation,
   useShortRestMutation,
   useLongRestMutation,
 } = apiSlice;

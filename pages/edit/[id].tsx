@@ -19,6 +19,13 @@ const EditPage = () => {
 
   if (!session) {
     router.push("/");
+    return null;
+  }
+
+  // Redirect if user is not the owner
+  if (character && !character.isOwner) {
+    router.push(`/character/${id}`);
+    return null;
   }
 
   return (
