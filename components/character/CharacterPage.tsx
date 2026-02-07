@@ -17,7 +17,11 @@ export default function CharacterPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
-  const { data: character, isFetching, error } = useGetCharacterQuery(id, {
+  const {
+    data: character,
+    isFetching,
+    error,
+  } = useGetCharacterQuery(id, {
     skip: !id,
   });
 
@@ -29,6 +33,7 @@ export default function CharacterPage() {
           liveStats: character.liveStats,
           name: character.name,
           creatures: character.creatures ?? [],
+          isOwner: character.isOwner,
         })
       );
     }

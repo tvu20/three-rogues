@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAppSelector } from "../../../utils/redux";
 
 import styles from "./EditableCell.module.css";
 
@@ -17,9 +18,11 @@ const EditableTextCell = ({
 }: EditableTextCellProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value);
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   // if span is clicked twice, set isEditing to true
   const handleClick = () => {
+    if (!isOwner) return; // Don't allow editing if not owner
     setIsEditing(!isEditing);
     setInputValue(value);
   };

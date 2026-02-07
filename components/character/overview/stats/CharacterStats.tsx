@@ -19,6 +19,7 @@ const CharacterStats = () => {
   });
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   if (!liveStats) {
     return <Loader />;
@@ -80,7 +81,8 @@ const CharacterStats = () => {
         <div className={styles.inspiration}>
           <h5>Inspiration</h5>
           <button
-            onClick={() => dispatch(setInspiration(!liveStats?.inspiration))}
+            onClick={() => isOwner && dispatch(setInspiration(!liveStats?.inspiration))}
+            disabled={!isOwner}
           >
             {liveStats?.inspiration ? (
               <Sun className={styles.inspirationIcon} size={38} />

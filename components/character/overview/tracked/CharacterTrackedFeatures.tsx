@@ -1,11 +1,12 @@
 import { Feature, LiveStats } from "../../../../app/character/characterDefs";
 import { setTrackedFeatures } from "../../../../app/character/characterSlice";
-import { useAppDispatch } from "../../../../utils/redux";
+import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import styles from "./CharacterTrackedFeatures.module.css";
 
 type CharacterTrackedItemProps = {
   item: Feature;
   onChange: (id: string, used: number) => void;
+  isOwner?: boolean;
 };
 
 type CharacterTrackedFeaturesProps = {
@@ -15,6 +16,7 @@ type CharacterTrackedFeaturesProps = {
 const CharacterTrackedItem = ({
   item,
   onChange,
+  isOwner = true,
 }: CharacterTrackedItemProps) => {
   const createCheckboxes = (used, max) => {
     return Array.from({ length: max }, (_, i) => {
@@ -24,7 +26,9 @@ const CharacterTrackedItem = ({
           type="checkbox"
           key={i}
           checked={used >= i + 1}
+          disabled={!isOwner}
           onChange={() => {
+            if (!isOwner) return;
             // if this is the last checked checkbox, uncheck it and set used to i
             if (used === i + 1) {
               onChange(item.id ?? "", i);
@@ -58,6 +62,7 @@ const CharacterTrackedFeatures = ({
   liveStats,
 }: CharacterTrackedFeaturesProps) => {
   const dispatch = useAppDispatch();
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const createItems = () => {
     return liveStats.trackedFeatures?.map((feature) => {
@@ -66,6 +71,7 @@ const CharacterTrackedFeatures = ({
           key={feature.id}
           item={feature}
           onChange={(id, used) => dispatch(setTrackedFeatures({ id, used }))}
+          isOwner={isOwner}
         />
       );
     });

@@ -9,6 +9,7 @@ import {
   SPELL_TYPES,
 } from "../../../app/character/characterMapping";
 import { getAbilityModifier } from "../../../utils/characterUtils";
+import { useAppSelector } from "../../../utils/redux";
 import useMediaQuery from "../../../utils/useMediaQuery";
 import Search from "../../shared/inputs/Search";
 import Tag from "../../shared/inputs/Tag";
@@ -27,6 +28,7 @@ const CharacterSpellcasting = () => {
   const [search, setSearch] = useState("");
   const [displayed, setDisplayed] = useState<Spell[]>([]);
   const [filters, setFilters] = useState<string[]>([]);
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const { data: character } = useGetCharacterQuery(id, {
     skip: !id,
@@ -114,7 +116,7 @@ const CharacterSpellcasting = () => {
   return (
     <div>
       <div className={styles.headingContainer}>
-        {isMobile && ModifySpellsButton()}
+        {isMobile && isOwner && ModifySpellsButton()}
         <div className={styles.leftContainer}>
           <Search
             search
@@ -137,7 +139,7 @@ const CharacterSpellcasting = () => {
                 {character.maxPrepared || "N/A"}
               </p>
             </div>
-            {!isMobile && ModifySpellsButton()}
+            {!isMobile && isOwner && ModifySpellsButton()}
           </div>
           {renderClassRows()}
         </div>

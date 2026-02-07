@@ -13,6 +13,7 @@ export type LiveCharacter = {
   name: string;
   liveStats: LiveStats;
   creatures: Creature[];
+  isOwner?: boolean;
 };
 
 // character reducer state
@@ -21,6 +22,7 @@ export type CharacterState = {
   liveName?: string;
   liveStats?: LiveStats;
   creatures?: Creature[];
+  isOwner?: boolean;
 };
 
 // Define the initial state using that type
@@ -36,6 +38,7 @@ export const characterSlice = createSlice({
       state.liveName = action.payload.name;
       state.liveStats = action.payload.liveStats;
       state.creatures = action.payload.creatures;
+      state.isOwner = action.payload.isOwner;
     },
     setInspiration: (state, action: PayloadAction<boolean>) => {
       if (state.liveStats) {
