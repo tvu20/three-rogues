@@ -47,7 +47,8 @@ export const cleanCharacterInventory = (
         .filter(
           (weapon) => weapon != null && weapon.name && weapon.name.trim() !== ""
         )
-        .map(({ characterId: _characterId, ...weapon }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .map(({ characterId, ...weapon }) => ({
           ...weapon,
           proficient: stringToBooleanNull(weapon.proficient),
           ability:
@@ -60,7 +61,8 @@ export const cleanCharacterInventory = (
   const cleanedItems = Array.isArray(inventory)
     ? inventory
         .filter((item) => item != null && item.name && item.name.trim() !== "")
-        .map(({ characterId: _characterId, ...item }) => ({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .map(({ characterId, ...item }) => ({
           ...item,
           attuned: stringToBooleanNull(item.attuned),
           equipped: stringToBooleanNull(item.equipped),
