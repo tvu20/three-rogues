@@ -17,6 +17,7 @@
   font-size: var(--font-size-body-medium);
   margin: var(--spacing-xsmall) 0;
   font-weight: 300;
+  white-space: pre-line;
 }
 
 .header {
@@ -48,6 +49,7 @@
   margin-top: 0 !important;
   margin-bottom: var(--spacing-small) !important;
   font-size: var(--font-size-body-small) !important;
+  white-space: pre-line;
 }
 
 .options p:last-child {

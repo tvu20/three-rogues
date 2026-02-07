@@ -92,6 +92,10 @@
   font-weight: 300;
 }
 
+.spellDescription p {
+  white-space: pre-line;
+}
+
 .spellDescription p:not(:last-child) {
   margin-bottom: var(--spacing-small);
 }
