@@ -10,20 +10,30 @@ import {
   stringToBooleanNull,
 } from "./formUtils";
 export const generateDefaultWeaponValues = (weapons: Weapon[]) => {
-  const modifiedWeaponValues = weapons.map((weapon) => ({
-    ...weapon,
-    proficient: booleanNullToString(weapon.proficient),
-    ability: weapon.ability === "null" ? null : (weapon.ability as ABILITY),
-  }));
+  if (!Array.isArray(weapons)) {
+    return [];
+  }
+  const modifiedWeaponValues = weapons
+    .filter((weapon) => weapon != null)
+    .map((weapon) => ({
+      ...weapon,
+      proficient: booleanNullToString(weapon.proficient),
+      ability: weapon.ability === "null" ? null : (weapon.ability as ABILITY),
+    }));
   return modifiedWeaponValues;
 };
 
 export const generateDefaultItemValues = (items: Item[]) => {
-  const modifiedItemValues = items.map((item) => ({
-    ...item,
-    attuned: booleanNullToString(item.attuned),
-    equipped: booleanNullToString(item.equipped),
-  }));
+  if (!Array.isArray(items)) {
+    return [];
+  }
+  const modifiedItemValues = items
+    .filter((item) => item != null)
+    .map((item) => ({
+      ...item,
+      attuned: booleanNullToString(item.attuned),
+      equipped: booleanNullToString(item.equipped),
+    }));
   return modifiedItemValues;
 };
 
@@ -33,21 +43,32 @@ export const cleanCharacterInventory = (
   currency: Currency
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const cleanedWeapons = weapons.map(({ characterId, ...weapon }) => ({
-    ...weapon,
-    proficient: stringToBooleanNull(weapon.proficient),
-    ability: weapon.ability === "null" ? null : (weapon.ability as ABILITY),
-    hitBonus: cleanNumberNull(weapon.hitBonus),
-    quantity: cleanNumberNull(weapon.quantity),
-  }));
+  const cleanedWeapons = Array.isArray(weapons)
+    ? weapons
+        .filter(
+          (weapon) => weapon != null && weapon.name && weapon.name.trim() !== ""
+        )
+        .map(({ characterId, ...weapon }) => ({
+          ...weapon,
+          proficient: stringToBooleanNull(weapon.proficient),
+          ability:
+            weapon.ability === "null" ? null : (weapon.ability as ABILITY),
+          hitBonus: cleanNumberNull(weapon.hitBonus),
+          quantity: cleanNumberNull(weapon.quantity),
+        }))
+    : [];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const cleanedItems = inventory.map(({ characterId, ...item }) => ({
-    ...item,
-    attuned: stringToBooleanNull(item.attuned),
-    equipped: stringToBooleanNull(item.equipped),
-    quantity: cleanNumberNull(item.quantity),
-  }));
+  const cleanedItems = Array.isArray(inventory)
+    ? inventory
+        .filter((item) => item != null && item.name && item.name.trim() !== "")
+        .map(({ characterId, ...item }) => ({
+          ...item,
+          attuned: stringToBooleanNull(item.attuned),
+          equipped: stringToBooleanNull(item.equipped),
+          quantity: cleanNumberNull(item.quantity),
+        }))
+    : [];
 
   return { weapons: cleanedWeapons, inventory: cleanedItems, currency };
 };

@@ -49,26 +49,30 @@ const CharacterActionButtons = () => {
     formState: { errors },
   } = useForm<HitDiceForm>({
     defaultValues: {
-      data: liveStats?.hitDice.map((hitDice) => ({
-        type: hitDice.type,
-        toUse: 0,
-        current: hitDice.current,
-        max: hitDice.max,
-      })),
-      hp: liveStats?.currentHP,
+      data: Array.isArray(liveStats?.hitDice)
+        ? liveStats.hitDice.map((hitDice) => ({
+            type: hitDice.type,
+            toUse: 0,
+            current: hitDice.current,
+            max: hitDice.max,
+          }))
+        : [],
+      hp: liveStats?.currentHP || 0,
     },
   });
 
   useEffect(() => {
     if (!liveStats) return;
     reset({
-      data: liveStats.hitDice.map((hitDice) => ({
-        type: hitDice.type,
-        toUse: 0,
-        current: hitDice.current,
-        max: hitDice.max,
-      })),
-      hp: liveStats.currentHP,
+      data: Array.isArray(liveStats.hitDice)
+        ? liveStats.hitDice.map((hitDice) => ({
+            type: hitDice.type,
+            toUse: 0,
+            current: hitDice.current,
+            max: hitDice.max,
+          }))
+        : [],
+      hp: liveStats.currentHP || 0,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liveStats?.currentHP, liveStats?.hitDice, reset]);
@@ -83,6 +87,12 @@ const CharacterActionButtons = () => {
   }
 
   const cleanedData = (hitDice: HitDiceForm) => {
+    if (!Array.isArray(hitDice?.data)) {
+      return {
+        currentHP: hitDice?.hp || 0,
+        hitDice: [],
+      };
+    }
     const cleanedHitDice = hitDice.data.map((hitDice) => {
       const used = hitDice.toUse || 0;
       return {

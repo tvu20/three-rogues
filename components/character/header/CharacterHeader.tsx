@@ -16,11 +16,19 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
   const [togglePublic, { isLoading }] = useTogglePublicMutation();
 
   const showClasses = () => {
-    return character?.class?.map((c) => `${c.name} ${c.level}`).join(" / ");
+    if (!Array.isArray(character?.class) || character.class.length === 0) {
+      return "";
+    }
+    return character.class
+      .map((c) => `${c?.name || ""} ${c?.level || ""}`)
+      .join(" / ");
   };
 
   const showSubClasses = () => {
-    return character?.class?.map((c) => `${c.subclass}`).join(" / ");
+    if (!Array.isArray(character?.class) || character.class.length === 0) {
+      return "";
+    }
+    return character.class.map((c) => `${c?.subclass || ""}`).join(" / ");
   };
 
   const infoBlock = (title: string, value: string) => {

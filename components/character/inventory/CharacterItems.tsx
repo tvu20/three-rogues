@@ -38,15 +38,20 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
   };
 
   useEffect(() => {
-    // if (!items || !weapons) return;
+    if (!Array.isArray(items) || !Array.isArray(weapons)) {
+      setDisplayed([]);
+      return;
+    }
 
     let tempItems = [...items];
 
     const tempWeapons = [...weapons];
 
     if (filters.length > 0) {
-      tempItems = tempItems.filter((r) =>
-        filters.some((f: ITEM_TYPE) => r.type.includes(f))
+      tempItems = tempItems.filter(
+        (r) =>
+          Array.isArray(r.type) &&
+          filters.some((f: ITEM_TYPE) => r.type.includes(f))
       );
     }
 
@@ -59,7 +64,7 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
 
     if (search !== "" || search.length > 0) {
       temp = temp.filter((r) =>
-        r.name.toLowerCase().includes(search.toLowerCase())
+        r?.name?.toLowerCase().includes(search.toLowerCase())
       );
     }
 
