@@ -5,7 +5,7 @@ import {
   setHitDice,
   setTempHP,
 } from "../../../../app/character/characterSlice";
-import { useAppDispatch } from "../../../../utils/redux";
+import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import EditableCell from "../../../shared/inputs/EditableCell";
 import CharacterConditions from "./CharacterConditions";
 import CharacterDeathSaves from "./CharacterDeathSaves";
@@ -19,6 +19,7 @@ type CharacterHPProps = {
 const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
   const dispatch = useAppDispatch();
   const [amount, setAmount] = useState(0);
+  const isOwner = useAppSelector((state) => state.character.isOwner); // Still need this for Heal/Damage buttons
 
   const handleHPChange = (value: number) => {
     dispatch(setCurrentHP(value));
@@ -59,6 +60,8 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
   );
 
   const handleHitDiceChange = (value: number, type: string) => {
+    if (!Array.isArray(liveStats?.hitDice)) return;
+
     const newHitDice = liveStats.hitDice.map((hitDice) =>
       hitDice.type === type
         ? { ...hitDice, current: Math.max(hitDice.max - value, 0) }
@@ -84,26 +87,28 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
           <p>{character.maxHP}</p>
         </div>
       </div>
-      <div className={styles.healDamageContainer}>
-        <button
-          className={`${styles.hpButton} ${styles.heal}`}
-          onClick={handleHeal}
-        >
-          Heal
-        </button>
-        <input
-          className={styles.hpInput}
-          type="number"
-          value={amount || ""}
-          onChange={(e) => setAmount(Number(e.target.value))}
-        />
-        <button
-          className={`${styles.hpButton} ${styles.damage}`}
-          onClick={handleDamage}
-        >
-          Damage
-        </button>
-      </div>
+      {isOwner && (
+        <div className={styles.healDamageContainer}>
+          <button
+            className={`${styles.hpButton} ${styles.heal}`}
+            onClick={handleHeal}
+          >
+            Heal
+          </button>
+          <input
+            className={styles.hpInput}
+            type="number"
+            value={amount || ""}
+            onChange={(e) => setAmount(Number(e.target.value))}
+          />
+          <button
+            className={`${styles.hpButton} ${styles.damage}`}
+            onClick={handleDamage}
+          >
+            Damage
+          </button>
+        </div>
+      )}
       <div className={styles.hitDiceContainer}>
         <h3>Hit Dice</h3>
         <h2>
@@ -113,23 +118,25 @@ const CharacterHP = ({ character, liveStats }: CharacterHPProps) => {
         <div className={styles.hitDiceDetails}>
           <div className={styles.leftContainer}>
             <h5>MAX</h5>
-            {liveStats.hitDice.map((hitDice) => (
-              <h4 key={hitDice.type}>
-                {hitDice.max}
-                {hitDice.type}
-              </h4>
-            ))}
+            {Array.isArray(liveStats?.hitDice) &&
+              liveStats.hitDice.map((hitDice) => (
+                <h4 key={hitDice.type}>
+                  {hitDice.max}
+                  {hitDice.type}
+                </h4>
+              ))}
           </div>
           <div className={styles.rightContainer}>
             <h5>USED</h5>
-            {liveStats.hitDice.map((hitDice) => (
-              // @ts-ignore
-              <EditableCell
-                key={hitDice.type}
-                value={hitDice.max - hitDice.current}
-                onBlur={(value) => handleHitDiceChange(value, hitDice.type)}
-              />
-            ))}
+            {Array.isArray(liveStats?.hitDice) &&
+              liveStats.hitDice.map((hitDice) => (
+                // @ts-ignore
+                <EditableCell
+                  key={hitDice.type}
+                  value={hitDice.max - hitDice.current}
+                  onBlur={(value) => handleHitDiceChange(value, hitDice.type)}
+                />
+              ))}
           </div>
         </div>
       </div>

@@ -68,58 +68,63 @@ export default function ExpandableTable({
       </div>
 
       {/* Rows */}
-      {data.map((item) => (
-        <details className={styles.row} key={item.id}>
-          <summary
-            className={styles.rowSummary}
-            style={{
-              gridTemplateColumns: isMobile
-                ? mobileColumnSpacing
-                : columnSpacing,
-            }}
-          >
-            {tableColumns.map((column, i) => {
-              if (i === tableColumns.length - 1) {
+      {Array.isArray(data) &&
+        data.map((item) => (
+          <details className={styles.row} key={item.id}>
+            <summary
+              className={styles.rowSummary}
+              style={{
+                gridTemplateColumns: isMobile
+                  ? mobileColumnSpacing
+                  : columnSpacing,
+              }}
+            >
+              {tableColumns.map((column, i) => {
+                if (i === tableColumns.length - 1) {
+                  return (
+                    <div
+                      className={`${styles.rowSummaryItem} ${styles.last}`}
+                      key={column}
+                      style={{ opacity: column === "notes" ? 0.7 : 1 }}
+                    >
+                      {item[column] || <span></span>}
+                      <CaretLeft size={18} className={styles.carat} />
+                    </div>
+                  );
+                }
+                if (column === "equipped") {
+                  return equipped(item);
+                }
+                if (!creature && column === "type") {
+                  return (
+                    <div
+                      className={`${styles.rowSummaryItem} ${styles.type}`}
+                      key={column}
+                    >
+                      {item.damage
+                        ? "Weapon"
+                        : Array.isArray(item.type)
+                        ? item.type.join(", ")
+                        : item.type || ""}
+                    </div>
+                  );
+                }
                 return (
-                  <div
-                    className={`${styles.rowSummaryItem} ${styles.last}`}
-                    key={column}
-                    style={{ opacity: column === "notes" ? 0.7 : 1 }}
-                  >
-                    {item[column] || <span></span>}
-                    <CaretLeft size={18} className={styles.carat} />
+                  <div className={styles.rowSummaryItem} key={column}>
+                    <p>{item[column]}</p>
                   </div>
                 );
-              }
-              if (column === "equipped") {
-                return equipped(item);
-              }
-              if (!creature && column === "type") {
-                return (
-                  <div
-                    className={`${styles.rowSummaryItem} ${styles.type}`}
-                    key={column}
-                  >
-                    {item.damage ? "Weapon" : item.type.join(", ")}
-                  </div>
-                );
-              }
-              return (
-                <div className={styles.rowSummaryItem} key={column}>
-                  <p>{item[column]}</p>
-                </div>
-              );
-            })}
-          </summary>
-          <div className={styles.rowDetails}>
-            {creature ? (
-              <CreatureBlock creature={item} />
-            ) : (
-              <p>{item.description || "No description provided."}</p>
-            )}
-          </div>
-        </details>
-      ))}
+              })}
+            </summary>
+            <div className={styles.rowDetails}>
+              {creature ? (
+                <CreatureBlock creature={item} />
+              ) : (
+                <p>{item.description || "No description provided."}</p>
+              )}
+            </div>
+          </details>
+        ))}
     </div>
   );
 }

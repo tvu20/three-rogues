@@ -113,6 +113,8 @@ model Character {
   organization    String?
   backstory       String?
   images          String[]
+  
+  isPublic        Boolean   @default(false)
 }
 
 model Feature {

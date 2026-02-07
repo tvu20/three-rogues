@@ -2,6 +2,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useGetCharacterQuery } from "../../../app/api/apiSlice";
 import { Creature } from "../../../app/character/characterDefs";
+import { useAppSelector } from "../../../utils/redux";
 import Search from "../../shared/inputs/Search";
 import Loader from "../../shared/layout/Loader";
 
@@ -24,6 +25,7 @@ const CharacterCreatures = () => {
 
   const [search, setSearch] = useState("");
   const [displayed, setDisplayed] = useState<Creature[]>([]);
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const { data: character } = useGetCharacterQuery(id, {
     skip: !id,
@@ -56,12 +58,14 @@ const CharacterCreatures = () => {
           value={search}
           placeholder="Search for a stat block"
         />
-        <button
-          className="action-button"
-          onClick={() => router.push(`/character/${id}/creatures`)}
-        >
-          Modify Creatures
-        </button>
+        {isOwner && (
+          <button
+            className="action-button"
+            onClick={() => router.push(`/character/${id}/creatures`)}
+          >
+            Modify Creatures
+          </button>
+        )}
       </div>
       <ExpandableTable
         columns={COLUMNS}

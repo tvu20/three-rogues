@@ -1,4 +1,5 @@
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { useGetCharacterQuery } from "../../app/api/apiSlice";
@@ -16,7 +17,11 @@ export default function CharacterPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
-  const { data: character, isFetching } = useGetCharacterQuery(id, {
+  const {
+    data: character,
+    isFetching,
+    error,
+  } = useGetCharacterQuery(id, {
     skip: !id,
   });
 
@@ -28,15 +33,23 @@ export default function CharacterPage() {
           liveStats: character.liveStats,
           name: character.name,
           creatures: character.creatures ?? [],
+          isOwner: character.isOwner,
         })
       );
     }
   }, [character, dispatch]);
 
+  // Handle errors (private character or not found)
+  useEffect(() => {
+    if (error) {
+      router.push("/");
+    }
+  }, [error, router]);
+
   if (isFetching) return <Loader />;
 
   if (!character) {
-    router.push("/");
+    return <Loader />;
   }
 
   return (

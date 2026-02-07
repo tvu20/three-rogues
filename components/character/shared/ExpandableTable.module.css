@@ -71,6 +71,7 @@
   padding: var(--spacing-small);
   transform-origin: top;
   font-size: var(--font-size-body-small) !important;
+  white-space: pre-line;
 }
 
 .row[open] .rowDetails {

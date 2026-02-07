@@ -1,6 +1,6 @@
 import { DeathSaves } from "../../../../app/character/characterDefs";
 import { setDeathSaves } from "../../../../app/character/characterSlice";
-import { useAppDispatch } from "../../../../utils/redux";
+import { useAppDispatch, useAppSelector } from "../../../../utils/redux";
 import styles from "./CharacterHP.module.css";
 
 type CharacterDeathSavesProps = {
@@ -11,12 +11,15 @@ const CharacterDeathSaves = ({ saves }: CharacterDeathSavesProps) => {
   //   saves = { successes: 1, failures: 2 };
 
   const dispatch = useAppDispatch();
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const handleSaveSuccessClick = (index: number) => {
+    if (!isOwner) return;
     dispatch(setDeathSaves({ ...saves, successes: index }));
   };
 
   const handleSaveFailureClick = (index: number) => {
+    if (!isOwner) return;
     dispatch(setDeathSaves({ ...saves, failures: index }));
   };
 
@@ -49,12 +52,14 @@ const CharacterDeathSaves = ({ saves }: CharacterDeathSavesProps) => {
       <h3>Death Saves</h3>
       <div className={styles.deathSavesRow}>{createSuccesses()}</div>
       <div className={styles.deathSavesRow}>{createFailures()}</div>
-      <button
-        className={`action-button ${styles.resetButton}`}
-        onClick={() => dispatch(setDeathSaves({ successes: 0, failures: 0 }))}
-      >
-        Reset
-      </button>
+      {isOwner && (
+        <button
+          className={`action-button ${styles.resetButton}`}
+          onClick={() => dispatch(setDeathSaves({ successes: 0, failures: 0 }))}
+        >
+          Reset
+        </button>
+      )}
     </div>
   );
 };

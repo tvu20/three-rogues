@@ -16,6 +16,9 @@ const CharacterBackstory = () => {
   }
 
   const renderImageGallery = () => {
+    if (!Array.isArray(character.images) || character.images.length === 0) {
+      return <p>No images uploaded.</p>;
+    }
     return character.images.map((image, index) => (
       <img key={index} src={image} alt="Character" />
     ));

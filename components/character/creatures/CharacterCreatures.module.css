@@ -42,6 +42,7 @@
 .feature h5 {
   font-weight: 200;
   font-size: var(--font-size-body-medium);
+  white-space: pre-line;
 }
 
 .rightContainer {

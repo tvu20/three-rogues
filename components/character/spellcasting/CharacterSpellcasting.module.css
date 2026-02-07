@@ -19,6 +19,40 @@
   font-size: var(--font-size-body-medium);
 }
 
+.searchRow {
+  display: flex;
+  gap: var(--spacing-small);
+  align-items: center;
+}
+
+.searchRow > input {
+  flex: 1;
+}
+
+.quickFiltersRow {
+  display: flex;
+  gap: var(--spacing-small);
+  margin-top: var(--spacing-small);
+  flex-wrap: wrap;
+}
+
+.quickFiltersRow button {
+  flex: 1;
+  min-width: fit-content;
+  font-size: var(--font-size-body-small);
+  padding: var(--spacing-xsmall) var(--spacing-small-medium);
+  white-space: nowrap;
+}
+
+.spellCount {
+  margin-top: var(--spacing-small-medium);
+}
+
+.spellCount p {
+  margin: 0;
+  line-height: 1.8;
+}
+
 .tagContainer {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +152,18 @@
     align-items: flex-end;
     font-size: var(--font-size-body-large);
     padding: var(--spacing-small);
+  }
+
+  .searchRow {
+    flex-direction: column;
+  }
+
+  .quickFiltersRow {
+    flex-direction: column;
+  }
+
+  .quickFiltersRow button {
+    width: 100%;
   }
 }
 

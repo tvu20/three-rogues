@@ -6,6 +6,7 @@ import Tag from "../../shared/inputs/Tag";
 
 import { useRouter } from "next/router";
 import { ITEM_TYPE } from "../../../app/character/characterDefs";
+import { useAppSelector } from "../../../utils/redux";
 import ExpandableTable from "../shared/ExpandableTable";
 import styles from "./CharacterInventory.module.css";
 const COLUMNS = ["equipped", "name", "quantity", "type", "notes"];
@@ -26,6 +27,7 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
   const [displayed, setDisplayed] = useState<Item[]>([]);
   const [filters, setFilters] = useState<ITEM_TYPE[]>([]);
   const router = useRouter();
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const addFilter = (item: ITEM_TYPE) => {
     setFilters((prevState) => [...prevState, item]);
@@ -36,15 +38,20 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
   };
 
   useEffect(() => {
-    // if (!items || !weapons) return;
+    if (!Array.isArray(items) || !Array.isArray(weapons)) {
+      setDisplayed([]);
+      return;
+    }
 
     let tempItems = [...items];
 
     const tempWeapons = [...weapons];
 
     if (filters.length > 0) {
-      tempItems = tempItems.filter((r) =>
-        filters.some((f: ITEM_TYPE) => r.type.includes(f))
+      tempItems = tempItems.filter(
+        (r) =>
+          Array.isArray(r.type) &&
+          filters.some((f: ITEM_TYPE) => r.type.includes(f))
       );
     }
 
@@ -57,7 +64,7 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
 
     if (search !== "" || search.length > 0) {
       temp = temp.filter((r) =>
-        r.name.toLowerCase().includes(search.toLowerCase())
+        r?.name?.toLowerCase().includes(search.toLowerCase())
       );
     }
 
@@ -83,12 +90,14 @@ const CharacterItems = ({ id, items, weapons }: CharacterItemsProps) => {
           placeholder="Search for an item"
           small
         />
-        <button
-          className="action-button"
-          onClick={() => router.push(`/character/${id}/inventory`)}
-        >
-          Manage Items
-        </button>
+        {isOwner && (
+          <button
+            className="action-button"
+            onClick={() => router.push(`/character/${id}/inventory`)}
+          >
+            Manage Items
+          </button>
+        )}
       </div>
       <div className={styles.tagContainer}>{renderTags()}</div>
       <ExpandableTable

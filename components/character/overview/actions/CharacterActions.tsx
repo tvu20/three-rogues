@@ -35,11 +35,14 @@ const CharacterActions = () => {
   }
 
   const createFeatureBlocks = (linkedAbility: LINKED_ABILITY) => {
-    const features = character?.features.filter(
-      (feature) => feature.linkedAbility === linkedAbility
+    if (!Array.isArray(character?.features)) {
+      return null;
+    }
+    const features = character.features.filter(
+      (feature) => feature?.linkedAbility === linkedAbility
     );
 
-    return features?.map((feature) => (
+    return features.map((feature) => (
       <FeatureBlock
         key={feature.id}
         title={feature.name}

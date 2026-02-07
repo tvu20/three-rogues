@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useGetCharacterQuery } from "../../../app/api/apiSlice";
+import {
+  useGetCharacterQuery,
+  useTogglePublicMutation,
+} from "../../../app/api/apiSlice";
 import styles from "./CharacterHeader.module.css";
 
 type Props = {
@@ -10,13 +13,22 @@ type Props = {
 const CharacterHeader: React.FC<Props> = ({ id }) => {
   const { data: character } = useGetCharacterQuery(id);
   const router = useRouter();
+  const [togglePublic, { isLoading }] = useTogglePublicMutation();
 
   const showClasses = () => {
-    return character?.class?.map((c) => `${c.name} ${c.level}`).join(" / ");
+    if (!Array.isArray(character?.class) || character.class.length === 0) {
+      return "";
+    }
+    return character.class
+      .map((c) => `${c?.name || ""} ${c?.level || ""}`)
+      .join(" / ");
   };
 
   const showSubClasses = () => {
-    return character?.class?.map((c) => `${c.subclass}`).join(" / ");
+    if (!Array.isArray(character?.class) || character.class.length === 0) {
+      return "";
+    }
+    return character.class.map((c) => `${c?.subclass || ""}`).join(" / ");
   };
 
   const infoBlock = (title: string, value: string) => {
@@ -27,6 +39,15 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
       </div>
     );
   };
+
+  const handleTogglePublic = async () => {
+    try {
+      await togglePublic(id).unwrap();
+    } catch (error) {
+      console.error("Failed to toggle public status:", error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <img
@@ -47,15 +68,28 @@ const CharacterHeader: React.FC<Props> = ({ id }) => {
         <h4 className={styles.subclass}>{showSubClasses()}</h4>
       </div>
       <div className={styles.rightContainer}>
-        <div className={styles.actionButtons}>
-          {/* <button className="action-button">download</button> */}
-          <button
-            className="action-button"
-            onClick={() => router.push(`/edit/${id}`)}
-          >
-            edit
-          </button>
-        </div>
+        {character?.isOwner && (
+          <div className={styles.actionButtons}>
+            {/* <button className="action-button">download</button> */}
+            <button
+              className={
+                character?.isPublic
+                  ? "action-button highlighted-action-button"
+                  : "action-button"
+              }
+              onClick={handleTogglePublic}
+              disabled={isLoading}
+            >
+              {character?.isPublic ? "Public" : "Not Public"}
+            </button>
+            <button
+              className="action-button"
+              onClick={() => router.push(`/edit/${id}`)}
+            >
+              edit
+            </button>
+          </div>
+        )}
         <div className={styles.infoContainer}>
           {infoBlock("Race", character?.race || "")}
           {infoBlock("Background", character?.background || "")}

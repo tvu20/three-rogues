@@ -96,6 +96,8 @@ export type CharacterDetails = {
   images: {
     value: string;
   }[];
+  
+  isPublic: boolean;
 };
 
 export const CharacterDetailsDefaultValues: CharacterDetails = {
@@ -186,6 +188,8 @@ export const CharacterDetailsDefaultValues: CharacterDetails = {
   organization: "",
   backstory: "",
   images: [],
+  
+  isPublic: false,
 
   skills: {
     Acrobatics: {

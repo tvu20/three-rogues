@@ -22,16 +22,18 @@ const CharacterTrackedCompanions = ({
   };
 
   const createItems = () => {
+    if (!Array.isArray(creatures)) return null;
+
     return creatures.map((creature) => {
       return (
         <div key={creature.id} className={styles.creatureRow}>
-          <p>{creature.name}</p>
+          <p>{creature?.name || "Unknown"}</p>
           <div className={styles.hpContainer}>
             <EditableCell
-              value={creature.currentHP ?? 0}
-              onBlur={(value) => handleHPChange(value, creature.id ?? "")}
+              value={creature?.currentHP ?? 0}
+              onBlur={(value) => handleHPChange(value, creature?.id ?? "")}
             />
-            <p> / {creature.maxHP}</p>
+            <p> / {creature?.maxHP || 0}</p>
           </div>
         </div>
       );

@@ -265,4 +265,7 @@ export type Character = {
   organization: string;
   backstory: string;
   images: string[];
+  
+  isPublic: boolean;
+  isOwner?: boolean; // Computed on frontend
 };

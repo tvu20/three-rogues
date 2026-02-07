@@ -39,6 +39,7 @@ const CharacterActionButtons = () => {
 
   const liveStats = useAppSelector((state) => state.character.liveStats);
   const creatures = useAppSelector((state) => state.character.creatures) || [];
+  const isOwner = useAppSelector((state) => state.character.isOwner);
 
   const {
     register,
@@ -48,26 +49,30 @@ const CharacterActionButtons = () => {
     formState: { errors },
   } = useForm<HitDiceForm>({
     defaultValues: {
-      data: liveStats?.hitDice.map((hitDice) => ({
-        type: hitDice.type,
-        toUse: 0,
-        current: hitDice.current,
-        max: hitDice.max,
-      })),
-      hp: liveStats?.currentHP,
+      data: Array.isArray(liveStats?.hitDice)
+        ? liveStats.hitDice.map((hitDice) => ({
+            type: hitDice.type,
+            toUse: 0,
+            current: hitDice.current,
+            max: hitDice.max,
+          }))
+        : [],
+      hp: liveStats?.currentHP || 0,
     },
   });
 
   useEffect(() => {
     if (!liveStats) return;
     reset({
-      data: liveStats.hitDice.map((hitDice) => ({
-        type: hitDice.type,
-        toUse: 0,
-        current: hitDice.current,
-        max: hitDice.max,
-      })),
-      hp: liveStats.currentHP,
+      data: Array.isArray(liveStats.hitDice)
+        ? liveStats.hitDice.map((hitDice) => ({
+            type: hitDice.type,
+            toUse: 0,
+            current: hitDice.current,
+            max: hitDice.max,
+          }))
+        : [],
+      hp: liveStats.currentHP || 0,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liveStats?.currentHP, liveStats?.hitDice, reset]);
@@ -82,6 +87,12 @@ const CharacterActionButtons = () => {
   }
 
   const cleanedData = (hitDice: HitDiceForm) => {
+    if (!Array.isArray(hitDice?.data)) {
+      return {
+        currentHP: hitDice?.hp || 0,
+        hitDice: [],
+      };
+    }
     const cleanedHitDice = hitDice.data.map((hitDice) => {
       const used = hitDice.toUse || 0;
       return {
@@ -228,29 +239,31 @@ const CharacterActionButtons = () => {
         title="Long Rest"
         message="On a long rest, you will regain all your hit points, hit dice, spell slots, and uses of tracked features."
       ></Modal>
-      <div className={styles.container}>
-        <button
-          className="action-button"
-          onClick={() => setShowShortRestModal(true)}
-        >
-          <Campfire className={styles.icon} size={isMobile ? 32 : 20} />
-          Short Rest
-        </button>
-        <button
-          className="action-button"
-          onClick={() => setShowLongRestModal(true)}
-        >
-          <MoonStars className={styles.icon} size={isMobile ? 32 : 20} />
-          Long Rest
-        </button>
-        <button
-          className="action-button highlighted-action-button"
-          onClick={updateLiveStatsHandler}
-        >
-          <FloppyDisk className={styles.icon} size={isMobile ? 32 : 20} />
-          Save
-        </button>
-      </div>
+      {isOwner && (
+        <div className={styles.container}>
+          <button
+            className="action-button"
+            onClick={() => setShowShortRestModal(true)}
+          >
+            <Campfire className={styles.icon} size={isMobile ? 32 : 20} />
+            Short Rest
+          </button>
+          <button
+            className="action-button"
+            onClick={() => setShowLongRestModal(true)}
+          >
+            <MoonStars className={styles.icon} size={isMobile ? 32 : 20} />
+            Long Rest
+          </button>
+          <button
+            className="action-button highlighted-action-button"
+            onClick={updateLiveStatsHandler}
+          >
+            <FloppyDisk className={styles.icon} size={isMobile ? 32 : 20} />
+            Save
+          </button>
+        </div>
+      )}
     </>
   );
 };
