@@ -42,13 +42,12 @@ export const cleanCharacterInventory = (
   inventory: Item[],
   currency: Currency
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const cleanedWeapons = Array.isArray(weapons)
     ? weapons
         .filter(
           (weapon) => weapon != null && weapon.name && weapon.name.trim() !== ""
         )
-        .map(({ characterId, ...weapon }) => ({
+        .map(({ characterId: _characterId, ...weapon }) => ({
           ...weapon,
           proficient: stringToBooleanNull(weapon.proficient),
           ability:
@@ -58,11 +57,10 @@ export const cleanCharacterInventory = (
         }))
     : [];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const cleanedItems = Array.isArray(inventory)
     ? inventory
         .filter((item) => item != null && item.name && item.name.trim() !== "")
-        .map(({ characterId, ...item }) => ({
+        .map(({ characterId: _characterId, ...item }) => ({
           ...item,
           attuned: stringToBooleanNull(item.attuned),
           equipped: stringToBooleanNull(item.equipped),
